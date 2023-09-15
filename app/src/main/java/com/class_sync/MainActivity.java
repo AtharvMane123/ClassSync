@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(@NonNull Animator animator) {
 //
-                Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                Intent intent = new Intent(getApplicationContext(), newlyInstalled.class);
                 startActivity(intent);
                 finish();
             }

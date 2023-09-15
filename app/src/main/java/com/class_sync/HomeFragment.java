@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void getLastLocation() {
-
+        //To get the last location of the user
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
             fusedLocationProviderClient.getLastLocation()
@@ -92,6 +92,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void askPermission() {
+        //To take the permission from the user to read/get the current location
         ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
         //ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
     }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="40dp"
+    android:layout_height="match_parent"
+    tools:context=".newlyInstalled">
+
+    <TextView
+        android:id="@+id/newlyOpenedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:fontFamily="@font/berkshire_swash"
+        android:text="Class-Sync"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:lottie_rawRes="@raw/newly_installed"
+        android:id="@+id/newlyOpenedLottie"
+        app:lottie_autoPlay="true"
+        android:layout_below="@id/newlyOpenedText"
+        app:lottie_loop="true"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/textview_back"
+        android:text="Get Started"
+        android:textStyle="bold"
+        android:id="@+id/getStarted"
+        android:elevation="150dp"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>
