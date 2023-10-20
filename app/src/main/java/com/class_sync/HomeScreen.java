@@ -34,17 +34,17 @@ MaterialCardView assignments,attendance,groupChatting,askChatGpt;
         switch (model.getId())
         {
             case 1:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame,new HomeFragment()).commit();
+                getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new HomeFragment()).commit();
                 break;
             case 2:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame,new MessengerFragment()).commit();
+                getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new MessengerFragment()).commit();
 
                 break;
             case 3:
                 Toast.makeText(HomeScreen.this, "UpComing Fragment", Toast.LENGTH_SHORT).show();
                 break;
             case 4:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame,new UserFragment()).commit();
+                getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new UserFragment()).commit();
 
                 break;
         }

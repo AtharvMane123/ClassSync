@@ -12,6 +12,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        multiDexEnabled = true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -42,5 +43,5 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:21.0.1'//for location
     implementation 'com.google.android.gms:play-services-auth:20.6.0'//for location
     implementation 'de.hdodenhof:circleimageview:3.1.0'//circular image
-
+    implementation "androidx.multidex:multidex:2.0.1"
 }

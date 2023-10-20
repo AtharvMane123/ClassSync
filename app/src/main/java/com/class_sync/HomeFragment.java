@@ -1,14 +1,22 @@
 package com.class_sync;
 
 import android.Manifest;
+import android.app.ActivityManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -16,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -27,8 +36,17 @@ import java.util.Locale;
 
 
 public class HomeFragment extends Fragment {
+    public static final String ERROR_DETECTED = "No NFC Detected";
 
-    ImageView atten;
+    NfcAdapter nfcAdapter;
+    IntentFilter writingTagFilter;
+    PendingIntent pendingIntent;
+    Tag mytag;
+    Button NFC;
+    Context context;
+    ViewGroup root;
+
+    ImageView atten,MsbteResources,ebooks;
     FusedLocationProviderClient fusedLocationProviderClient;
     private final static int REQUEST_CODE = 100;
 
@@ -36,10 +54,12 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
+        root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
+        findId();
+        context = getActivity();
 
-        atten = root.findViewById(R.id.TrackAttendance_CardView);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
+
 
         atten.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,8 +67,46 @@ public class HomeFragment extends Fragment {
                 getLastLocation();
             }
         });
+        MsbteResources.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new MsbteResources_Fragement()).commit();
+            }
+        });
+
+        NFC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if (mytag == null) {
+                        Toast.makeText(context, ERROR_DETECTED, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "NFC DETECTED", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
+        if (nfcAdapter == null) {
+            Toast.makeText(context, "This device does not support NFC", Toast.LENGTH_SHORT).show();
+        }
+        IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
+        tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
+
         return root;
     }
+
+    //Finding Id's of all the components on the Fragments
+    void findId()
+    {
+        atten = root.findViewById(R.id.TrackAttendance_CardView);
+        NFC = root.findViewById(R.id.ScanNFc);
+        MsbteResources=root.findViewById(R.id.MsbtePapers);
+        ebooks=root.findViewById(R.id.Ebooks_imageView);
+    }
+
 
     private void getLastLocation() {
         //To get the last location of the user
@@ -65,14 +123,12 @@ public class HomeFragment extends Fragment {
                                 try {
                                     addresses = geo.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
 //                                    address.setText("Pune: "+addresses.get(0).getAddressLine(0));
-                                    Toast.makeText(getActivity(),""+addresses.get(0).getAddressLine(0), Toast.LENGTH_LONG).show();
-                                    if(addresses.get(0).getAddressLine(0).equalsIgnoreCase("FWCP+RF8, Satar Nagar, Hadapsar, Pune, Autadwadi " +
-                                            "Handewadi, Maharashtra 411028, India"))
-                                    {
+                                    Toast.makeText(getActivity(), "" + addresses.get(0).getAddressLine(0), Toast.LENGTH_LONG).show();
+                                    if (addresses.get(0).getAddressLine(0).equalsIgnoreCase("FWCP+RF8, Satar Nagar, Hadapsar, Pune, Autadwadi " +
+                                            "Handewadi, Maharashtra 411028, India")) {
                                         Toast.makeText(getActivity(), "You are in college", Toast.LENGTH_SHORT).show();
-                                    }
-                                    else {
-                                        Toast.makeText(getActivity(),  "You are not in the College, so your attendance will not be marked", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getActivity(), "You are not in the College, so your attendance will not be marked", Toast.LENGTH_SHORT).show();
                                     }
 
 
@@ -115,4 +171,5 @@ public class HomeFragment extends Fragment {
 
 
     }
+
 }
