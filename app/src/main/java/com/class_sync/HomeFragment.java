@@ -1,7 +1,6 @@
 package com.class_sync;
 
 import android.Manifest;
-import android.app.ActivityManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +23,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -34,10 +32,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import Home_Fragments.EbookFragments;
+import Home_Fragments.MsbteResources_Fragement;
+
 
 public class HomeFragment extends Fragment {
     public static final String ERROR_DETECTED = "No NFC Detected";
-
+    private final static int REQUEST_CODE = 100;
     NfcAdapter nfcAdapter;
     IntentFilter writingTagFilter;
     PendingIntent pendingIntent;
@@ -45,10 +46,8 @@ public class HomeFragment extends Fragment {
     Button NFC;
     Context context;
     ViewGroup root;
-
-    ImageView atten,MsbteResources,ebooks;
+    ImageView atten, MsbteResources, ebooks;
     FusedLocationProviderClient fusedLocationProviderClient;
-    private final static int REQUEST_CODE = 100;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +59,13 @@ public class HomeFragment extends Fragment {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
 
+        ebooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new EbookFragments()).commit();
 
+            }
+        });
         atten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,24 +75,25 @@ public class HomeFragment extends Fragment {
         MsbteResources.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new MsbteResources_Fragement()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new MsbteResources_Fragement()).commit();
             }
         });
 
-        NFC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    if (mytag == null) {
-                        Toast.makeText(context, ERROR_DETECTED, Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(context, "NFC DETECTED", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+
+//        NFC.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                try {
+//                    if (mytag == null) {
+//                        Toast.makeText(context, ERROR_DETECTED, Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(context, "NFC DETECTED", Toast.LENGTH_SHORT).show();
+//                    }
+//                } catch (Exception e) {
+//                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
         nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
         if (nfcAdapter == null) {
             Toast.makeText(context, "This device does not support NFC", Toast.LENGTH_SHORT).show();
@@ -99,12 +105,11 @@ public class HomeFragment extends Fragment {
     }
 
     //Finding Id's of all the components on the Fragments
-    void findId()
-    {
+    void findId() {
         atten = root.findViewById(R.id.TrackAttendance_CardView);
         NFC = root.findViewById(R.id.ScanNFc);
-        MsbteResources=root.findViewById(R.id.MsbtePapers);
-        ebooks=root.findViewById(R.id.Ebooks_imageView);
+        MsbteResources = root.findViewById(R.id.MsbtePapers);
+        ebooks = root.findViewById(R.id.Ebooks_imageView);
     }
 
 

@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:padding="20dp"
-    tools:context=".MsbteResources_Fragement">
+    tools:context="Home_Fragments.MsbteResources_Fragement">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,6 +31,7 @@
                 android:layout_width="match_parent"
                 app:cardCornerRadius="20dp"
                 android:layout_height="150dp"
+
                 android:layout_marginTop="20dp"
 
                 ><RelativeLayout
@@ -38,15 +39,16 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/cardview_back"
 >
+
                 <TextView
+                    android:id="@+id/QuestionPapers_cardview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textAlignment="center"
-                    android:textSize="15dp"
+                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Previous Year Question Papers"
-                    android:layout_gravity="center"
-                    />
+                    android:textAlignment="center"
+                    android:textSize="15dp" />
             </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
@@ -61,15 +63,16 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/cardview_back"
                 >
+
                 <TextView
+                    android:id="@+id/ModelAnswers_cardview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textAlignment="center"
-                    android:textSize="15dp"
+                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Previous Year Model Answers"
-                    android:layout_gravity="center"
-                    />
+                    android:textAlignment="center"
+                    android:textSize="15dp" />
             </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
@@ -85,15 +88,16 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/cardview_back"
                 >
+
                 <TextView
+                    android:id="@+id/SamplePapers_cardview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:textSize="15dp"
-                    android:text="Previous Year Sample Papers"
                     android:layout_gravity="center"
-                    />
+                    android:gravity="center"
+                    android:text="Previous Year Sample Papers"
+                    android:textAlignment="center"
+                    android:textSize="15dp" />
             </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
