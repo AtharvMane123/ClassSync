@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -56,5 +57,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+            i++;
+            if (i == 15) {
+                startActivity(new Intent(getApplicationContext(), HomeScreen.class));
+                finish();
+            }
+        }
+        return true;
     }
 }

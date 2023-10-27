@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:paddingVertical="10dp"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="90dp"
+        android:layout_height="120dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/f_bk2"
+        android:id="@+id/Recycler_BookImg"
+        app:shapeAppearanceOverlay="@style/RecyclerViewImageView"
+        />
+
+    <TextView
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/Recycler_BookImg"
+
+        android:text="The Only Budgeting Book You'll Ever Need"
+        android:id="@+id/Recycler_BookName"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/Recycler_BookImg"
+        android:layout_below="@id/Recycler_BookName"
+        android:text="A. Mane"
+        android:layout_marginTop="5dp"
+        android:id="@+id/Recycler_BookAuthor"
+        android:textColor="#504C4C"
+        android:textSize="12dp" />
+
+
+
+
+<!--    android:fontFamily="@font/cabin_bold"-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/like"
+        android:paddingRight="10dp"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/recycler_favorite_border"
+        android:layout_alignParentRight="true"
+        />
+    <TextView
+        android:id="@+id/like1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:drawableEnd="@drawable/recyler_favorite"
+        android:paddingRight="10dp"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

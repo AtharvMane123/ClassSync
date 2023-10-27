@@ -25,6 +25,9 @@
             android:name=".newlyInstalled"
             android:exported="false" />
         <activity
+            android:name=".PdfViewer"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity

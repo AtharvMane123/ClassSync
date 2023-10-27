@@ -15,6 +15,9 @@ import kotlin.jvm.functions.Function1;
 
 public class HomeScreen extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
+    public static String Name;
+    public static String Email;
+
 MaterialCardView assignments,attendance,groupChatting,askChatGpt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

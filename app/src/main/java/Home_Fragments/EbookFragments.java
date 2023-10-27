@@ -2,6 +2,7 @@ package Home_Fragments;
 
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,12 +16,25 @@ import com.class_sync.R;
 public class EbookFragments extends Fragment {
 
     View decorView;
+    ViewGroup root;
+    CardView generalBooks;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
+        root= (ViewGroup) inflater.inflate(R.layout.fragment_ebook_fragments, container, false);
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+generalBooks=root.findViewById(R.id.GeneralBooks);
+generalBooks.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame,new FinanceEbooks_fragment()).commit();
+    }
+});
+        //--------------------------Code to hide Navigation buttons and notification bar-----------------------------------------------------------------------
         decorView = getActivity().getWindow().getDecorView();
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
@@ -29,7 +43,7 @@ public class EbookFragments extends Fragment {
                     decorView.setSystemUiVisibility(hideSystemBars());
             }
         });
-        return inflater.inflate(R.layout.fragment_ebook_fragments, container, false);
+        return root;
     }
 
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -49,5 +63,6 @@ public class EbookFragments extends Fragment {
 
 
     }
+    //--------------------------Code to hide Navigation buttons and notification bar ends here -----------------------------------------------------------------------
 
 }

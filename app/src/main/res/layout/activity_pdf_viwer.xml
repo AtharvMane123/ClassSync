@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PdfViewer">
+
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfViwer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         >
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/progress"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@id/progress"
+            app:lottie_rawRes="@raw/an2"
+            app:lottie_autoPlay="true"
+            android:id="@+id/pleaseWait"
+            app:lottie_loop="true"
+
+            />
+    </com.github.barteksc.pdfviewer.PDFView>
+
+</RelativeLayout>

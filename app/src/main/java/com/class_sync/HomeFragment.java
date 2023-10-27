@@ -46,6 +46,8 @@ public class HomeFragment extends Fragment {
     Button NFC;
     Context context;
     ViewGroup root;
+    View decorView;
+
     ImageView atten, MsbteResources, ebooks;
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -56,6 +58,16 @@ public class HomeFragment extends Fragment {
         root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         findId();
         context = getActivity();
+
+        decorView = getActivity().getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility == 0)
+                    decorView.setSystemUiVisibility(hideSystemBars());
+            }
+        });
+
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
 
@@ -173,6 +185,24 @@ public class HomeFragment extends Fragment {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         // Location code ends -----------------------------------------------------------------------------------------------------------------------
+
+
+    }
+//    -------------------Code to hide navigation buttons------------------------
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.getActivity().onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(hideSystemBars());
+        }
+    }
+
+    private int hideSystemBars() {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
 
 
     }

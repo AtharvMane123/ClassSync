@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".HomeScreen">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/EBookPreviewBkName"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/abril_fatface"
+                android:text="The Only Bugdeting book you'll ever need"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/EBookPreviewBkAuthor"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/EBookPreviewBkName"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/abril_fatface"
+                android:text="By Atharv mane"
+                android:textColor="#7E7171" />
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/EBookPreviewBkImg"
+                android:layout_width="110dp"
+                android:layout_height="150dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="40dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/f_bk2"
+                app:shapeAppearanceOverlay="@style/RecyclerViewImageView" />
+
+            <TextView
+                android:id="@+id/EBookPreviewBkName1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/EBookPreviewBkImg"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/abril_fatface"
+                android:paddingRight="50dp"
+                android:text="Book Description"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+
+            <TextView
+                android:id="@+id/EBookPreviewBkDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/EBookPreviewBkName1"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif"
+                android:paddingRight="20dp"
+                android:text="Millionaire Success Habits is a book designed with one purpose in mind: to take you from where you are in life to where you want to be in life by incorporating easy-to-implement Success Habits into your daily routine. "
+                android:textColor="#888080"
+                android:textSize="15dp" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/EBookPreviewBkDownloadBtn"
+                android:layout_width="180dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/EBookPreviewBkDescription"
+                android:layout_marginTop="50dp"
+                android:background="#FFCDD2"
+                android:fontFamily="sans-serif-black"
+                android:text="Download Book"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/EBookPreviewBkReadBtn"
+                android:layout_width="180dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/EBookPreviewBkDescription"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="50dp"
+                android:layout_toRightOf="@id/EBookPreviewBkDownloadBtn"
+                android:background="#C5CAE9"
+                android:fontFamily="sans-serif-black"
+                android:text="Read Book" />
+        </RelativeLayout>
+
+    </ScrollView>
+</FrameLayout>

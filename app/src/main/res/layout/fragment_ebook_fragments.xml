@@ -23,7 +23,7 @@
                 >
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/ProgrammingBooks"
+                    android:id="@+id/GeneralBooks"
                     android:layout_width="150dp"
                     android:layout_height="100dp"
                     android:layout_alignParentLeft="true"
