@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeScreen"
+    >
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+
+            tools:context=".Admin.Fragments.Admin_AddAudioBooks_Fragment">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EBook Name"
+                android:textColor="#AA9E9E"
+                android:textSize="20dp"
+                android:id="@+id/EbookName_text"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/EbookName_text"
+                android:textColor="@color/black"
+                android:id="@+id/AdminEBooks_BkName"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Author Name"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/AdminEBooks_BkName"
+                android:textColor="#AA9E9E"
+                android:textSize="20dp"
+                android:id="@+id/Author_text"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/Author_text"
+                android:textColor="@color/black"
+                android:id="@+id/AdminEBooks_AuthorName"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Img Url"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/AdminEBooks_AuthorName"
+                android:textColor="#AA9E9E"
+                android:textSize="20dp"
+                android:id="@+id/EbookImgUrl_text"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/EbookImgUrl_text"
+                android:id="@+id/AdminEBooks_ImgUrl"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pdf Url"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/AdminEBooks_ImgUrl"
+                android:textColor="#AA9E9E"
+                android:textSize="20dp"
+                android:id="@+id/PdfUrl_text"
+                />
+
+            <EditText
+                android:id="@+id/AdminEBooks_PdfUrl"
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:layout_height="50dp"
+                android:layout_below="@id/PdfUrl_text"
+                android:layout_marginTop="1dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/AdminEBooks_PdfUrl"
+                android:textColor="#AA9E9E"
+                android:textSize="20dp"
+                android:id="@+id/EbookDescription_text"
+                />
+
+            <EditText
+                android:id="@+id/AdminEBooks_Description"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/EbookDescription_text"
+                android:textColor="@color/black"
+                android:layout_marginTop="0dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rating"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/AdminEBooks_Description"
+                android:textColor="#AA9E9E"
+                android:textSize="20dp"
+                android:id="@+id/EbookRating_text"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/EbookRating_text"
+                android:textColor="@color/black"
+                android:id="@+id/AdminEBooks_Rating"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/AdminEBooks_Rating"
+                android:textColor="#AA9E9E"
+                android:textSize="20dp"
+                android:id="@+id/EbookCategory_text"
+                />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:id="@+id/Adminspinner"
+                android:layout_height="50dp"
+
+                android:layout_below="@id/EbookCategory_text"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Adminspinner"
+                android:layout_marginTop="20dp"
+                android:text="Submit"
+                android:layout_marginBottom="100dp"
+                android:id="@+id/AdminEBooks_SubmitBtn"
+
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Adminspinner"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@id/AdminEBooks_SubmitBtn"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="Clear"
+                android:layout_marginBottom="100dp"
+                android:id="@+id/AdminEBooks_ClearBtn"
+                android:layout_centerHorizontal="true"
+                />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

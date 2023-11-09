@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,11 +28,14 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import Home_Fragments.AddEbook;
 import Home_Fragments.EbookFragments;
 import Home_Fragments.MsbteResources_Fragement;
 
@@ -43,8 +47,11 @@ public class HomeFragment extends Fragment {
     IntentFilter writingTagFilter;
     PendingIntent pendingIntent;
     Tag mytag;
+
     Button NFC;
     Context context;
+    TextView AddEbook;
+    int i=0;
     ViewGroup root;
     View decorView;
 
@@ -59,6 +66,9 @@ public class HomeFragment extends Fragment {
         findId();
         context = getActivity();
 
+        FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference=firebaseDatabase.getReference();
+        databaseReference.child("atharv").child("mane").setValue(new String("TYCO3"));
         decorView = getActivity().getWindow().getDecorView();
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
@@ -71,6 +81,16 @@ public class HomeFragment extends Fragment {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
 
+        AddEbook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i++;
+                if(i==10)
+                {
+                    getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new AddEbook()).commit();
+                }
+            }
+        });
         ebooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,6 +139,7 @@ public class HomeFragment extends Fragment {
     //Finding Id's of all the components on the Fragments
     void findId() {
         atten = root.findViewById(R.id.TrackAttendance_CardView);
+        AddEbook=root.findViewById(R.id.t1);
         NFC = root.findViewById(R.id.ScanNFc);
         MsbteResources = root.findViewById(R.id.MsbtePapers);
         ebooks = root.findViewById(R.id.Ebooks_imageView);

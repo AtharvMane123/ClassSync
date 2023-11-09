@@ -38,6 +38,7 @@ public class FinanceEbooks_fragment extends Fragment {
 
         RecyclerView_Adapter myAdapter;
         RecyclerView recyclerView;
+   public static DatabaseReference reference = FirebaseDatabase.getInstance().getReference("books");
         LottieAnimationView progressBar;
         ArrayList<RecyclerView_Ebooks_ModelClass> arrayList=new ArrayList<>();
         @Override
@@ -51,8 +52,8 @@ public class FinanceEbooks_fragment extends Fragment {
 
 
             arrayList.clear();
-            DatabaseReference reference= FirebaseDatabase.getInstance().getReference("books").child("Finance");
-            reference.addValueEventListener(new ValueEventListener() {
+
+            reference.child("Finance").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot snapshot1: snapshot.getChildren())
@@ -60,7 +61,7 @@ public class FinanceEbooks_fragment extends Fragment {
                         RecyclerView_Ebooks_ModelClass modelClass=snapshot1.getValue(RecyclerView_Ebooks_ModelClass.class);
                         arrayList.add(modelClass);
                         progressBar.setVisibility(ProgressBar.GONE);
-
+                        reference.child("working").child("1");
                     }myAdapter.notifyDataSetChanged();
 
                 }
@@ -95,7 +96,7 @@ public class FinanceEbooks_fragment extends Fragment {
                 @Override
                 public void ItemLiked(String BkName, String BkAuthor, String BkImgUrl, String BkAudioUrl, String BkDescription, String BkRating,int position) {
                     DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("users");
-                    RecyclerView_Ebooks_ModelClass recyclerView_ebooks_modelClass=new RecyclerView_Ebooks_ModelClass(BkName,BkAuthor,BkRating,BkImgUrl,BkAudioUrl,BkDescription,arrayList.get(position).getCategory());
+                    RecyclerView_Ebooks_ModelClass recyclerView_ebooks_modelClass=new RecyclerView_Ebooks_ModelClass(BkName,BkAuthor,BkImgUrl,BkAudioUrl,BkDescription,arrayList.get(position).getCategory());
                     databaseReference.child(HomeScreen.Name).child("SavedBooks").child(BkName).setValue(recyclerView_ebooks_modelClass);
                     Toast.makeText(getContext(), "Book added as your Favourite books", Toast.LENGTH_LONG).show();
 

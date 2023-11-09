@@ -11,8 +11,16 @@ public class RecyclerView_Ebooks_ModelClass {
 
     public RecyclerView_Ebooks_ModelClass() {
     }
+    public RecyclerView_Ebooks_ModelClass(String name, String author, String img, String pdfUrl, String description, String category) {
+        this.name = name;
+        this.author = author;
+        Img = img;
+        PdfUrl = pdfUrl;
+        this.description = description;
+        this.category = category;
+    }
 
-    public RecyclerView_Ebooks_ModelClass(String name, String author, String rating, String img, String pdfUrl, String description, String category) {
+    public RecyclerView_Ebooks_ModelClass(String name,String rating, String author, String img, String pdfUrl, String description, String category) {
         this.name = name;
         this.author = author;
         this.rating = rating;
