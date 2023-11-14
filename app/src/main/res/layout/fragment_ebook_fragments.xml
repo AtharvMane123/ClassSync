@@ -23,36 +23,37 @@
                 >
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/GeneralBooks"
+                    android:id="@+id/FinanceBooks"
                     android:layout_width="150dp"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
                     android:layout_alignParentLeft="true"
                     android:background="#BBDEFB"
-                    app:cardBackgroundColor="#B39DDB"
+                    app:cardBackgroundColor="#B49FDA"
                     app:cardCornerRadius="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="80dp"
                         android:background="#BBDEFB"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
-                        android:text="General"
+                        android:text="Finance"
                         android:textAlignment="center"
                         android:textSize="20dp"
                         android:textStyle="bold" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/Sc_FiBooks"
                     android:layout_width="150dp"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
                     android:layout_alignParentRight="true"
                     app:cardBackgroundColor="#B39DDB"
-                    app:cardCornerRadius="20dp" >
+                    app:cardCornerRadius="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="80dp"
                         android:background="#BBDEFB"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
@@ -72,16 +73,16 @@
                 >
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/ProgrammingBooks1"
+                    android:id="@+id/ProgrammingBooks"
                     android:layout_width="300dp"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
                     android:layout_centerInParent="true"
                     app:cardBackgroundColor="#B39DDB"
-                    app:cardCornerRadius="20dp" >
+                    app:cardCornerRadius="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="80dp"
                         android:background="#BBDEFB"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
@@ -100,46 +101,126 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 >
+
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/ProgrammingBooks2"
+                    android:id="@+id/ScienceBooks"
                     android:layout_width="150dp"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
                     android:layout_alignParentLeft="true"
                     app:cardBackgroundColor="#B39DDB"
-                    app:cardCornerRadius="20dp" >
+                    app:cardCornerRadius="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="80dp"
                         android:background="#BBDEFB"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
-                        android:text="Finance"
+                        android:text="Science"
                         android:textAlignment="center"
                         android:textSize="20dp"
                         android:textStyle="bold" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/EnvironmentBooks"
                     android:layout_width="150dp"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
                     android:layout_alignParentRight="true"
                     app:cardBackgroundColor="#B39DDB"
                     app:cardCornerRadius="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="80dp"
                         android:background="#BBDEFB"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
                         android:text="Environment"
                         android:textAlignment="center"
                         android:textSize="20dp"
-                        android:textStyle="bold" /></androidx.cardview.widget.CardView>
+                        android:textStyle="bold" />
+                </androidx.cardview.widget.CardView>
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/TechnologyBooks"
+                    android:layout_width="300dp"
+                    android:layout_height="90dp"
+                    android:layout_centerInParent="true"
+                    app:cardBackgroundColor="#B39DDB"
+                    app:cardCornerRadius="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:background="#BBDEFB"
+                        android:fontFamily="sans-serif-black"
+                        android:gravity="center"
+                        android:text="Technology"
+                        android:textAlignment="center"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/BusinessBooks"
+                    android:layout_width="150dp"
+                    android:layout_height="90dp"
+                    android:layout_alignParentLeft="true"
+                    app:cardBackgroundColor="#B39DDB"
+                    app:cardCornerRadius="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:background="#BBDEFB"
+                        android:fontFamily="sans-serif-black"
+                        android:gravity="center"
+                        android:text="Business"
+                        android:textAlignment="center"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/BiographyBooks"
+                    android:layout_width="150dp"
+                    android:layout_height="90dp"
+                    android:layout_alignParentRight="true"
+                    app:cardBackgroundColor="#B39DDB"
+                    app:cardCornerRadius="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:background="#BBDEFB"
+                        android:fontFamily="sans-serif-black"
+                        android:gravity="center"
+                        android:text="Biography"
+                        android:textAlignment="center"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>

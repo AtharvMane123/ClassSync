@@ -2,6 +2,7 @@ package Home_Fragments;
 
 import static android.content.ContentValues.TAG;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -38,7 +39,7 @@ public class FinanceEbooks_fragment extends Fragment {
 
         RecyclerView_Adapter myAdapter;
         RecyclerView recyclerView;
-   public static DatabaseReference reference = FirebaseDatabase.getInstance().getReference("books");
+         public static DatabaseReference reference = FirebaseDatabase.getInstance().getReference("books");
         LottieAnimationView progressBar;
         ArrayList<RecyclerView_Ebooks_ModelClass> arrayList=new ArrayList<>();
         @Override
@@ -49,7 +50,7 @@ public class FinanceEbooks_fragment extends Fragment {
             recyclerView=root.findViewById(R.id.HomeFragment_TrendingBooks_recycler);
             progressBar=root.findViewById(R.id.progress);
 
-
+            HomeScreen.RootRelativeLayout.setBackgroundColor(Color.parseColor("#E3F2FD"));
 
             arrayList.clear();
 

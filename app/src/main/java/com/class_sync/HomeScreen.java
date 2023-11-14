@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
@@ -14,8 +15,9 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 public class HomeScreen extends AppCompatActivity {
-    MeowBottomNavigation bottomNavigation;
+    public static MeowBottomNavigation bottomNavigation;
     public static String Name;
+    public static RelativeLayout RootRelativeLayout;
     public static String Email;
 
 MaterialCardView assignments,attendance,groupChatting,askChatGpt;
@@ -23,6 +25,7 @@ MaterialCardView assignments,attendance,groupChatting,askChatGpt;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        RootRelativeLayout=findViewById(R.id.RootRelativeLayout);
         bottomNavigation=findViewById(R.id.bottomNavigation);
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.baseline_home_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.baseline_chat_24));

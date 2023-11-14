@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
         root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         findId();
         context = getActivity();
-
+        HomeScreen.bottomNavigation.show(1,true);
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference databaseReference=firebaseDatabase.getReference();
         databaseReference.child("atharv").child("mane").setValue(new String("TYCO3"));

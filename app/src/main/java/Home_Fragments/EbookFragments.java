@@ -17,7 +17,7 @@ public class EbookFragments extends Fragment {
 
     View decorView;
     ViewGroup root;
-    CardView generalBooks;
+    CardView FinanceBooks;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,8 +27,8 @@ public class EbookFragments extends Fragment {
         // Inflate the layout for this fragment
         root= (ViewGroup) inflater.inflate(R.layout.fragment_ebook_fragments, container, false);
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-generalBooks=root.findViewById(R.id.GeneralBooks);
-generalBooks.setOnClickListener(new View.OnClickListener() {
+        FinanceBooks=root.findViewById(R.id.FinanceBooks);
+        FinanceBooks.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame,new FinanceEbooks_fragment()).commit();
