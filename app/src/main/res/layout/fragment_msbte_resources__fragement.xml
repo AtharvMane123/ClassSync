@@ -1,109 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:padding="20dp"
     tools:context="Home_Fragments.MsbteResources_Fragement">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SEARCH QUESTION PAPERS"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Year"
+                    android:textSize="17dp"
+                    android:paddingLeft="6.5dp"
+                    android:layout_marginTop="50dp"
+                    />
+                <Spinner
+                    android:layout_width="200dp"
+                    android:id="@+id/Spinner_year"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Semester"
+                    android:textSize="17dp"
+                    android:paddingLeft="6.5dp"
+                    android:layout_marginTop="50dp"/>
+                <Spinner
+                    android:layout_width="200dp"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/Spinner_Sem"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Subject"
+                    android:textSize="17dp"
+                    android:paddingLeft="6.5dp"
+                    android:layout_marginTop="50dp"/>
+                <Spinner
+                    android:layout_width="200dp"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/Spinner_subject"
+                    android:layout_height="wrap_content"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Search Paper"
+                    android:layout_marginTop="20dp"
+                    />
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RootMsbteResources"
+        android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="MSBTE Resources"
-                android:textAlignment="center"
-                android:textSize="20dp"
-                android:fontFamily="@font/suez_one"
-                />
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                app:cardCornerRadius="20dp"
-                android:layout_height="150dp"
-
-                android:layout_marginTop="20dp"
-
-                ><RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/cardview_back"
->
+                android:background="@color/white"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/QuestionPapers_cardview"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="Previous Year Question Papers"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/suez_one"
+                    android:text="MSBTE Resources"
                     android:textAlignment="center"
-                    android:textSize="15dp" />
-            </RelativeLayout>
+                    android:textSize="20dp" />
 
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                app:cardCornerRadius="20dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="20dp"
-
-                ><RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/cardview_back"
-                >
-
-                <TextView
-                    android:id="@+id/ModelAnswers_cardview"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="Previous Year Model Answers"
-                    android:textAlignment="center"
-                    android:textSize="15dp" />
-            </RelativeLayout>
+                    android:layout_height="150dp"
+                    android:layout_marginTop="20dp"
 
-            </androidx.cardview.widget.CardView>
+                    app:cardCornerRadius="20dp"
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                app:cardCornerRadius="20dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="20dp"
+                    >
 
-                ><RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/cardview_back"
-                >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/cardview_back">
 
-                <TextView
-                    android:id="@+id/SamplePapers_cardview"
+                        <TextView
+                            android:id="@+id/QuestionPapers_cardview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="Previous Year Question Papers"
+                            android:textAlignment="center"
+                            android:textSize="15dp" />
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="Previous Year Sample Papers"
-                    android:textAlignment="center"
-                    android:textSize="15dp" />
-            </RelativeLayout>
+                    android:layout_height="150dp"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="20dp"
 
-            </androidx.cardview.widget.CardView>
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/cardview_back">
+
+                        <TextView
+                            android:id="@+id/ModelAnswers_cardview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="Previous Year Model Answers"
+                            android:textAlignment="center"
+                            android:textSize="15dp" />
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="20dp"
+
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/cardview_back">
+
+                        <TextView
+                            android:id="@+id/SamplePapers_cardview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="Previous Year Sample Papers"
+                            android:textAlignment="center"
+                            android:textSize="15dp" />
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
 
 
-        </LinearLayout>
-    </ScrollView>
+            </LinearLayout>
+        </ScrollView>
 
+
+    </RelativeLayout>
 </RelativeLayout>
