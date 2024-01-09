@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -39,6 +40,8 @@ public class FinanceEbooks_fragment extends Fragment {
 
         RecyclerView_Adapter myAdapter;
         RecyclerView recyclerView;
+        public static String category;
+        TextView Heading;
          public static DatabaseReference reference = FirebaseDatabase.getInstance().getReference("books");
         LottieAnimationView progressBar;
         ArrayList<RecyclerView_Ebooks_ModelClass> arrayList=new ArrayList<>();
@@ -49,12 +52,14 @@ public class FinanceEbooks_fragment extends Fragment {
             ViewGroup root=(ViewGroup) inflater.inflate(R.layout.fragment_finance_ebooks_fragment, container, false);
             recyclerView=root.findViewById(R.id.HomeFragment_TrendingBooks_recycler);
             progressBar=root.findViewById(R.id.progress);
+            Heading = root.findViewById(R.id.TrendingBooks_text);
+            Heading.setText(category + " Books");
 
             HomeScreen.RootRelativeLayout.setBackgroundColor(Color.parseColor("#E3F2FD"));
 
             arrayList.clear();
 
-            reference.child("Finance").addValueEventListener(new ValueEventListener() {
+            reference.child(category).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot snapshot1: snapshot.getChildren())
