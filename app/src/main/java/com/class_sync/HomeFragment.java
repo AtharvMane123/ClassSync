@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +40,7 @@ import java.util.Locale;
 import Home_Fragments.AddEbook;
 import Home_Fragments.EbookFragments;
 import Home_Fragments.MsbteResources_Fragement;
+import Online_Courses.OnlineCourse_Home_Fragment;
 
 
 public class HomeFragment extends Fragment {
@@ -55,7 +58,7 @@ public class HomeFragment extends Fragment {
     ViewGroup root;
     View decorView;
 
-    ImageView atten, MsbteResources, ebooks;
+    ImageView atten, MsbteResources, ebooks,online_course;
     FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
@@ -64,12 +67,14 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         findId();
+
         context = getActivity();
         HomeScreen.bottomNavigation.show(1,true);
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference databaseReference=firebaseDatabase.getReference();
         databaseReference.child("atharv").child("mane").setValue(new String("TYCO3"));
         decorView = getActivity().getWindow().getDecorView();
+        HomeScreen.RootRelativeLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
             public void onSystemUiVisibilityChange(int visibility) {
@@ -96,6 +101,12 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new EbookFragments()).commit();
 
+            }
+        });
+        online_course.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new OnlineCourse_Home_Fragment()).commit();
             }
         });
         atten.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +151,7 @@ public class HomeFragment extends Fragment {
     void findId() {
         atten = root.findViewById(R.id.TrackAttendance_CardView);
         AddEbook=root.findViewById(R.id.t1);
+        online_course = root.findViewById(R.id.OnlineCourses);
         NFC = root.findViewById(R.id.ScanNFc);
         MsbteResources = root.findViewById(R.id.MsbtePapers);
         ebooks = root.findViewById(R.id.Ebooks_imageView);

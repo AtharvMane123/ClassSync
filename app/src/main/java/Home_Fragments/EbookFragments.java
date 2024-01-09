@@ -26,7 +26,7 @@ public class EbookFragments extends Fragment {
 
         // Inflate the layout for this fragment
         root= (ViewGroup) inflater.inflate(R.layout.fragment_ebook_fragments, container, false);
-        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Business = root.findViewById(R.id.FinanceBooks);
         Sci_fi = root.findViewById(R.id.Sc_FiBooks);
         Programming = root.findViewById(R.id.ProgrammingBooks);

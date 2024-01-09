@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "10777027202",
+    "firebase_url": "https://classsync-abbdb-default-rtdb.firebaseio.com",
+    "project_id": "classsync-abbdb",
+    "storage_bucket": "classsync-abbdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10777027202:android:c147f1ea0f35371e5c8a9b",
+        "android_client_info": {
+          "package_name": "com.class_sync"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMV2RHTeN6UpAgA3urKWu6HGNSivWaTOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -34,6 +34,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
+                        android:textColor="@color/black"
                         android:background="#BBDEFB"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
@@ -55,6 +56,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:background="#BBDEFB"
+                        android:textColor="@color/black"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
                         android:text="Sci-Fi"
@@ -83,6 +85,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
+                        android:textColor="@color/black"
                         android:background="#BBDEFB"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
@@ -115,6 +118,7 @@
                         android:layout_height="80dp"
                         android:background="#BBDEFB"
                         android:fontFamily="sans-serif-black"
+                        android:textColor="@color/black"
                         android:gravity="center"
                         android:text="Science"
                         android:textAlignment="center"
@@ -136,6 +140,7 @@
                         android:background="#BBDEFB"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
+                        android:textColor="@color/black"
                         android:text="Fantasy"
                         android:textAlignment="center"
                         android:textSize="20dp"
@@ -162,6 +167,7 @@
 
                     <TextView
                         android:layout_width="match_parent"
+                        android:textColor="@color/black"
                         android:layout_height="80dp"
                         android:background="#BBDEFB"
                         android:fontFamily="sans-serif-black"
@@ -195,6 +201,7 @@
                         android:fontFamily="sans-serif-black"
                         android:gravity="center"
                         android:text="History"
+                        android:textColor="@color/black"
                         android:textAlignment="center"
                         android:textSize="20dp"
                         android:textStyle="bold" />
@@ -213,6 +220,7 @@
                         android:layout_height="80dp"
                         android:background="#BBDEFB"
                         android:fontFamily="sans-serif-black"
+                        android:textColor="@color/black"
                         android:gravity="center"
                         android:text="Biography"
                         android:textAlignment="center"

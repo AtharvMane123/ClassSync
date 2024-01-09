@@ -1,0 +1,117 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context="Online_Courses.OnlineCourse_Home_Fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/galindo"
+            android:text="Online Courses "
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Find a course that suits you best"
+            android:textColor="@color/black" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/black"
+            app:cardCornerRadius="50dp">
+
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/t2"
+                android:layout_margin="1dp"
+                android:background="@drawable/search_view"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Suggested Courses"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Try these video courses for FREE!"
+            android:textColor="@color/black"
+            android:textSize="12dp" />
+<HorizontalScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:scrollbars="none"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#B3E5FC"
+            android:layout_height="150dp"
+            />
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#FFCCBC"
+            android:layout_height="150dp"
+            />
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#D1C4E9"
+            android:layout_height="150dp"
+            />
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#EDE7F6"
+            android:layout_height="150dp"
+            />
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#B3E5FC"
+            android:layout_height="150dp"
+            />
+    </LinearLayout>
+</HorizontalScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -32,6 +32,7 @@ MaterialCardView assignments,attendance,groupChatting,askChatGpt;
         bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_hub_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.baseline_person_24));
         bottomNavigation.show(1,true);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame,new HomeFragment()).commit();
     bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
     @Override
