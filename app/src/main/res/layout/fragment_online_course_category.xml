@@ -1,15 +1,75 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context="Home_Fragments.OnlineCourse_category">
 
-<ImageView
+
+
+
+
+<com.google.android.material.imageview.ShapeableImageView
     android:layout_width="match_parent"
-    android:layout_height="241dp"
+    android:layout_margin="10dp"
+    android:layout_height="300dp"
+    android:elevation="50dp"
+    android:id="@+id/CourseCategory_img"
+    android:layout_marginTop="0dp"
     android:src="@drawable/develop"
-    android:transitionName="example"
+    app:shapeAppearanceOverlay="@style/roundedImageView"
     android:scaleType="centerCrop"
     />
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/text1"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/archivo_bold"
+        android:shadowColor="#504E4E"
+        android:text="
+Development in programming refers to the process of creating software applications, websites, or other solutions through the use of programming languages and various tools. It involves designing, coding, testing, and maintaining software to meet specific requirements and solve particular problems."
+        android:textColor="#595757"
+        android:layout_below="@id/CourseCategory_img"
+        android:layout_marginHorizontal="20dp"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/text2"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/archivo_bold"
+        android:shadowColor="#504E4E"
+        android:text="
+Development in programming refers to the process of creating software applications, websites, or other solutions through the use of programming languages and various tools. It involves designing, coding, testing, and maintaining software to meet specific requirements and solve particular problems."
+        android:textColor="#595757"
+        android:layout_below="@id/CourseCategory_img"
+        android:layout_marginHorizontal="20dp"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/text3"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/archivo_bold"
+        android:shadowColor="#504E4E"
+        android:text="
+Development in programming refers to the process of creating software applications, websites, or other solutions through the use of programming languages and various tools. It involves designing, coding, testing, and maintaining software to meet specific requirements and solve particular problems."
+        android:textColor="#595757"
+        android:layout_below="@id/CourseCategory_img"
+        android:layout_marginHorizontal="20dp"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+
+
+</LinearLayout>

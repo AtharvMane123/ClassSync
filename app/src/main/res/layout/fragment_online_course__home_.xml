@@ -81,6 +81,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/galindo"
+
                     android:text="Online Courses "
                     android:textColor="@color/black"
                     android:textSize="20dp" />
@@ -123,19 +124,11 @@
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:fontFamily="sans-serif"
-                    android:text="Try these video courses for FREE!"
-                    android:textColor="@color/black"
-                    android:textSize="12dp" />
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+
                     android:scrollbars="none">
 
                     <LinearLayout
@@ -157,13 +150,13 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical"
-
-                                >
+                                android:orientation="vertical">
 
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="120dp"
+                                    android:id="@+id/Design_img"
+                                    android:transitionName="design"
                                     android:src="@drawable/design" />
 
                                 <TextView
@@ -174,7 +167,7 @@
                                     android:fontFamily="@font/archivo_bold"
                                     android:shadowColor="#504E4E"
                                     android:text="Design"
-                                    android:textColor="@color/material_dynamic_neutral_variant40"
+                                    android:textColor="#595757"
                                     android:textSize="20dp"
                                     android:textStyle="bold" />
                             </LinearLayout>
@@ -194,21 +187,23 @@
                                 android:orientation="vertical">
 
                                 <ImageView
+                                    android:id="@+id/develop_img"
                                     android:layout_width="210dp"
                                     android:layout_height="120dp"
-                                    android:id="@+id/develop_img"
-                                    android:transitionName="example"
-                                    android:src="@drawable/develop" />
+                                    android:src="@drawable/develop"
+                                    android:transitionName="example" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:id="@+id/t1"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/archivo_bold"
                                     android:shadowColor="#504E4E"
+                                    android:transitionName="txt"
                                     android:text="Development"
-                                    android:textColor="@color/material_dynamic_neutral_variant40"
+                                    android:textColor="#595757"
                                     android:textSize="20dp"
                                     android:textStyle="bold" />
                             </LinearLayout>
@@ -229,7 +224,9 @@
 
                                 <ImageView
                                     android:layout_width="230dp"
+                                    android:id="@+id/Marketing_img"
                                     android:layout_height="120dp"
+                                    android:transitionName="marketing"
                                     android:src="@drawable/marketing" />
 
                                 <TextView
@@ -240,7 +237,7 @@
                                     android:fontFamily="@font/archivo_bold"
                                     android:shadowColor="#504E4E"
                                     android:text="Marketing"
-                                    android:textColor="@color/material_dynamic_neutral_variant40"
+                                    android:textColor="#595757"
                                     android:textSize="20dp"
                                     android:textStyle="bold" />
                             </LinearLayout>
@@ -262,6 +259,8 @@
                                 <ImageView
                                     android:layout_width="190dp"
                                     android:layout_height="120dp"
+                                    android:id="@+id/Business_img"
+                                    android:transitionName="business"
                                     android:src="@drawable/business" />
 
                                 <TextView
@@ -272,11 +271,101 @@
                                     android:fontFamily="@font/archivo_bold"
                                     android:shadowColor="#504E4E"
                                     android:text="Business"
-                                    android:textColor="@color/material_dynamic_neutral_variant40"
+                                    android:textColor="#595757"
                                     android:textSize="20dp"
                                     android:textStyle="bold" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
+
+                        <!--                        <androidx.cardview.widget.CardView-->
+                        <!--                            android:layout_width="120dp"-->
+                        <!--                            android:layout_height="150dp"-->
+                        <!--                            android:layout_marginRight="10dp"-->
+                        <!--                            android:backgroundTint="#B3E5FC"-->
+                        <!--                            app:cardCornerRadius="20dp">-->
+                        <!--            -->
+                        <!--                        </androidx.cardview.widget.CardView>-->
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Suggested Courses"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Try these video courses for FREE!"
+                    android:textColor="@color/black"
+                    android:textSize="12dp" />
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="20dp">
+
+                        <androidx.cardview.widget.CardView
+
+                            android:layout_width="120dp"
+                            android:layout_height="150dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:backgroundTint="#E0F7FA"
+                            app:cardCornerRadius="20dp"/>
+
+
+
+                        <androidx.cardview.widget.CardView
+
+                            android:layout_width="120dp"
+                            android:layout_height="150dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:backgroundTint="#FFEBEE"
+                            app:cardCornerRadius="20dp"/>
+                        <androidx.cardview.widget.CardView
+
+                            android:layout_width="120dp"
+                            android:layout_height="150dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:backgroundTint="#C5CAE9"
+                            app:cardCornerRadius="20dp"/>
+                        <androidx.cardview.widget.CardView
+
+                            android:layout_width="120dp"
+                            android:layout_height="150dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:backgroundTint="#FFCDD2"
+                            app:cardCornerRadius="20dp"/>
+                        <androidx.cardview.widget.CardView
+
+                            android:layout_width="120dp"
+                            android:layout_height="150dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:backgroundTint="#B3E5FC"
+                            app:cardCornerRadius="20dp"/>
 
                         <!--                        <androidx.cardview.widget.CardView-->
                         <!--                            android:layout_width="120dp"-->
