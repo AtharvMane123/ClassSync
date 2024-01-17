@@ -1,75 +1,215 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="Home_Fragments.OnlineCourse_category">
 
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/CourseCategory_img"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="0dp"
+        android:elevation="50dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/develop"
+        app:shapeAppearanceOverlay="@style/roundedImageView" />
 
-
-
-<com.google.android.material.imageview.ShapeableImageView
-    android:layout_width="match_parent"
-    android:layout_margin="10dp"
-    android:layout_height="300dp"
-    android:elevation="50dp"
-    android:id="@+id/CourseCategory_img"
-    android:layout_marginTop="0dp"
-    android:src="@drawable/develop"
-    app:shapeAppearanceOverlay="@style/roundedImageView"
-    android:scaleType="centerCrop"
-    />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Python_Course_cardView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/text1"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/archivo_bold"
-        android:shadowColor="#504E4E"
-        android:text="
-Development in programming refers to the process of creating software applications, websites, or other solutions through the use of programming languages and various tools. It involves designing, coding, testing, and maintaining software to meet specific requirements and solve particular problems."
-        android:textColor="#595757"
-        android:layout_below="@id/CourseCategory_img"
         android:layout_marginHorizontal="20dp"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/CourseCategory_img"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/archivo_bold"
+                android:shadowColor="#504E4E"
+                android:text="Python Full Course By Google"
+                android:textColor="#595757"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Python_Course_cardView2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/text2"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/archivo_bold"
-        android:shadowColor="#504E4E"
-        android:text="
-Development in programming refers to the process of creating software applications, websites, or other solutions through the use of programming languages and various tools. It involves designing, coding, testing, and maintaining software to meet specific requirements and solve particular problems."
-        android:textColor="#595757"
-        android:layout_below="@id/CourseCategory_img"
         android:layout_marginHorizontal="20dp"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/CourseCategory_img"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/archivo_bold"
+                android:shadowColor="#504E4E"
+                android:text="Java Full Course By Udemy"
+                android:textColor="#595757"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Python_Course_cardView3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/text3"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/archivo_bold"
-        android:shadowColor="#504E4E"
-        android:text="
-Development in programming refers to the process of creating software applications, websites, or other solutions through the use of programming languages and various tools. It involves designing, coding, testing, and maintaining software to meet specific requirements and solve particular problems."
-        android:textColor="#595757"
-        android:layout_below="@id/CourseCategory_img"
         android:layout_marginHorizontal="20dp"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="20dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/CourseCategory_img"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/archivo_bold"
+                android:shadowColor="#504E4E"
+                android:text="R Programming full Course By Google"
+                android:textColor="#595757"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Python_Course_cardView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/text4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/CourseCategory_img"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/archivo_bold"
+                android:shadowColor="#504E4E"
+                android:text="C++ Full Course By Coursera"
+                android:textColor="#595757"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Python_Course_cardView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/text5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/CourseCategory_img"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/archivo_bold"
+                android:shadowColor="#504E4E"
+                android:text="Web Development Full Course By Udemy"
+                android:textColor="#595757"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:id="@+id/text2"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:fontFamily="@font/archivo_bold"-->
+    <!--        android:shadowColor="#504E4E"-->
+    <!--        android:text="-->
+    <!--Development in programming refers to the process of creating software applications, websites, or other solutions through the use of programming languages and various tools. It involves designing, coding, testing, and maintaining software to meet specific requirements and solve particular problems."-->
+    <!--        android:textColor="#595757"-->
+    <!--        android:layout_below="@id/CourseCategory_img"-->
+    <!--        android:layout_marginHorizontal="20dp"-->
+    <!--        android:textSize="15dp"-->
+    <!--        android:textStyle="bold" />-->
+
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:id="@+id/text3"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:fontFamily="@font/archivo_bold"-->
+    <!--        android:shadowColor="#504E4E"-->
+    <!--        android:text="-->
+    <!--Development in programming refers to the process of creating software applications, websites, or other solutions through the use of programming languages and various tools. It involves designing, coding, testing, and maintaining software to meet specific requirements and solve particular problems."-->
+    <!--        android:textColor="#595757"-->
+    <!--        android:layout_below="@id/CourseCategory_img"-->
+    <!--        android:layout_marginHorizontal="20dp"-->
+    <!--        android:textSize="15dp"-->
+    <!--        android:textStyle="bold" />-->
 
 
 </LinearLayout>

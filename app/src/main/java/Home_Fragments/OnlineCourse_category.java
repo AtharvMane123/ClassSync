@@ -1,5 +1,7 @@
 package Home_Fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.Transition;
@@ -12,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
@@ -24,6 +27,7 @@ public class OnlineCourse_category extends Fragment {
 
     ImageView img;
     TextView text1, text2, text3;
+    CardView python_course_cardview,c2,c3,c4,c5;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,9 +36,24 @@ public class OnlineCourse_category extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_online_course_category, container, false);
         img = root.findViewById(R.id.CourseCategory_img);
         text1 = root.findViewById(R.id.text1);
-        text2 = root.findViewById(R.id.text2);
-        text3 = root.findViewById(R.id.text3);
+        python_course_cardview = root.findViewById(R.id.Python_Course_cardView);
+        c2 = root.findViewById(R.id.Python_Course_cardView2);
+        c3 = root.findViewById(R.id.Python_Course_cardView3);
+        c4 = root.findViewById(R.id.Python_Course_cardView4);
+        c5 = root.findViewById(R.id.Python_Course_cardView5);
 
+
+
+        python_course_cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri  uri = Uri.parse("https://mega.nz/folder/drVRQZII#IDpdcIpcMB10MvM4SofgCA");
+                startActivity(new Intent(Intent.ACTION_VIEW,uri));
+
+            }
+        });
+//        text2 = root.findViewById(R.id.text2);
+//        text3 = root.findViewById(R.id.text3);
         Random r = new Random();
         int random_num = r.nextInt(2) + 1;
 
@@ -43,15 +62,22 @@ public class OnlineCourse_category extends Fragment {
         Animation animation_left = AnimationUtils.loadAnimation(getActivity(), R.anim.category_text_left);
 
         if (random_num == 2) {
-            text1.startAnimation(animation_right);
-
-            text2.startAnimation(animation_right);
-            text3.startAnimation(animation_right);
+            python_course_cardview.startAnimation(animation_right);
+            c2.startAnimation(animation_right);
+            c3.startAnimation(animation_right);
+            c4.startAnimation(animation_right);
+            c5.startAnimation(animation_right);
+//
+//            text2.startAnimation(animation_right);
+//            text3.startAnimation(animation_right);
 
         } else {
-            text1.startAnimation(animation_left);
-            text2.startAnimation(animation_left);
-            text3.startAnimation(animation_left);
+            python_course_cardview.startAnimation(animation_left);
+            c2.startAnimation(animation_left);
+            c3.startAnimation(animation_left);
+            c4.startAnimation(animation_left);
+            c5.startAnimation(animation_left);
+
         }
 
 
@@ -70,40 +96,6 @@ public class OnlineCourse_category extends Fragment {
             }
         }
 
-        //The code written below is used to make a shared Element transition in fragment
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getActivity().getWindow().getSharedElementEnterTransition().addListener(new Transition.TransitionListener() {
-                @Override
-                public void onTransitionStart(Transition transition) {
-                    // Not needed, but you can add custom behavior here
-                }
-
-                @Override
-                public void onTransitionEnd(Transition transition) {
-                    // Start postponed enter transition when the shared element is ready
-                    startPostponedEnterTransition();
-                }
-
-                @Override
-                public void onTransitionCancel(Transition transition) {
-                    // Not needed, but you can add custom behavior here
-                }
-
-                @Override
-                public void onTransitionPause(Transition transition) {
-                    // Not needed, but you can add custom behavior here
-                }
-
-                @Override
-                public void onTransitionResume(Transition transition) {
-                    // Not needed, but you can add custom behavior here
-                }
-            });
-        }
 
         return root;
     }
