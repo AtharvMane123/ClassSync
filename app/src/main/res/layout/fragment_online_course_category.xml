@@ -51,7 +51,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/Python_Course_cardView2"
+        android:id="@+id/Hindi_Python_Course_cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -74,7 +74,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/archivo_bold"
                 android:shadowColor="#504E4E"
-                android:text="Java Full Course By Udemy"
+                android:text="Python Programming for Beginners Full Course in Hindi"
                 android:textColor="#595757"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -106,7 +106,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/archivo_bold"
                 android:shadowColor="#504E4E"
-                android:text="R Programming full Course By Google"
+                android:text="Java Programming Course By Google"
                 android:textColor="#595757"
                 android:textSize="15dp"
                 android:textStyle="bold" />

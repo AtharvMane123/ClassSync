@@ -13,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
@@ -27,7 +28,7 @@ public class OnlineCourse_category extends Fragment {
 
     ImageView img;
     TextView text1, text2, text3;
-    CardView python_course_cardview,c2,c3,c4,c5;
+    CardView python_course_cardview,Hindi_Python_Course_cardView,c3,c4,c5;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,7 +38,7 @@ public class OnlineCourse_category extends Fragment {
         img = root.findViewById(R.id.CourseCategory_img);
         text1 = root.findViewById(R.id.text1);
         python_course_cardview = root.findViewById(R.id.Python_Course_cardView);
-        c2 = root.findViewById(R.id.Python_Course_cardView2);
+        Hindi_Python_Course_cardView = root.findViewById(R.id.Hindi_Python_Course_cardView);
         c3 = root.findViewById(R.id.Python_Course_cardView3);
         c4 = root.findViewById(R.id.Python_Course_cardView4);
         c5 = root.findViewById(R.id.Python_Course_cardView5);
@@ -52,6 +53,37 @@ public class OnlineCourse_category extends Fragment {
 
             }
         });
+        Hindi_Python_Course_cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri  uri = Uri.parse("https://mega.nz/folder/Mr9lkJ5L#hGEuO95bhMDaS0kESqA9GA");
+                startActivity(new Intent(Intent.ACTION_VIEW,uri));
+
+            }
+        });
+        c3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),   "Sorry this course is not Available for now, Please try again after some days ", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+        c4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),   "Sorry this course is not Available for now, Please try again after some days ", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+        c5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),   "Sorry this course is not Available for now, Please try again after some days ", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 //        text2 = root.findViewById(R.id.text2);
 //        text3 = root.findViewById(R.id.text3);
         Random r = new Random();
@@ -63,7 +95,7 @@ public class OnlineCourse_category extends Fragment {
 
         if (random_num == 2) {
             python_course_cardview.startAnimation(animation_right);
-            c2.startAnimation(animation_right);
+            Hindi_Python_Course_cardView.startAnimation(animation_right);
             c3.startAnimation(animation_right);
             c4.startAnimation(animation_right);
             c5.startAnimation(animation_right);
@@ -73,7 +105,7 @@ public class OnlineCourse_category extends Fragment {
 
         } else {
             python_course_cardview.startAnimation(animation_left);
-            c2.startAnimation(animation_left);
+            Hindi_Python_Course_cardView.startAnimation(animation_left);
             c3.startAnimation(animation_left);
             c4.startAnimation(animation_left);
             c5.startAnimation(animation_left);
