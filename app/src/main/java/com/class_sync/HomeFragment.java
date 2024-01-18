@@ -1,15 +1,18 @@
 package com.class_sync;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -23,13 +26,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -43,9 +56,10 @@ import Home_Fragments.MsbteResources_Fragement;
 import Online_Courses.OnlineCourse_Home_Fragment;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment  {
     public static final String ERROR_DETECTED = "No NFC Detected";
     private final static int REQUEST_CODE = 100;
+
     NfcAdapter nfcAdapter;
     IntentFilter writingTagFilter;
     PendingIntent pendingIntent;
@@ -53,11 +67,13 @@ public class HomeFragment extends Fragment {
 
     Button NFC;
     Context context;
+
     TextView AddEbook;
+    CardView MarkAttendance;
     int i=0;
     ViewGroup root;
     View decorView;
-
+    LocationManager locationManager;
     ImageView atten, MsbteResources, ebooks,online_course;
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -67,6 +83,16 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         findId();
+
+        //Runtime permission
+        if(ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.ACCESS_FINE_LOCATION)
+        != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(getActivity(),new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            },100);
+        }
+
+
 
         context = getActivity();
         HomeScreen.bottomNavigation.show(1,true);
@@ -82,7 +108,6 @@ public class HomeFragment extends Fragment {
                     decorView.setSystemUiVisibility(hideSystemBars());
             }
         });
-
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
 
@@ -109,12 +134,14 @@ public class HomeFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new OnlineCourse_Home_Fragment()).commit();
             }
         });
-        atten.setOnClickListener(new View.OnClickListener() {
+        MarkAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
                 getLastLocation();
             }
         });
+
         MsbteResources.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,12 +174,15 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+
+
     //Finding Id's of all the components on the Fragments
     void findId() {
         atten = root.findViewById(R.id.TrackAttendance_CardView);
         AddEbook=root.findViewById(R.id.t1);
         online_course = root.findViewById(R.id.OnlineCourses);
         NFC = root.findViewById(R.id.ScanNFc);
+        MarkAttendance = root.findViewById(R.id.MarkAttendance);
         MsbteResources = root.findViewById(R.id.MsbtePapers);
         ebooks = root.findViewById(R.id.Ebooks_imageView);
     }
@@ -239,5 +269,6 @@ public class HomeFragment extends Fragment {
 
 
     }
+
 
 }

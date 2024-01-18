@@ -180,12 +180,17 @@
 <!--                        android:src="@drawable/online_courses" />-->
 <!--                </RelativeLayout>-->
 
+
+
+
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/MarkAttendance"
                     android:layout_width="match_parent"
                     android:layout_marginHorizontal="20dp"
                     android:layout_height="50dp"
                     app:cardCornerRadius="20dp"
+                    app:cardElevation="20dp"
                     android:layout_marginTop="20dp"
                     android:backgroundTint="#CCCCFF"
                      >
@@ -201,6 +206,7 @@
                         android:fontFamily="@font/baloo"
                         />
                 </androidx.cardview.widget.CardView>
+
                 <Button
                     android:id="@+id/ScanNFc"
                     android:layout_width="200dp"
