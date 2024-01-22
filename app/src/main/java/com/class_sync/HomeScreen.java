@@ -5,9 +5,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
@@ -31,6 +34,15 @@ import kotlin.jvm.functions.Function1;
 public class HomeScreen extends AppCompatActivity {
     public static MeowBottomNavigation bottomNavigation;
     public static String Name;
+    public static String User_Email;
+    public static String User_Name;
+    int i;
+
+
+
+    public SharedPreferences sharedPreferences;
+    public SharedPreferences.Editor sharedPreferencesEditor;
+
     private LocationRequest locationRequest;
     public  static  final int LOCATION_CHECK_SETTINGS = 1001;
     public static RelativeLayout RootRelativeLayout;
@@ -43,6 +55,14 @@ MaterialCardView assignments,attendance,groupChatting,askChatGpt;
         setContentView(R.layout.activity_home_screen);
         RootRelativeLayout=findViewById(R.id.RootRelativeLayout);
         bottomNavigation=findViewById(R.id.bottomNavigation);
+
+
+        sharedPreferences = getSharedPreferences("userLoggedIn", MODE_PRIVATE);
+        sharedPreferencesEditor = sharedPreferences.edit();
+
+        User_Email = sharedPreferences.getString("Email", "ok");
+        User_Name = sharedPreferences.getString("Name", "okk");
+
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.baseline_home_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.baseline_chat_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_hub_24));
@@ -169,4 +189,23 @@ MaterialCardView assignments,attendance,groupChatting,askChatGpt;
 //            }
 //        }
 //    }
+@Override
+public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+        i++;
+        if (i == 20) {
+            SharedPreferences preferences = getSharedPreferences("userLoggedIn", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+
+            //opening the Login Activity Again
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finish();
+        }
+    }
+
+    return true;
+}
+
 }

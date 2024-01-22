@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+
                 android:fontFamily="@font/baloo"
                 android:text="Register"
                 android:textColor="#986CE1"
@@ -42,7 +42,7 @@
                 android:id="@+id/Register_Name_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/login_textview"
                 android:hint="Name"
                 android:inputType="text"
@@ -85,12 +85,36 @@
                 android:paddingHorizontal="20dp"
                 android:textColor="@color/black"
                 android:textColorHint="#424040" />
+            <EditText
+                android:id="@+id/Register_StudentRollNo_EditText"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/login_textview"
+                android:hint="Enter Your Roll no"
+                android:inputType="numberDecimal"
+                android:paddingHorizontal="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#424040" />
+
+            <Spinner
+                android:id="@+id/Register_Spinner_Class"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:paddingHorizontal="20dp"
+                android:popupElevation="550dp"
+                android:foregroundTint="@color/black"
+                android:background="@drawable/login_textview"
+                android:spinnerMode="dropdown"
+                android:layout_marginTop="10dp"
+                android:entries="@array/Class_Spinner_array"/>
+
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:paddingRight="20dp">
 
                 <TextView
@@ -118,6 +142,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="end"
                         android:gravity="center"
+                        android:id="@+id/Register_user_btn"
                         android:padding="10dp"
                         android:text=">"
                         android:textAlignment="center"

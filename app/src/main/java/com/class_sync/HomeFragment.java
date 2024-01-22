@@ -2,8 +2,10 @@ package com.class_sync;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
@@ -20,8 +22,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,10 +48,15 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -61,18 +71,21 @@ public class HomeFragment extends Fragment  {
     private final static int REQUEST_CODE = 100;
 
     NfcAdapter nfcAdapter;
+    Spinner subject,TimePeriod;
     IntentFilter writingTagFilter;
     PendingIntent pendingIntent;
     Tag mytag;
 
+    View customDialogView;
     Button NFC;
     Context context;
 
-    TextView AddEbook;
+    TextView AddEbook,user_Name;
     CardView MarkAttendance;
     int i=0;
     ViewGroup root;
     View decorView;
+    String Subject_name,Time_period;
     LocationManager locationManager;
     ImageView atten, MsbteResources, ebooks,online_course;
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -82,7 +95,9 @@ public class HomeFragment extends Fragment  {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
+        customDialogView = inflater.inflate(R.layout.add_attendance_dialogbox_layout, null);
         findId();
+        user_Name.setText(HomeScreen.User_Name);
 
         //Runtime permission
         if(ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.ACCESS_FINE_LOCATION)
@@ -93,12 +108,57 @@ public class HomeFragment extends Fragment  {
         }
 
 
+        /// ---------------------------------------------Adapter for Subject Spinner------------------------------------------------------------------------
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                getActivity(),
+                R.array.TY_Subject,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Subject_name=adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(getActivity(), "Please Select the category ", Toast.LENGTH_LONG).show();
+            }
+        });
+        subject.setAdapter(adapter);
+
+        /// ---------------------------------------------Adapter for TimePeriod Spinner------------------------------------------------------------------------
+
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
+                getActivity(),
+                R.array.Time_period,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        TimePeriod.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Time_period=adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(getActivity(), "Please Select the category ", Toast.LENGTH_LONG).show();
+            }
+        });
+        TimePeriod.setAdapter(adapter2);
+
+
+
+
 
         context = getActivity();
         HomeScreen.bottomNavigation.show(1,true);
-        FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference=firebaseDatabase.getReference();
-        databaseReference.child("atharv").child("mane").setValue(new String("TYCO3"));
         decorView = getActivity().getWindow().getDecorView();
         HomeScreen.RootRelativeLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
@@ -137,8 +197,8 @@ public class HomeFragment extends Fragment  {
         MarkAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
                 getLastLocation();
+
             }
         });
 
@@ -176,18 +236,26 @@ public class HomeFragment extends Fragment  {
 
 
 
-    //Finding Id's of all the components on the Fragments
+    //----------------------Finding Id's of all the components on the Fragments------------------------------------
     void findId() {
         atten = root.findViewById(R.id.TrackAttendance_CardView);
         AddEbook=root.findViewById(R.id.t1);
         online_course = root.findViewById(R.id.OnlineCourses);
+        user_Name = root.findViewById(R.id.user_name);
         NFC = root.findViewById(R.id.ScanNFc);
         MarkAttendance = root.findViewById(R.id.MarkAttendance);
         MsbteResources = root.findViewById(R.id.MsbtePapers);
         ebooks = root.findViewById(R.id.Ebooks_imageView);
+
+
+        subject = customDialogView.findViewById(R.id.AddAttendance_Subject);
+        TimePeriod = customDialogView.findViewById(R.id.AddAttendance_TimePeriod);
     }
 
 
+
+
+//-----------------------------Follwing Methods are used for Location Purpose------------------------
     private void getLastLocation() {
         //To get the last location of the user
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -204,9 +272,9 @@ public class HomeFragment extends Fragment  {
                                     addresses = geo.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
 //                                    address.setText("Pune: "+addresses.get(0).getAddressLine(0));
                                     Toast.makeText(getActivity(), "" + addresses.get(0).getAddressLine(0), Toast.LENGTH_LONG).show();
-                                    if (addresses.get(0).getAddressLine(0).equalsIgnoreCase("FWCP+RF8, Satar Nagar, Hadapsar, Pune, Autadwadi " +
-                                            "Handewadi, Maharashtra 411028, India")) {
-                                        Toast.makeText(getActivity(), "You are in college", Toast.LENGTH_SHORT).show();
+                                    String College_Location_words[]={"Satar Nagar","Hadapsar" ,"Pune","Autadwadi","Handewadi"};
+                                    if (containsWords(addresses.get(0).getAddressLine(0),College_Location_words)){
+                                        showCustomDialog();
                                     } else {
                                         Toast.makeText(getActivity(), "You are not in the College, so your attendance will not be marked", Toast.LENGTH_SHORT).show();
                                     }
@@ -251,14 +319,15 @@ public class HomeFragment extends Fragment  {
 
 
     }
-//    -------------------Code to hide navigation buttons------------------------
+
+
+//    ----------------------------------------Code to hide navigation buttons-------------------------------------------
     public void onWindowFocusChanged(boolean hasFocus) {
         super.getActivity().onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             decorView.setSystemUiVisibility(hideSystemBars());
         }
     }
-
     private int hideSystemBars() {
         return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -271,4 +340,84 @@ public class HomeFragment extends Fragment  {
     }
 
 
+
+//--------------------Following Methods are used to verify Users Location and the College Location-------------------
+private static boolean containsWord(String input, String word) {
+    // Case-insensitive check for the presence of a word in the string
+    return input.toLowerCase().contains(word.toLowerCase());
+}
+
+    private static boolean containsWords(String input, String[] words) {
+        // Case-insensitive check for the presence of any of the specified words in the string
+        for (String word : words) {
+            if (containsWord(input, word)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+//------------------------- Following Method is used to retrive the current date -----------------------------------
+    private String getCurrentDate() {
+        // Get the current date and time
+        Date currentDate = new Date();
+
+        // Format the date using a desired pattern
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        return dateFormat.format(currentDate);
+    }
+
+// ----------------------------------------------------Dialog Box to Add Attendance ------------------------------------------------------
+    private void showCustomDialog() {
+
+
+        // Build the AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(customDialogView)
+                .setTitle("Add Attendance")
+                .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                        DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+
+                        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                               String Class = snapshot.child("users").child(HomeScreen.User_Name).child("class").getValue(String.class);
+                               String Student_roll = snapshot.child("users").child(HomeScreen.User_Name).child("rollNo").getValue(String.class);
+
+                               databaseReference.child("Attendance").child(getCurrentDate()).child(Class).child(Time_period).child(Subject_name).child(HomeScreen.User_Name)
+                                                                             .child("name").setValue(HomeScreen.User_Name);
+                                databaseReference.child("Attendance").child(getCurrentDate()).child(Class).child(Time_period).child(Subject_name).child(HomeScreen.User_Name)
+                                        .child("rollNo").setValue(Student_roll).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Toast.makeText(context, "Attendance has been Marked ", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Handle Cancel button click
+                    }
+                });
+
+        // Show the AlertDialog
+        AlertDialog customDialog = builder.create();
+        customDialog.show();
+    }
 }

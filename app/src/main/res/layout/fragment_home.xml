@@ -41,8 +41,17 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
                             android:layout_alignParentLeft="true"
-                            android:fontFamily="@font/baloo"
                             android:text="Hello"
+                            android:fontFamily="@font/abril_fatface"
+                            android:textSize="20dp" />
+                        <TextView
+                            android:id="@+id/user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:text="Hello"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@id/t1"
                             android:textSize="20dp" />
 
                         <ImageView

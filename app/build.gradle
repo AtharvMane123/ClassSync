@@ -51,4 +51,6 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
     implementation 'com.squareup.picasso:picasso:2.8'//picasso image loader
     implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'//for viewing pdf
+
+
 }
