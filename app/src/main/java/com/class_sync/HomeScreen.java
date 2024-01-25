@@ -1,5 +1,7 @@
 package com.class_sync;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -189,23 +192,11 @@ MaterialCardView assignments,attendance,groupChatting,askChatGpt;
 //            }
 //        }
 //    }
-@Override
-public boolean onKeyDown(int keyCode, KeyEvent event) {
-    if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-        i++;
-        if (i == 20) {
-            SharedPreferences preferences = getSharedPreferences("userLoggedIn", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.clear();
-            editor.apply();
 
-            //opening the Login Activity Again
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-            finish();
-        }
+
+    @Override
+    public void onBackPressed() {
+        Log.e(TAG, "onKeyDown: ");
+        super.onBackPressed();
     }
-
-    return true;
-}
-
 }

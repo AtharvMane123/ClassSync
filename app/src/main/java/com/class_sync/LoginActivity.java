@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                             checkSharedPreferences("Login");
                             Intent intent = new Intent(LoginActivity.this, HomeScreen.class);
                             startActivity(intent);
-                            finish();
+
 
                             break;
                         } else {
