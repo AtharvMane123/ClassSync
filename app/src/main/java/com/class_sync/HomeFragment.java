@@ -342,12 +342,12 @@ public class HomeFragment extends Fragment  {
 
 
 //--------------------Following Methods are used to verify Users Location and the College Location-------------------
-private static boolean containsWord(String input, String word) {
+public static boolean containsWord(String input, String word) {
     // Case-insensitive check for the presence of a word in the string
     return input.toLowerCase().contains(word.toLowerCase());
 }
 
-    private static boolean containsWords(String input, String[] words) {
+    public static boolean containsWords(String input, String[] words) {
         // Case-insensitive check for the presence of any of the specified words in the string
         for (String word : words) {
             if (containsWord(input, word)) {
