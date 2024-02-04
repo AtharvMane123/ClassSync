@@ -33,10 +33,12 @@ Spinner sem,sub;
 //     QuestionPapers=root.findViewById(R.id.QuestionPapers_cardview);
         sem = root.findViewById(R.id.Spinner_Sem);
         sub = root.findViewById(R.id.Spinner_subject);
+
         sem.setAdapter(setCustomAdapter(R.array.Select_Sem));
         sem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
                 if(Objects.equals(adapterView.getItemAtPosition(i).toString(), "1st Semester")){
                     sub.setAdapter(setCustomAdapter(R.array.Sem_1));
                 }
@@ -198,7 +200,7 @@ Spinner sem,sub;
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 getActivity(),
                 array,
-                android.R.layout.simple_spinner_item
+                R.layout.simple_spinner_item
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         return adapter;

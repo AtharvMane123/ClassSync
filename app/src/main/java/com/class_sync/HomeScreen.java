@@ -31,6 +31,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.card.MaterialCardView;
 
+import Home_Fragments.EbookFragments;
+import Online_Courses.OnlineCourse_Home_Fragment;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -83,11 +85,12 @@ MaterialCardView assignments,attendance,groupChatting,askChatGpt;
                 getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new HomeFragment()).commit();
                 break;
             case 2:
-                getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new MessengerFragment()).commit();
+                getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new EbookFragments()).commit();
 
                 break;
             case 3:
-                Toast.makeText(HomeScreen.this, "UpComing Fragment", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new OnlineCourse_Home_Fragment()).commit();
+
                 break;
             case 4:
                 getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new UserFragment()).commit();

@@ -75,7 +75,6 @@ public class HomeFragment extends Fragment  {
     IntentFilter writingTagFilter;
     PendingIntent pendingIntent;
     Tag mytag;
-
     View customDialogView;
     Button NFC;
     Context context;
