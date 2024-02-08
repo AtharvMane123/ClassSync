@@ -1,14 +1,12 @@
 package com.class_sync;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
@@ -21,7 +19,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,18 +33,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -86,7 +74,7 @@ public class HomeFragment extends Fragment  {
     View decorView;
     String Subject_name,Time_period;
     LocationManager locationManager;
-    ImageView atten, MsbteResources, ebooks,online_course;
+    ImageView TrackAttendance, MsbteResources, ebooks,online_course;
     FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
@@ -152,7 +140,13 @@ public class HomeFragment extends Fragment  {
         });
         TimePeriod.setAdapter(adapter2);
 
+        TrackAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame,new TrackAttendanceFragment()).commit();
 
+            }
+        });
 
 
 
@@ -237,7 +231,7 @@ public class HomeFragment extends Fragment  {
 
     //----------------------Finding Id's of all the components on the Fragments------------------------------------
     void findId() {
-        atten = root.findViewById(R.id.TrackAttendance_CardView);
+        TrackAttendance = root.findViewById(R.id.TrackAttendance_CardView);
         AddEbook=root.findViewById(R.id.t1);
         online_course = root.findViewById(R.id.OnlineCourses);
         user_Name = root.findViewById(R.id.user_name);
