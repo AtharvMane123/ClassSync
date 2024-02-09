@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
     CardView login_btn;
 
-    TextView register;
+    TextView register,LoginAsTeacher;
     EditText email_editText, password_editText;
     public SharedPreferences sharedPreferences;
     public SharedPreferences.Editor sharedPreferencesEditor;
@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         register = findViewById(R.id.Go_to_register_fom);
         email_editText = findViewById(R.id.Email_EditText);
         password_editText = findViewById(R.id.Password_EditText);
+        LoginAsTeacher = findViewById(R.id.LoginAsTeacher);
 
 
 
@@ -64,7 +65,13 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+        LoginAsTeacher.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+            startActivity(new Intent(getApplicationContext(),LoginAsTeacher.class));
 
+            }
+        });
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

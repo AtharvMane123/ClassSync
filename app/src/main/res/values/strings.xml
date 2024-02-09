@@ -54,14 +54,14 @@
     </string-array>
 
     <string-array name="Sem_1">
-    <item>Choose Subject</item>
-    <item>ICT Fundamental of ICT.</item>
-    <item>ENG English.</item>
-    <item>BSC Basic Science (Physics).</item>
-    <item>BSC Basic Science (Chemistry).</item>
-    <item>BMS Basic Mathematics.</item>
-    <!-- Add more choices as needed -->
-</string-array>
+        <item>Choose Subject</item>
+        <item>ICT Fundamental of ICT.</item>
+        <item>ENG English.</item>
+        <item>BSC Basic Science (Physics).</item>
+        <item>BSC Basic Science (Chemistry).</item>
+        <item>BMS Basic Mathematics.</item>
+        <!-- Add more choices as needed -->
+    </string-array>
 
     <string-array name="Sem_2">
         <item>Choose Subject</item>

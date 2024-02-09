@@ -16,7 +16,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="650dp"
         android:id="@+id/CardView_LoginView"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/white"
@@ -41,17 +41,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/baloo"
-                android:text="Back,"
+                android:text="Teachers,"
                 android:textColor="#986CE1"
                 android:textSize="30dp" />
 
             <EditText
-                android:id="@+id/Email_EditText"
+                android:id="@+id/TeacherPhone_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/login_textview"
-                android:hint="Email"
+                android:hint="Phone Number"
                 android:inputType="text"
                 android:paddingLeft="20dp"
                 android:paddingHorizontal="20dp"
@@ -59,7 +59,7 @@
                 android:textColorHint="#424040" />
 
             <EditText
-                android:id="@+id/Password_EditText"
+                android:id="@+id/TeacherPassword_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:textColor="@color/black"
@@ -72,15 +72,28 @@
                 android:paddingLeft="20dp" />
 
             <TextView
-                android:id="@+id/Forgot_password"
+                android:id="@+id/sendOtp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/oxygen_bold"
-                android:text="Forgot Password"
+                android:text="Send OTP"
                 android:textColor="#986CE1" />
+            <EditText
+                android:id="@+id/TeacherOTP_EditText"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:visibility="gone"
+                android:textColor="@color/black"
+                android:inputType="numberDecimal"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:textColorHint="#424040"
+                android:background="@drawable/login_textview"
+                android:hint="Enter OTP"
+                android:paddingLeft="20dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -99,7 +112,7 @@
                     android:textSize="20dp" />
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/Login_cardView"
+                    android:id="@+id/TeacherLogin_cardView"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentRight="true"
@@ -121,30 +134,18 @@
                         android:textSize="20dp" />
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
+
             <TextView
-                android:id="@+id/LoginAsTeacher"
+                android:id="@+id/LoginAsStudent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/oxygen_bold"
-                android:text="Login as Teacher"
+                android:text="Login as Student"
                 android:textColor="#986CE1" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Go_to_register_fom"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:fontFamily="@font/baloo"
-        android:layout_marginTop="40dp"
-        android:text="Don't have an Account? Register"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/CardView_LoginView"
-        android:textColor="#283593"
-        android:textSize="20dp" />
 
 </RelativeLayout>
