@@ -1,4 +1,4 @@
-package Home_Fragments;
+package com.class_sync.Home_Fragments;
 
 import android.content.Intent;
 import android.net.Uri;

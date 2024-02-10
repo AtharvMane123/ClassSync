@@ -1,4 +1,4 @@
-package Home_Fragments;
+package com.class_sync.Home_Fragments;
 
 import android.os.Bundle;
 
@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.class_sync.R;
 

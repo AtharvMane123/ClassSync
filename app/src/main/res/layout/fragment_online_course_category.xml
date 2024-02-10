@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="Home_Fragments.OnlineCourse_category">
+    tools:context=".Home_Fragments.OnlineCourse_category">
 
 
     <com.google.android.material.imageview.ShapeableImageView

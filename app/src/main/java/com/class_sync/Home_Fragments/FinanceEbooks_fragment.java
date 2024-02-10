@@ -1,4 +1,4 @@
-package Home_Fragments;
+package com.class_sync.Home_Fragments;
 
 import static android.content.ContentValues.TAG;
 
@@ -31,8 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import RecyclerViews.RecyclerView_Adapter;
-import RecyclerViews.RecyclerView_Ebooks_ModelClass;
+import com.class_sync.RecyclerViews.RecyclerView_Adapter;
+import com.class_sync.RecyclerViews.RecyclerView_Ebooks_ModelClass;
 
 
 public class FinanceEbooks_fragment extends Fragment {

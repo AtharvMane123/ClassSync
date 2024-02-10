@@ -1,4 +1,4 @@
-package RecyclerViews;
+package com.class_sync.RecyclerViews;
 
 public class RecyclerView_Ebooks_ModelClass {
     String name;

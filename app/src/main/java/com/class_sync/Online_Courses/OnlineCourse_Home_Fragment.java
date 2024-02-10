@@ -1,12 +1,9 @@
-package Online_Courses;
+package com.class_sync.Online_Courses;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,7 +18,7 @@ import android.widget.TextView;
 
 import com.class_sync.R;
 
-import Home_Fragments.OnlineCourse_category;
+import com.class_sync.Home_Fragments.OnlineCourse_category;
 
 
 public class OnlineCourse_Home_Fragment extends Fragment {

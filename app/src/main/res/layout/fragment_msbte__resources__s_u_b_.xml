@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    tools:context="Home_Fragments.Msbte_Resources_SUB_Fragment">
+    tools:context=".Home_Fragments.Msbte_Resources_SUB_Fragment">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"

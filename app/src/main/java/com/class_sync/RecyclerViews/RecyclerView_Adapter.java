@@ -1,4 +1,4 @@
-package RecyclerViews;
+package com.class_sync.RecyclerViews;
 
 import android.view.LayoutInflater;
 import android.view.View;

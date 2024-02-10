@@ -8,40 +8,177 @@
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".TeacherHomeScreen">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/baloo"
-        android:text="Welcome Back "
-        android:textColor="#986CE1"
-        android:textSize="35dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/baloo"
-        android:text="Teachers,"
-        android:textColor="#986CE1"
-        android:textSize="30dp" />
-
-    <androidx.cardview.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_height="200dp"
-        app:cardCornerRadius="20dp"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             >
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/upload_assignments_image"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/baloo"
+                android:text="Welcome Back "
+                android:textColor="#986CE1"
+                android:textSize="35dp" />
 
-                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/baloo"
+                android:text="Teachers,"
+                android:textColor="#986CE1"
+                android:textSize="30dp" />
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:id="@+id/TeacherFragement_TrackStuentAttendance"
+                android:layout_height="150dp"
+                app:cardCornerRadius="20dp"
+                android:backgroundTint="#EDE7F6"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/baloo"
+                        android:text="Track Student Attendance"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+
+                        />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/track_student_attendance"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+
+                        />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="150dp"
+                android:id="@+id/TeacherFragement_ViewStudentDatabase"
+                app:cardCornerRadius="20dp"
+                android:backgroundTint="#EDE7F6"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/baloo"
+                        android:text="View Student Databse"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+
+                        />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/students"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+
+                        />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="150dp"
+                app:cardCornerRadius="20dp"
+                android:id="@+id/TeacherFragement_UploadAssignments"
+                android:backgroundTint="#EDE7F6"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/baloo"
+                        android:text="Upload Assignments"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+
+                        />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/upload_file_image"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+
+                        />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="150dp"
+                android:id="@+id/TeacherFragement_UploadWorkbooks"
+                app:cardCornerRadius="20dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#EDE7F6"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/baloo"
+                        android:text="Upload WorkBooks"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+
+                        />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/upload_workbook_image"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+
+                        />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </ScrollView>
+
+
 </LinearLayout>

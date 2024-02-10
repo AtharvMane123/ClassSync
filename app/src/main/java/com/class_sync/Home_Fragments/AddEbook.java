@@ -1,4 +1,4 @@
-package Home_Fragments;
+package com.class_sync.Home_Fragments;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-import RecyclerViews.RecyclerView_Ebooks_ModelClass;
+import com.class_sync.RecyclerViews.RecyclerView_Ebooks_ModelClass;
 
 public class AddEbook extends Fragment {
     EditText name,author,bkImgurl,PdfUrl,description,rating;

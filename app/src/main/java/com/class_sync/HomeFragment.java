@@ -48,10 +48,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import Home_Fragments.AddEbook;
-import Home_Fragments.EbookFragments;
-import Home_Fragments.MsbteResources_Fragement;
-import Online_Courses.OnlineCourse_Home_Fragment;
+import com.class_sync.Home_Fragments.AddEbook;
+import com.class_sync.Home_Fragments.EbookFragments;
+import com.class_sync.Home_Fragments.MsbteResources_Fragement;
+import com.class_sync.Online_Courses.OnlineCourse_Home_Fragment;
 
 
 public class HomeFragment extends Fragment  {
