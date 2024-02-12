@@ -145,7 +145,7 @@
                 android:layout_height="150dp"
                 android:id="@+id/TeacherFragement_UploadWorkbooks"
                 app:cardCornerRadius="20dp"
-                android:layout_marginBottom="10dp"
+
                 android:backgroundTint="#EDE7F6"
                 >
                 <RelativeLayout
@@ -176,7 +176,24 @@
 
 
 
+<androidx.cardview.widget.CardView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:backgroundTint="#EDE7F6"
+    android:id="@+id/TeacherHomeScreen_Logout"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="20dp"
+    app:cardCornerRadius="20dp"
 
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Logout"
+        />
+</androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
 

@@ -26,8 +26,8 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView register,LoginAsTeacher;
     EditText email_editText, password_editText;
-    public SharedPreferences sharedPreferences;
-    public SharedPreferences.Editor sharedPreferencesEditor;
+    public static SharedPreferences sharedPreferences;
+    public static SharedPreferences.Editor sharedPreferencesEditor;
 
 
     @Override
@@ -53,7 +53,10 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), HomeScreen.class));
             finish();
         }
-
+        else if (sharedPreferences.getBoolean("Teacherlogin", false)) {
+            startActivity(new Intent(getApplicationContext(), TeacherHomeScreen.class));
+            finish();
+        }
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override

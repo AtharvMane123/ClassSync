@@ -7,6 +7,8 @@ import android.app.DownloadManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,9 +40,11 @@ public class UploadWorkbooks extends AppCompatActivity {
 TextView textView;
     Spinner sem,sub;
     private WebView webView;
+
     private ValueCallback<Uri> mUploadMessage;
     public ValueCallback<Uri[]> uploadMessage;
     public static final int REQUEST_SELECT_FILE = 100;
+    ProgressBar progressBar;
     private final static int FILECHOOSER_RESULTCODE = 1;
 
 
@@ -53,6 +58,10 @@ TextView textView;
         sub = findViewById(R.id.UploadAssignmnets_Spinner_subject);
         webView = findViewById(R.id.webView);
         sem.setAdapter(setCustomAdapter(R.array.Select_Sem));
+        progressBar = findViewById(R.id.UploadAssignMents_progressBar);
+
+        webView.setBackgroundColor(Color.WHITE);
+
 
         sem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -183,11 +192,6 @@ TextView textView;
 //
 ////                        //Sixth Sem
                 if(SelectedSubject.equals( "Mobile Application Development (MAD)")) {
-
-
-
-
-
                     startWebView("https://mega.nz/filerequest/a59mzxfxg5I");
                 }
 //                else if (SelectedSubject.equals( "Emerging Trends in Computer Engineering (ETI)")) {
@@ -253,10 +257,25 @@ TextView textView;
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setAllowFileAccess(true);
         webView.loadUrl(URL);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                progressBar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                progressBar.setVisibility(View.GONE);
+            }
+        });
 
         webView.setWebChromeClient(new WebChromeClient() {
             // For 3.0+ Devices (Start)
             // onActivityResult attached before constructor
+
+
             protected void openFileChooser(ValueCallback uploadMsg, String acceptType)
             {
                 mUploadMessage = uploadMsg;

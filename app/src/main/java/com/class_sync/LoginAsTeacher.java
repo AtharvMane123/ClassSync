@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -30,10 +31,13 @@ EditText PhoneNumber_EditText,Password_EditText,OTP_EditText;
 TextView SendOTP,LoginAsStudent;
 CardView login;
 FirebaseAuth auth = FirebaseAuth.getInstance();
+
 Long timeoutSeconds = 60L;
 String phoneNumber;
 String verificationCode;
 PhoneAuthProvider.ForceResendingToken resendingToken;
+    public static SharedPreferences sharedPreferences;
+    public static SharedPreferences.Editor sharedPreferencesEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,22 @@ PhoneAuthProvider.ForceResendingToken resendingToken;
         login = findViewById(R.id.TeacherLogin_cardView);
 
         PhoneNumber_EditText.setText("+91  ");
+
+
+        LoginActivity.sharedPreferences = getSharedPreferences("TeacherLoggedIn", MODE_PRIVATE);
+        LoginActivity.sharedPreferencesEditor = LoginActivity.sharedPreferences.edit();
+
+        sharedPreferences = getSharedPreferences("TeacherLoggedIn", MODE_PRIVATE);
+        sharedPreferencesEditor = LoginActivity.sharedPreferences.edit();
+
+        if (sharedPreferences.getBoolean("Teacherlogin", false)) {
+            startActivity(new Intent(getApplicationContext(), TeacherHomeScreen.class));
+            finish();
+        }
+        if (LoginActivity.sharedPreferences.getBoolean("Teacherlogin", false)) {
+            startActivity(new Intent(getApplicationContext(), TeacherHomeScreen.class));
+            finish();
+        }
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +97,7 @@ PhoneAuthProvider.ForceResendingToken resendingToken;
    void sendOtp(String phoneNumber,Boolean isResend){
        PhoneAuthOptions.Builder builder =
                PhoneAuthOptions.newBuilder(auth)
-                       .setPhoneNumber(PhoneNumber_EditText.getText().toString())
+                       .setPhoneNumber("+91"+PhoneNumber_EditText.getText().toString())
                        .setTimeout(timeoutSeconds, TimeUnit.SECONDS)
                        .setActivity(this)
                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -115,6 +135,15 @@ PhoneAuthProvider.ForceResendingToken resendingToken;
                 if(task.isSuccessful())
                 {
                     startActivity(new Intent(getApplicationContext(),TeacherHomeScreen.class));
+                    LoginActivity.sharedPreferencesEditor.putBoolean("Teacherlogin", true);
+                    LoginActivity.sharedPreferencesEditor.putBoolean("Teacherlogin", true);
+                    LoginActivity.sharedPreferencesEditor.putString("PhoneNumber", PhoneNumber_EditText.getText().toString());
+                    LoginActivity.sharedPreferencesEditor.commit();
+
+                    sharedPreferencesEditor.putBoolean("Teacherlogin", true);
+                    sharedPreferencesEditor.putBoolean("Teacherlogin", true);
+                    sharedPreferencesEditor.putString("PhoneNumber", PhoneNumber_EditText.getText().toString());
+                    sharedPreferencesEditor.commit();
                  }
                 else {
                     Toast.makeText(LoginAsTeacher.this, "OTP verification Failed", Toast.LENGTH_SHORT).show();

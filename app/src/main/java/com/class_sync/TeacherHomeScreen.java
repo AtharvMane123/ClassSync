@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 public class TeacherHomeScreen extends AppCompatActivity {
-    CardView UploadAssignments, UploadWorkbooks, TrackStudentAttendance, ViewStudentDatabase;
+    CardView UploadAssignments, UploadWorkbooks, TrackStudentAttendance, ViewStudentDatabase,TeacherHomescreen_Logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,16 @@ public class TeacherHomeScreen extends AppCompatActivity {
         UploadWorkbooks = findViewById(R.id.TeacherFragement_UploadWorkbooks);
         TrackStudentAttendance = findViewById(R.id.TeacherFragement_TrackStuentAttendance);
         ViewStudentDatabase = findViewById(R.id.TeacherFragement_ViewStudentDatabase);
+        TeacherHomescreen_Logout = findViewById(R.id.TeacherHomeScreen_Logout);
 
+        TeacherHomescreen_Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginAsTeacher.sharedPreferencesEditor.clear().commit();
+                startActivity(new Intent(getApplicationContext(),LoginAsTeacher.class));
+                finish();
+            }
+        });
 
         UploadWorkbooks.setOnClickListener(new View.OnClickListener() {
             @Override
