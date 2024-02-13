@@ -50,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="40dp"
+                android:maxLength="10"
                 android:background="@drawable/login_textview"
                 android:hint="Phone Number "
                 android:inputType="phone"
