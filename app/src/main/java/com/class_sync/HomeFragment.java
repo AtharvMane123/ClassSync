@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -16,6 +15,8 @@ import android.location.LocationManager;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.class_sync.Home_Fragments.AddEbook;
+import com.class_sync.Home_Fragments.Assignmnent_Fragment;
+import com.class_sync.Home_Fragments.EbookFragments;
+import com.class_sync.Home_Fragments.MsbteResources_Fragement;
+import com.class_sync.Online_Courses.OnlineCourse_Home_Fragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -44,37 +50,30 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import com.class_sync.Home_Fragments.AddEbook;
-import com.class_sync.Home_Fragments.EbookFragments;
-import com.class_sync.Home_Fragments.MsbteResources_Fragement;
-import com.class_sync.Online_Courses.OnlineCourse_Home_Fragment;
 
-
-public class HomeFragment extends Fragment  {
+public class HomeFragment extends Fragment {
     public static final String ERROR_DETECTED = "No NFC Detected";
     private final static int REQUEST_CODE = 100;
 
-    NfcAdapter nfcAdapter;
-    Spinner subject,TimePeriod;
-    IntentFilter writingTagFilter;
-    PendingIntent pendingIntent;
-    Tag mytag;
+
+    Spinner subject, TimePeriod;
+
     View customDialogView;
     Button NFC;
     Context context;
 
-    TextView AddEbook,user_Name;
+    TextView AddEbook, user_Name;
     CardView MarkAttendance;
-    int i=0;
+    int i = 0;
     ViewGroup root;
     View decorView;
-    String Subject_name,Time_period;
-    LocationManager locationManager;
-    ImageView TrackAttendance, MsbteResources, ebooks,online_course;
+    String Subject_name, Time_period;
+    ImageView TrackAttendance, MsbteResources, ebooks, online_course,Assignments;
     FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
@@ -87,11 +86,11 @@ public class HomeFragment extends Fragment  {
         user_Name.setText(HomeScreen.User_Name);
 
         //Runtime permission
-        if(ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.ACCESS_FINE_LOCATION)
-        != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(getActivity(),new String[]{
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION
-            },100);
+            }, 100);
         }
 
 
@@ -107,7 +106,7 @@ public class HomeFragment extends Fragment  {
         subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Subject_name=adapterView.getItemAtPosition(i).toString();
+                Subject_name = adapterView.getItemAtPosition(i).toString();
             }
 
             @Override
@@ -130,7 +129,7 @@ public class HomeFragment extends Fragment  {
         TimePeriod.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Time_period=adapterView.getItemAtPosition(i).toString();
+                Time_period = adapterView.getItemAtPosition(i).toString();
             }
 
             @Override
@@ -143,15 +142,19 @@ public class HomeFragment extends Fragment  {
         TrackAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame,new TrackAttendanceFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame, new TrackAttendanceFragment()).commit();
 
             }
         });
-
-
+        Assignments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new Assignmnent_Fragment()).commit();
+            }
+        });
 
         context = getActivity();
-        HomeScreen.bottomNavigation.show(1,true);
+        HomeScreen.bottomNavigation.show(1, true);
         decorView = getActivity().getWindow().getDecorView();
         HomeScreen.RootRelativeLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
@@ -168,9 +171,8 @@ public class HomeFragment extends Fragment  {
             @Override
             public void onClick(View view) {
                 i++;
-                if(i==10)
-                {
-                    getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new AddEbook()).commit();
+                if (i == 10) {
+                    getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new AddEbook()).commit();
                 }
             }
         });
@@ -203,52 +205,28 @@ public class HomeFragment extends Fragment  {
         });
 
 
-//        NFC.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                try {
-//                    if (mytag == null) {
-//                        Toast.makeText(context, ERROR_DETECTED, Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(context, "NFC DETECTED", Toast.LENGTH_SHORT).show();
-//                    }
-//                } catch (Exception e) {
-//                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-        nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
-        if (nfcAdapter == null) {
-            Toast.makeText(context, "This device does not support NFC", Toast.LENGTH_SHORT).show();
-        }
-        IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
-        tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
-
         return root;
     }
-
 
 
     //----------------------Finding Id's of all the components on the Fragments------------------------------------
     void findId() {
         TrackAttendance = root.findViewById(R.id.TrackAttendance_CardView);
-        AddEbook=root.findViewById(R.id.t1);
+        AddEbook = root.findViewById(R.id.t1);
         online_course = root.findViewById(R.id.OnlineCourses);
         user_Name = root.findViewById(R.id.user_name);
         NFC = root.findViewById(R.id.ScanNFc);
         MarkAttendance = root.findViewById(R.id.MarkAttendance);
         MsbteResources = root.findViewById(R.id.MsbtePapers);
         ebooks = root.findViewById(R.id.Ebooks_imageView);
-
+        Assignments = root.findViewById(R.id.Assignments);
 
         subject = customDialogView.findViewById(R.id.AddAttendance_Subject);
         TimePeriod = customDialogView.findViewById(R.id.AddAttendance_TimePeriod);
     }
 
 
-
-
-//-----------------------------Follwing Methods are used for Location Purpose------------------------
+    //-----------------------------Follwing Methods are used for Location Purpose------------------------
     private void getLastLocation() {
         //To get the last location of the user
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -265,8 +243,8 @@ public class HomeFragment extends Fragment  {
                                     addresses = geo.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
 //                                    address.setText("Pune: "+addresses.get(0).getAddressLine(0));
                                     Toast.makeText(getActivity(), "" + addresses.get(0).getAddressLine(0), Toast.LENGTH_LONG).show();
-                                    String College_Location_words[]={"Satar Nagar","Hadapsar" ,"Pune","Autadwadi","Handewadi"};
-                                    if (containsWords(addresses.get(0).getAddressLine(0),College_Location_words)){
+                                    String College_Location_words[] = {"Satar Nagar", "Hadapsar", "Pune", "Autadwadi", "Handewadi"};
+                                    if (containsWords(addresses.get(0).getAddressLine(0), College_Location_words)) {
                                         showCustomDialog();
                                     } else {
                                         Toast.makeText(getActivity(), "You are not in the College, so your attendance will not be marked", Toast.LENGTH_SHORT).show();
@@ -314,13 +292,14 @@ public class HomeFragment extends Fragment  {
     }
 
 
-//    ----------------------------------------Code to hide navigation buttons-------------------------------------------
+    //    ----------------------------------------Code to hide navigation buttons-------------------------------------------
     public void onWindowFocusChanged(boolean hasFocus) {
         super.getActivity().onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             decorView.setSystemUiVisibility(hideSystemBars());
         }
     }
+
     private int hideSystemBars() {
         return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -333,12 +312,11 @@ public class HomeFragment extends Fragment  {
     }
 
 
-
-//--------------------Following Methods are used to verify Users Location and the College Location-------------------
-public static boolean containsWord(String input, String word) {
-    // Case-insensitive check for the presence of a word in the string
-    return input.toLowerCase().contains(word.toLowerCase());
-}
+    //--------------------Following Methods are used to verify Users Location and the College Location-------------------
+    public static boolean containsWord(String input, String word) {
+        // Case-insensitive check for the presence of a word in the string
+        return input.toLowerCase().contains(word.toLowerCase());
+    }
 
     public static boolean containsWords(String input, String[] words) {
         // Case-insensitive check for the presence of any of the specified words in the string
@@ -351,7 +329,7 @@ public static boolean containsWord(String input, String word) {
     }
 
 
-//------------------------- Following Method is used to retrive the current date -----------------------------------
+    //------------------------- Following Method is used to retrive the current date -----------------------------------
     private String getCurrentDate() {
         // Get the current date and time
         Date currentDate = new Date();
@@ -360,8 +338,17 @@ public static boolean containsWord(String input, String word) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         return dateFormat.format(currentDate);
     }
+    public String getCurrentMonth(){
+        Calendar calendar = Calendar.getInstance();
 
-// ----------------------------------------------------Dialog Box to Add Attendance ------------------------------------------------------
+        // Format the current date to obtain the month abbreviation
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM", Locale.getDefault());
+        String currentMonth = dateFormat.format(calendar.getTime());
+
+        return currentMonth;
+    }
+
+    // ----------------------------------------------------Dialog Box to Add Attendance ------------------------------------------------------
     private void showCustomDialog() {
 
 
@@ -379,11 +366,24 @@ public static boolean containsWord(String input, String word) {
                         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                               String Class = snapshot.child("users").child(HomeScreen.User_Name).child("class").getValue(String.class);
-                               String Student_roll = snapshot.child("users").child(HomeScreen.User_Name).child("rollNo").getValue(String.class);
+                                String Class = snapshot.child("users").child(HomeScreen.User_Name).child("class").getValue(String.class);
+                                String Student_roll = snapshot.child("users").child(HomeScreen.User_Name).child("rollNo").getValue(String.class);
+                                String TotalAttendance = snapshot.child("users").child("Month").child(getCurrentMonth()).child("TotalAttendance").getValue(String.class);
 
-                               databaseReference.child("Attendance").child(getCurrentDate()).child(Class).child(Time_period).child(Subject_name).child(HomeScreen.User_Name)
-                                                                             .child("name").setValue(HomeScreen.User_Name);
+
+                                if(TextUtils.isEmpty(TotalAttendance))
+                                {
+                                    TotalAttendance  = "0";
+                                    databaseReference.child("users").child(HomeScreen.User_Name).child("Month").child(getCurrentMonth()).child("TotalAttendance").setValue(Integer.parseInt(TotalAttendance)+1);
+                                }
+
+
+
+
+
+
+                                databaseReference.child("Attendance").child(getCurrentDate()).child(Class).child(Time_period).child(Subject_name).child(HomeScreen.User_Name)
+                                        .child("name").setValue(HomeScreen.User_Name);
                                 databaseReference.child("Attendance").child(getCurrentDate()).child(Class).child(Time_period).child(Subject_name).child(HomeScreen.User_Name)
                                         .child("rollNo").setValue(Student_roll).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override

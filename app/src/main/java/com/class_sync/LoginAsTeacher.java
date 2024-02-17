@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ EditText PhoneNumber_EditText,Password_EditText,OTP_EditText;
 TextView SendOTP,LoginAsStudent;
 CardView login;
 FirebaseAuth auth = FirebaseAuth.getInstance();
+ProgressBar progressBar;
 
 Long timeoutSeconds = 60L;
 String phoneNumber;
@@ -50,8 +52,8 @@ PhoneAuthProvider.ForceResendingToken resendingToken;
         OTP_EditText = findViewById(R.id.TeacherOTP_EditText);
         SendOTP = findViewById(R.id.sendOtp);
         login = findViewById(R.id.TeacherLogin_cardView);
+        progressBar = findViewById(R.id.LoginAsTeacher_ProgressBar);
 
-        PhoneNumber_EditText.setText("+91  ");
 
 
         LoginActivity.sharedPreferences = getSharedPreferences("TeacherLoggedIn", MODE_PRIVATE);
@@ -81,8 +83,9 @@ PhoneAuthProvider.ForceResendingToken resendingToken;
         SendOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OTP_EditText.setVisibility(View.VISIBLE);
+
                 sendOtp(PhoneNumber_EditText.getText().toString()  ,false);
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
 
@@ -109,6 +112,7 @@ PhoneAuthProvider.ForceResendingToken resendingToken;
                            @Override
                            public void onVerificationFailed(@NonNull FirebaseException e) {
                                Toast.makeText(LoginAsTeacher.this, "OTP verification failed", Toast.LENGTH_SHORT).show();
+                               progressBar.setVisibility(View.GONE);
                            }
 
                            @Override
@@ -117,6 +121,8 @@ PhoneAuthProvider.ForceResendingToken resendingToken;
                                verificationCode = s;
                                resendingToken = forceResendingToken;
                                Toast.makeText(LoginAsTeacher.this, "OTP sent Successfully", Toast.LENGTH_SHORT).show();
+                               OTP_EditText.setVisibility(View.VISIBLE);
+                               progressBar.setVisibility(View.GONE);
                            }
                        });
        if(isResend)

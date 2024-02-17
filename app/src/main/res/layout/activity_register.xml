@@ -31,7 +31,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:fontFamily="@font/baloo"
                 android:text="Register"
                 android:textColor="#986CE1"

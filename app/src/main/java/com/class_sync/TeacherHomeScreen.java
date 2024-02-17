@@ -8,6 +8,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.class_sync.TeacherActivities.ViewStudentDatabase;
+
 public class TeacherHomeScreen extends AppCompatActivity {
     CardView UploadAssignments, UploadWorkbooks, TrackStudentAttendance, ViewStudentDatabase,TeacherHomescreen_Logout;
 
@@ -55,7 +57,7 @@ public class TeacherHomeScreen extends AppCompatActivity {
         ViewStudentDatabase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(TeacherHomeScreen.this, "This feature is not available for now", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),com.class_sync.TeacherActivities.ViewStudentDatabase.class));
             }
         });
 

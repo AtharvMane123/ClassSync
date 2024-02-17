@@ -15,9 +15,9 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/CardView_LoginView"
         android:layout_width="match_parent"
         android:layout_height="650dp"
-        android:id="@+id/CardView_LoginView"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="50dp">
@@ -31,8 +31,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/baloo"
                 android:layout_marginTop="50dp"
+                android:fontFamily="@font/baloo"
                 android:text="Welcome"
                 android:textColor="#986CE1"
                 android:textSize="35dp" />
@@ -50,12 +50,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="40dp"
-                android:maxLength="10"
                 android:background="@drawable/login_textview"
                 android:hint="Phone Number "
                 android:inputType="phone"
-                android:paddingLeft="20dp"
+                android:maxLength="10"
                 android:paddingHorizontal="20dp"
+                android:paddingLeft="20dp"
                 android:textColor="@color/black"
                 android:textColorHint="#424040" />
 
@@ -63,14 +63,14 @@
                 android:id="@+id/TeacherPassword_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:textColor="@color/black"
-                android:inputType="textPassword"
-                android:paddingHorizontal="20dp"
                 android:layout_marginTop="10dp"
-                android:textColorHint="#424040"
                 android:background="@drawable/login_textview"
                 android:hint="Password"
-                android:paddingLeft="20dp" />
+                android:inputType="textPassword"
+                android:paddingHorizontal="20dp"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#424040" />
 
             <TextView
                 android:id="@+id/sendOtp"
@@ -82,19 +82,29 @@
                 android:fontFamily="@font/oxygen_bold"
                 android:text="Send OTP"
                 android:textColor="#986CE1" />
+
             <EditText
                 android:id="@+id/TeacherOTP_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:visibility="gone"
-                android:textColor="@color/black"
-                android:inputType="numberDecimal"
-                android:paddingHorizontal="20dp"
                 android:layout_marginTop="10dp"
-                android:textColorHint="#424040"
                 android:background="@drawable/login_textview"
                 android:hint="Enter OTP"
-                android:paddingLeft="20dp" />
+                android:inputType="numberDecimal"
+                android:paddingHorizontal="20dp"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#424040"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/LoginAsTeacher_ProgressBar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+
+                />
 
             <RelativeLayout
                 android:layout_width="match_parent"

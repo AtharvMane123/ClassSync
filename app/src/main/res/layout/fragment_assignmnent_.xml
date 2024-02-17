@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Home_Fragments.Assignmnent_Fragment">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/baloo"
+        android:paddingLeft="6.5dp"
+        android:text="Select Semester"
+        android:textSize="17dp" />
+
+    <Spinner
+        android:id="@+id/ViewAssignments_Spinner_Class"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:entries="@array/Class_Spinner_array" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/baloo"
+        android:paddingLeft="6.5dp"
+        android:text="Select Semester"
+        android:textSize="17dp" />
+
+    <Spinner
+        android:id="@+id/ViewAssignmnets_Spinner_subject"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <WebView
+            android:id="@+id/ViewAssignments_webView"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/white"
+            android:background="@color/white"
+            android:layout_height="match_parent" />
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:id="@+id/ViewAssignments_progressBar"
+            android:layout_centerInParent="true"
+
+            />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

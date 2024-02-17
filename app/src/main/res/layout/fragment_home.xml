@@ -125,6 +125,7 @@
                         <ImageView
                             android:layout_width="155dp"
                             android:layout_height="150dp"
+                            android:id="@+id/Assignments"
                             android:layout_alignParentLeft="true"
                             android:src="@drawable/assignments_final" />
 

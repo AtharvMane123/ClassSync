@@ -47,8 +47,8 @@ MaterialCardView assignments,attendance,groupChatting,askChatGpt;
         sharedPreferences = getSharedPreferences("userLoggedIn", MODE_PRIVATE);
         sharedPreferencesEditor = sharedPreferences.edit();
 
-        User_Email = sharedPreferences.getString("Email", "ok");
-        User_Name = sharedPreferences.getString("Name", "okk");
+        User_Email = sharedPreferences.getString("Email", "");
+        User_Name = sharedPreferences.getString("Name", "");
 
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.baseline_home_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.baseline_chat_24));
