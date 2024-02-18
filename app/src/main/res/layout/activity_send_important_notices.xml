@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#E3F2FD"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_height="match_parent"
+    tools:context=".TeacherActivities.SendImportantNotices">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Send Important Announcements"
+        android:fontFamily="@font/baloo"
+        android:textSize="18dp"
+
+
+        />
+    <EditText
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content"
+        android:paddingRight="20dp"
+        android:id="@+id/NoticeName"
+        android:hint="Enter Announcement Name"
+        />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:id="@+id/NoticeDescription"
+        android:layout_marginTop="50dp"
+        android:hint="Enter Description about the announcement"
+
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/SendAnnouncement_btn"
+        android:text="Send Announcement"
+        />
+</LinearLayout>

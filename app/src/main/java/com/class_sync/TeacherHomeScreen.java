@@ -1,17 +1,22 @@
 package com.class_sync;
 
+import static com.class_sync.NotificationHelper.makeNotification;
+
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-
-import com.class_sync.TeacherActivities.ViewStudentDatabase;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class TeacherHomeScreen extends AppCompatActivity {
-    CardView UploadAssignments, UploadWorkbooks, TrackStudentAttendance, ViewStudentDatabase,TeacherHomescreen_Logout;
+    CardView UploadAssignments, UploadWorkbooks, SendImportantNotice, ViewStudentDatabase,TeacherHomescreen_Logout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +24,23 @@ public class TeacherHomeScreen extends AppCompatActivity {
         setContentView(R.layout.activity_teacher_home_screen);
         UploadAssignments = findViewById(R.id.TeacherFragement_UploadAssignments);
         UploadWorkbooks = findViewById(R.id.TeacherFragement_UploadWorkbooks);
-        TrackStudentAttendance = findViewById(R.id.TeacherFragement_TrackStuentAttendance);
+        SendImportantNotice = findViewById(R.id.TeacherFragement_TrackStuentAttendance);
         ViewStudentDatabase = findViewById(R.id.TeacherFragement_ViewStudentDatabase);
         TeacherHomescreen_Logout = findViewById(R.id.TeacherHomeScreen_Logout);
+//        displayNotification();
+//        NotificationHelper.showNotification(getApplicationContext(),"Hello","Welcome Back Atharv");
+
+
+
+        if (Build.VERSION.SDK_INT >= Build. VERSION_CODES. TIRAMISU) {
+            if (ContextCompat.checkSelfPermission (getApplicationContext(),
+                    android. Manifest.permission. POST_NOTIFICATIONS) !=
+            PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions (TeacherHomeScreen.this,
+                        new String[] {Manifest.permission.POST_NOTIFICATIONS},  101);
+            }
+        }
+
 
         TeacherHomescreen_Logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,10 +66,11 @@ public class TeacherHomeScreen extends AppCompatActivity {
             }
         });
 
-        TrackStudentAttendance.setOnClickListener(new View.OnClickListener() {
+        SendImportantNotice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(TeacherHomeScreen.this, "This Feature is not available for now", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), com.class_sync.TeacherActivities.SendImportantNotices.class));
+
             }
         });
 
@@ -62,4 +82,10 @@ public class TeacherHomeScreen extends AppCompatActivity {
         });
 
     }
+
+
+
+
+
+
 }

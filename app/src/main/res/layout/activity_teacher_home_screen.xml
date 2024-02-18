@@ -53,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/baloo"
-                        android:text="Track Student Attendance"
+                        android:text="Send Important Announcements"
                         android:textSize="15dp"
                         android:textColor="@color/black"
 
@@ -61,7 +61,7 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/track_student_attendance"
+                        android:src="@drawable/baseline_circle_notifications_24"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentBottom="true"
 

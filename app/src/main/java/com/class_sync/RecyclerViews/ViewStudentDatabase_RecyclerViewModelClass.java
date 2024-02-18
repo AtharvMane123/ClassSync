@@ -3,7 +3,20 @@ package com.class_sync.RecyclerViews;
 import androidx.annotation.NonNull;
 
 public class ViewStudentDatabase_RecyclerViewModelClass {
-    String s_Class,email,name,rollNo;
+    String s_Class;
+    String email;
+    String name;
+    String rollNo;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    String gender;
 
     public ViewStudentDatabase_RecyclerViewModelClass() {
     }

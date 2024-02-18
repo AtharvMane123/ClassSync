@@ -12,6 +12,8 @@ import com.class_sync.R;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ViewStudentDatabase_RecyclerAdapter extends RecyclerView.Adapter<ViewStudentDatabase_RecyclerAdapter.ViewHolder> {
     ArrayList<ViewStudentDatabase_RecyclerViewModelClass> arrayList;
 
@@ -32,6 +34,18 @@ public class ViewStudentDatabase_RecyclerAdapter extends RecyclerView.Adapter<Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(arrayList.get(position).getName());
         holder.Class.setText(arrayList.get(position).getS_Class());
+        if(arrayList.get(position).getGender().equals("Male"))
+        {
+            holder.imageView.setImageResource(R.drawable.avatar);
+        }else {
+            holder.imageView.setImageResource(R.drawable.female_student);
+        }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recyclerViewItemClickListener.ItemClick(arrayList.get(position).getName(),arrayList.get(position).getS_Class(),position);
+            }
+        });
     }
 
     @Override
@@ -42,14 +56,16 @@ public class ViewStudentDatabase_RecyclerAdapter extends RecyclerView.Adapter<Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name,Class;
+        CircleImageView imageView;
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             name = itemView.findViewById(R.id.ViewStudentDatabase_studentName);
             Class = itemView.findViewById(R.id.ViewStudentDatabase_studentClass);
+            imageView = itemView.findViewById(R.id.avatar_image);
         }
     }
 
     public interface RecyclerViewItemClickListener1 {
-        public void ItemClick(String Name, String Class);
+        public void ItemClick(String Name, String Class,int position);
     }
 }

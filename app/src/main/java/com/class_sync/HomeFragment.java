@@ -2,27 +2,22 @@ package com.class_sync;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationManager;
-import android.nfc.NfcAdapter;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,6 +32,7 @@ import androidx.fragment.app.Fragment;
 import com.class_sync.Home_Fragments.AddEbook;
 import com.class_sync.Home_Fragments.Assignmnent_Fragment;
 import com.class_sync.Home_Fragments.EbookFragments;
+import com.class_sync.Home_Fragments.ImportantAnnouncements;
 import com.class_sync.Home_Fragments.MsbteResources_Fragement;
 import com.class_sync.Online_Courses.OnlineCourse_Home_Fragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -50,6 +46,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -61,29 +58,64 @@ public class HomeFragment extends Fragment {
     private final static int REQUEST_CODE = 100;
 
 
-    Spinner subject, TimePeriod;
+    Spinner subject, TimePeriod, Gender;
 
-    View customDialogView;
+    View customDialogView, BiodataForm;
     Button NFC;
     Context context;
 
     TextView AddEbook, user_Name;
+    EditText FatherName, FathersOccupation, FatherMobileNumber, MotherName, MotherMobileNumber, Address;
     CardView MarkAttendance;
     int i = 0;
     ViewGroup root;
     View decorView;
     String Subject_name, Time_period;
-    ImageView TrackAttendance, MsbteResources, ebooks, online_course,Assignments;
+    ImageView TrackAttendance, MsbteResources, ebooks, online_course, Assignments, ImportantNotification, HomeFrgament_notification;
     FusedLocationProviderClient fusedLocationProviderClient;
+    String gender="";
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         customDialogView = inflater.inflate(R.layout.add_attendance_dialogbox_layout, null);
+        BiodataForm = inflater.inflate(R.layout.student_biodata_form_layout, null);
+
+
         findId();
         user_Name.setText(HomeScreen.User_Name);
+        ArrayList<String> list=new ArrayList<>();
+        list.add("Select Gender");
+        list.add("Male");
+        list.add("Female");
+
+        ArrayAdapter<String > arrayAdapter=new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice);
+        Gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                gender=adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(getContext(), "Please Select the category ", Toast.LENGTH_LONG).show();
+            }
+        });
+        Gender.setAdapter(arrayAdapter);
+
+
+//        Open Student BioData form
+        if(HomeScreen.BiodataForm == 1)
+        {
+            OpenStudentBiodataForm();
+        }
+
+
+
+
 
         //Runtime permission
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
@@ -149,7 +181,7 @@ public class HomeFragment extends Fragment {
         Assignments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new Assignmnent_Fragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new Assignmnent_Fragment()).commit();
             }
         });
 
@@ -183,16 +215,29 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        ImportantNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new ImportantAnnouncements()).commit();
+            }
+        });
         online_course.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new OnlineCourse_Home_Fragment()).commit();
             }
         });
+        HomeFrgament_notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new ImportantAnnouncements()).commit();
+            }
+        });
         MarkAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getLastLocation();
+//                getLastLocation();
+                showCustomDialog();
 
             }
         });
@@ -216,13 +261,23 @@ public class HomeFragment extends Fragment {
         online_course = root.findViewById(R.id.OnlineCourses);
         user_Name = root.findViewById(R.id.user_name);
         NFC = root.findViewById(R.id.ScanNFc);
+        HomeFrgament_notification = root.findViewById(R.id.HomeFragment_notification_logo);
         MarkAttendance = root.findViewById(R.id.MarkAttendance);
         MsbteResources = root.findViewById(R.id.MsbtePapers);
         ebooks = root.findViewById(R.id.Ebooks_imageView);
         Assignments = root.findViewById(R.id.Assignments);
-
+        ImportantNotification = root.findViewById(R.id.Notification);
         subject = customDialogView.findViewById(R.id.AddAttendance_Subject);
         TimePeriod = customDialogView.findViewById(R.id.AddAttendance_TimePeriod);
+
+        Gender = BiodataForm.findViewById(R.id.Gender);
+        FatherName = BiodataForm.findViewById(R.id.FatherName);
+        FathersOccupation = BiodataForm.findViewById(R.id.FathersOccupation);
+        FatherMobileNumber = BiodataForm.findViewById(R.id.FatherMobileNumber);
+        MotherName = BiodataForm.findViewById(R.id.MotherName);
+        MotherMobileNumber = BiodataForm.findViewById(R.id.MotherMobileNumber);
+        Address = BiodataForm.findViewById(R.id.Address);
+
     }
 
 
@@ -338,7 +393,8 @@ public class HomeFragment extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         return dateFormat.format(currentDate);
     }
-    public String getCurrentMonth(){
+
+    public String getCurrentMonth() {
         Calendar calendar = Calendar.getInstance();
 
         // Format the current date to obtain the month abbreviation
@@ -354,14 +410,38 @@ public class HomeFragment extends Fragment {
 
         // Build the AlertDialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(customDialogView)
-                .setTitle("Add Attendance")
-                .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+        AlertDialog ATTEN;
+        builder.setView(customDialogView);
+        builder.setTitle("Add Attendance");
+
+                builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                         DatabaseReference databaseReference = firebaseDatabase.getReference();
+                        DatabaseReference databaseReference1 = firebaseDatabase.getReference();
 
+//                        databaseReference1.child("users").child(HomeScreen.User_Name).child("Month").child(getCurrentMonth());
+//                        databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                // Increment the retrieved value
+////                                Integer value = dataSnapshot.getValue(Integer.class);
+//                                Integer value = dataSnapshot.child("TotalAttendance").getValue(Integer.class);
+//                                if (value == null) {
+//                                    value = 0;
+//                                }
+//                                value++;
+//
+//                                // Update the value back to Firebase Realtime Database
+//                                databaseReference.setValue(value);
+//                            }
+
+//                            @Override
+//                            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                                // Handle error
+//                            }
+//                        });
 
                         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -371,15 +451,12 @@ public class HomeFragment extends Fragment {
                                 String TotalAttendance = snapshot.child("users").child("Month").child(getCurrentMonth()).child("TotalAttendance").getValue(String.class);
 
 
-                                if(TextUtils.isEmpty(TotalAttendance))
-                                {
-                                    TotalAttendance  = "0";
-                                    databaseReference.child("users").child(HomeScreen.User_Name).child("Month").child(getCurrentMonth()).child("TotalAttendance").setValue(Integer.parseInt(TotalAttendance)+1);
-                                }
-
-
-
-
+//                                if(TextUtils.isEmpty(TotalAttendance))
+//                                {
+//                                    TotalAttendance  = "0";
+//                                    databaseReference.child("users").child(HomeScreen.User_Name).child("Month").child(getCurrentMonth()).child("TotalAttendance").setValue(Integer.parseInt(TotalAttendance)+1);
+//                                }
+//
 
 
                                 databaseReference.child("Attendance").child(getCurrentDate()).child(Class).child(Time_period).child(Subject_name).child(HomeScreen.User_Name)
@@ -389,6 +466,7 @@ public class HomeFragment extends Fragment {
                                             @Override
                                             public void onSuccess(Void unused) {
                                                 Toast.makeText(context, "Attendance has been Marked ", Toast.LENGTH_SHORT).show();
+                                                builder.create().dismiss();
                                             }
                                         });
                             }
@@ -401,16 +479,120 @@ public class HomeFragment extends Fragment {
 
 
                     }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Handle Cancel button click
+                        builder.create().dismiss();
+                        builder.create().cancel();
                     }
                 });
 
         // Show the AlertDialog
-        AlertDialog customDialog = builder.create();
+        AlertDialog  customDialog = builder.create();
+        // Check if contentView already has a parent
+        if (BiodataForm.getParent() != null) {
+            ((ViewGroup) BiodataForm.getParent()).removeView(BiodataForm);
+        }
+
+
+        if (customDialog != null && customDialog.isShowing()) {
+            customDialog.dismiss();
+            customDialog.cancel();
+//            builder.setView(null);
+        }
+
         customDialog.show();
     }
+
+    private void OpenStudentBiodataForm() {
+        // Build the AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(BiodataForm);
+        // Show the AlertDialog
+
+        builder.setCancelable(false);
+        builder.setTitle("BioData Form");
+       
+            builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if(CheckEmptyFields())
+                    {
+                        addBiodata();
+                    }
+                    else {
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame,new HomeFragment()).commit();
+                        Toast.makeText(context, "PLease enter all the details", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        
+        AlertDialog biodata = builder.create();
+        biodata.show();
+
+    }
+
+
+
+
+
+
+    public Boolean CheckEmptyFields() {
+        if (TextUtils.isEmpty(FatherName.getText().toString()) || TextUtils.isEmpty(FathersOccupation.getText().toString()) || TextUtils.isEmpty(FatherMobileNumber.getText().toString()) || TextUtils.isEmpty(MotherName.getText().toString())
+                || TextUtils.isEmpty(MotherMobileNumber.getText().toString()) || TextUtils.isEmpty(Address.getText().toString())) {
+            FatherName.setError("Please fill all the fields");
+            return false;
+        } else {
+            if(gender.equals("Select Gender")){
+                Toast.makeText(context, "please select  the gender", Toast.LENGTH_SHORT).show();return false;}
+            else {
+
+                return true;
+            }
+        }
+
+    }
+
+    public void addBiodata() {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("users");
+
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String Class = snapshot.child(HomeScreen.User_Name).child("class").getValue(String.class);
+                String Student_roll = snapshot.child("users").child(HomeScreen.User_Name).child("rollNo").getValue(String.class);
+                String TotalAttendance = snapshot.child("users").child("Month").child(getCurrentMonth()).child("TotalAttendance").getValue(String.class);
+                DatabaseReference databaseReference1 = firebaseDatabase.getReference("StudentData").child("class").child(Class);
+
+                databaseReference.child(HomeScreen.User_Name).child("FatherName").setValue(FatherName.getText().toString());
+                databaseReference.child(HomeScreen.User_Name).child("FatherOccupation").setValue(FathersOccupation.getText().toString());
+                databaseReference.child(HomeScreen.User_Name).child("FathersMobileNumber").setValue(FatherMobileNumber.getText().toString());
+                databaseReference.child(HomeScreen.User_Name).child("MothersName").setValue(MotherName.getText().toString());
+                databaseReference.child(HomeScreen.User_Name).child("MothersMobileNumber").setValue(MotherMobileNumber.getText().toString());
+                databaseReference.child(HomeScreen.User_Name).child("Address").setValue(Address.getText().toString());
+                databaseReference.child(HomeScreen.User_Name).child("gender").setValue(gender);
+
+                databaseReference1.child(HomeScreen.User_Name).child("FatherName").setValue(FatherName.getText().toString());
+                databaseReference1.child(HomeScreen.User_Name).child("FatherOccupation").setValue(FathersOccupation.getText().toString());
+                databaseReference1.child(HomeScreen.User_Name).child("FathersMobileNumber").setValue(FatherMobileNumber.getText().toString());
+                databaseReference1.child(HomeScreen.User_Name).child("MothersName").setValue(MotherName.getText().toString());
+                databaseReference1.child(HomeScreen.User_Name).child("MothersMobileNumber").setValue(MotherMobileNumber.getText().toString());
+                databaseReference1.child(HomeScreen.User_Name).child("Address").setValue(Address.getText().toString());
+                databaseReference1.child(HomeScreen.User_Name).child("gender").setValue(gender);
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }

@@ -2,19 +2,42 @@ package com.class_sync;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static com.class_sync.NotificationHelper.makeNotification;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.class_sync.Home_Fragments.ImportantAnnouncements;
+import com.class_sync.TeacherActivities.SendImportantNotices;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.card.MaterialCardView;
 
 import com.class_sync.Home_Fragments.EbookFragments;
 import com.class_sync.Online_Courses.OnlineCourse_Home_Fragment;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -23,6 +46,7 @@ public class HomeScreen extends AppCompatActivity {
     public static String Name;
     public static String User_Email;
     public static String User_Name;
+    DatabaseReference databaseReference;
     int i;
 
 
@@ -31,17 +55,81 @@ public class HomeScreen extends AppCompatActivity {
     public SharedPreferences.Editor sharedPreferencesEditor;
 
     private LocationRequest locationRequest;
+    private ChildEventListener childEventListener;
     public  static  final int LOCATION_CHECK_SETTINGS = 1001;
     public static RelativeLayout RootRelativeLayout;
     public static String Email;
-
-MaterialCardView assignments,attendance,groupChatting,askChatGpt;
+    public  static int BiodataForm = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         RootRelativeLayout=findViewById(R.id.RootRelativeLayout);
+
         bottomNavigation=findViewById(R.id.bottomNavigation);
+        databaseReference = FirebaseDatabase.getInstance().getReference("ImportantNotice");
+
+        BiodataForm = 0;
+
+        if (Build.VERSION.SDK_INT >= Build. VERSION_CODES. TIRAMISU) {
+            if (ContextCompat.checkSelfPermission (getApplicationContext(),
+                    Manifest.permission. POST_NOTIFICATIONS) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions (HomeScreen.this,
+                        new String[] {Manifest.permission.POST_NOTIFICATIONS},  101);
+            }
+        }
+
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null && extras.containsKey("fragmentToOpen")) {
+            String fragmentTag = extras.getString("fragmentToOpen");
+            if (fragmentTag != null) {
+                // Navigate to the desired fragment
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame,new ImportantAnnouncements()).commit();
+            }
+        }
+        if(getIntent().getExtras()!=null) {
+
+
+            if (getIntent().getStringExtra("Register").equals("Register")) {
+                BiodataForm = 1;
+            }
+        }
+        childEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
+                // This method will be called whenever new data is added to the database
+                String key = dataSnapshot.getKey();
+                Object value = dataSnapshot.getValue();
+
+                // You can process the added data here
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
+                makeNotification(getApplicationContext(),"Class_Sync","Important Announcement ");
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                // Handle data removal
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
+                // Handle data movement
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors
+            }
+        };
+
+        // Add ChildEventListener to listen for changes in the database
+        databaseReference.addChildEventListener(childEventListener);
 
 
         sharedPreferences = getSharedPreferences("userLoggedIn", MODE_PRIVATE);
@@ -164,6 +252,7 @@ MaterialCardView assignments,attendance,groupChatting,askChatGpt;
 
     }
 
+
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
@@ -176,12 +265,20 @@ MaterialCardView assignments,attendance,groupChatting,askChatGpt;
 //                    Toast.makeText(this, "Please Turn on your Location", Toast.LENGTH_SHORT).show();
 //            }
 //        }
-//    }
 
+//    }
 
     @Override
     public void onBackPressed() {
         Log.e(TAG, "onKeyDown: ");
         super.onBackPressed();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Remove the ChildEventListener when the activity is destroyed to avoid memory leaks
+        if (databaseReference != null && childEventListener != null) {
+            databaseReference.removeEventListener(childEventListener);
+        }
     }
 }

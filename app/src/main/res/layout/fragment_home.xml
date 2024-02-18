@@ -28,7 +28,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="100dp"
                     app:cardCornerRadius="30dp">
 
                     <RelativeLayout
@@ -59,6 +59,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/HomeFragment_notification_logo"
                             android:layout_alignParentRight="true"
                             android:src="@drawable/notification" />
 
@@ -72,15 +73,14 @@
                             android:textColor="@color/black"
                             android:text="Good Morning!" />
 
-                        <SearchView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/t2"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/search_view"
-                            android:iconifiedByDefault="false"
-
-                            android:queryHint="Search" />
+<!--                        <SearchView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_below="@id/t2"-->
+<!--                            android:layout_marginTop="20dp"-->
+<!--                            android:background="@drawable/search_view"-->
+<!--                            android:iconifiedByDefault="false"-->
+<!--                            android:queryHint="Search" />-->
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
@@ -133,6 +133,7 @@
                             android:layout_width="155dp"
                             android:layout_height="150dp"
                             android:layout_alignParentRight="true"
+                            android:id="@+id/Notification"
                             android:src="@drawable/announcements_final" />
                         <ImageView
                             android:id="@+id/Ebooks_imageView"

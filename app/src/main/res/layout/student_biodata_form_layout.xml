@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Father's Name : "
+    android:fontFamily="@font/baloo"
+    android:textSize="18dp"
+    />
+    <EditText
+        android:id="@+id/FatherName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your Father Name"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Father's Occupation : "
+        android:fontFamily="@font/baloo"
+        android:textSize="18dp"
+        />
+    <EditText
+        android:id="@+id/FathersOccupation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Father Occupation"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Father's Mobile Number : "
+        android:fontFamily="@font/baloo"
+        android:textSize="18dp"
+        />
+    <EditText
+        android:id="@+id/FatherMobileNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Father's mobile number"
+        android:inputType="phone"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mother's name : "
+        android:fontFamily="@font/baloo"
+        android:textSize="18dp"
+        />
+    <EditText
+        android:id="@+id/MotherName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Mother's Name"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mother's mobile number : "
+        android:fontFamily="@font/baloo"
+        android:textSize="18dp"
+        />
+    <EditText
+        android:id="@+id/MotherMobileNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Mother's Phone Number"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Address: "
+        android:fontFamily="@font/baloo"
+        android:textSize="18dp"
+        />
+
+    <EditText
+        android:id="@+id/Address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your Address" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Gender"
+        android:fontFamily="@font/baloo"
+        android:textSize="18dp"
+        />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Enter Your Address"
+        android:id="@+id/Gender"
+        />
+</LinearLayout>

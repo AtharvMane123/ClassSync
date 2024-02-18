@@ -134,6 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
                 sharedPreferencesEditor.commit();
 
                 Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                intent.putExtra("Register","Register");
                 startActivity(intent);
                 finish();
             } else {

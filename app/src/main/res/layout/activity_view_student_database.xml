@@ -10,6 +10,7 @@
     tools:context=".TeacherActivities.ViewStudentDatabase">
 
 
+
         <TextView
             android:id="@+id/TrendingBooks_text"
             android:layout_width="wrap_content"
@@ -19,11 +20,29 @@
             android:text="View Student Information"
             android:textColor="@color/black"
             android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Class"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:paddingLeft="6.5dp"
+            android:layout_marginTop="20dp"/>
+        <Spinner
+            android:id="@+id/ViewStudentDatabase_Spinner_Class"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:foregroundTint="@color/black"
+            android:spinnerMode="dropdown"
+            android:layout_marginTop="10dp"
+            android:entries="@array/Class_Spinner_array"/>
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/ViewStudentDatabase_progress"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="50dp"
+            android:visibility="gone"
             android:layout_centerHorizontal="true"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"

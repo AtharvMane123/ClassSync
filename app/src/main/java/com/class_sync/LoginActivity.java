@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     CardView login_btn;
 
     TextView register,LoginAsTeacher;
+    public static String USERNAME ;
     EditText email_editText, password_editText;
     public static SharedPreferences sharedPreferences;
     public static SharedPreferences.Editor sharedPreferencesEditor;
@@ -112,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                             sharedPreferencesEditor.commit();
 
                             checkSharedPreferences("Login");
+                            USERNAME = Name;
                             Intent intent = new Intent(LoginActivity.this, HomeScreen.class);
                             startActivity(intent);
 
