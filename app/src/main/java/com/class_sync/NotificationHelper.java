@@ -1,5 +1,6 @@
 package com.class_sync;
 
+import android.app.FragmentManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -10,11 +11,13 @@ import android.icu.text.CaseMap;
 import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.class_sync.Home_Fragments.ImportantAnnouncements;
 
 public class NotificationHelper {
-    public static void makeNotification (Context context, String title, String Description) {
+
+    public static void makeNotification(Context context, String title, String Description) {
         String chanelID = "CHANNEL_ID_NOTIFICATION";
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context, chanelID);
@@ -25,7 +28,7 @@ public class NotificationHelper {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         Intent intent = new Intent(context, HomeScreen.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("fragmentToOpen", "fragmentToOpen");
+        intent.putExtra("OpenImportantNotice", "fragmentToOpen");
         PendingIntent pendingIntent = PendingIntent.getActivity(context,
                 0, intent, PendingIntent.FLAG_MUTABLE);
         builder.setContentIntent(pendingIntent);
@@ -51,5 +54,6 @@ public class NotificationHelper {
         notificationManager.notify(0, builder.build());
 
     }
+
 
 }

@@ -83,6 +83,25 @@ public class HomeFragment extends Fragment {
         customDialogView = inflater.inflate(R.layout.add_attendance_dialogbox_layout, null);
         BiodataForm = inflater.inflate(R.layout.student_biodata_form_layout, null);
 
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.POST_NOTIFICATIONS) !=
+                PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
+        }
+
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            }, 100);
+        }
+
+
+
+        if (customDialogView.getParent() != null) {
+            ((ViewGroup) customDialogView.getParent()).removeView(customDialogView);
+        }
 
         findId();
         user_Name.setText(HomeScreen.User_Name);
@@ -92,7 +111,7 @@ public class HomeFragment extends Fragment {
         list.add("Female");
 
         ArrayAdapter<String > arrayAdapter=new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,list);
-        arrayAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice);
+        arrayAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         Gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -410,9 +429,9 @@ public class HomeFragment extends Fragment {
 
         // Build the AlertDialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        AlertDialog ATTEN;
         builder.setView(customDialogView);
         builder.setTitle("Add Attendance");
+        builder.setCancelable(true);
 
                 builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
@@ -480,21 +499,28 @@ public class HomeFragment extends Fragment {
 
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                builder.create().cancel();
+                builder.create().dismiss();
+
+            }
+        });
+                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Handle Cancel button click
                         builder.create().dismiss();
                         builder.create().cancel();
+                        Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
                     }
                 });
 
         // Show the AlertDialog
         AlertDialog  customDialog = builder.create();
         // Check if contentView already has a parent
-        if (BiodataForm.getParent() != null) {
-            ((ViewGroup) BiodataForm.getParent()).removeView(BiodataForm);
-        }
 
 
         if (customDialog != null && customDialog.isShowing()) {
@@ -514,7 +540,7 @@ public class HomeFragment extends Fragment {
 
         builder.setCancelable(false);
         builder.setTitle("BioData Form");
-       
+
             builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

@@ -1,8 +1,15 @@
 package com.class_sync;
 
 import static android.content.ContentValues.TAG;
-
 import static com.class_sync.NotificationHelper.makeNotification;
+
+import android.Manifest;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,33 +17,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
-
+import com.class_sync.Home_Fragments.EbookFragments;
 import com.class_sync.Home_Fragments.ImportantAnnouncements;
-import com.class_sync.TeacherActivities.SendImportantNotices;
+import com.class_sync.Online_Courses.OnlineCourse_Home_Fragment;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.card.MaterialCardView;
-
-import com.class_sync.Home_Fragments.EbookFragments;
-import com.class_sync.Online_Courses.OnlineCourse_Home_Fragment;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -50,78 +40,69 @@ public class HomeScreen extends AppCompatActivity {
     int i;
 
 
-
     public SharedPreferences sharedPreferences;
     public SharedPreferences.Editor sharedPreferencesEditor;
 
     private LocationRequest locationRequest;
     private ChildEventListener childEventListener;
-    public  static  final int LOCATION_CHECK_SETTINGS = 1001;
+    public static final int LOCATION_CHECK_SETTINGS = 1001;
     public static RelativeLayout RootRelativeLayout;
     public static String Email;
-    public  static int BiodataForm = 0;
+    public static int BiodataForm = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        RootRelativeLayout=findViewById(R.id.RootRelativeLayout);
+        RootRelativeLayout = findViewById(R.id.RootRelativeLayout);
 
-        bottomNavigation=findViewById(R.id.bottomNavigation);
+        bottomNavigation = findViewById(R.id.bottomNavigation);
         databaseReference = FirebaseDatabase.getInstance().getReference("ImportantNotice");
 
         BiodataForm = 0;
 
-        if (Build.VERSION.SDK_INT >= Build. VERSION_CODES. TIRAMISU) {
-            if (ContextCompat.checkSelfPermission (getApplicationContext(),
-                    Manifest.permission. POST_NOTIFICATIONS) !=
-                    PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions (HomeScreen.this,
-                        new String[] {Manifest.permission.POST_NOTIFICATIONS},  101);
+
+
+
+
+        if (getIntent().getStringExtra("OpenImportantNotice")!=null) {
+            if (getIntent().getStringExtra("OpenImportantNotice").equals("OpenImportantNotice")) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame,new ImportantAnnouncements()).addToBackStack("").commit();
             }
         }
+        if (getIntent().getStringExtra("Register")!=null) {
 
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null && extras.containsKey("fragmentToOpen")) {
-            String fragmentTag = extras.getString("fragmentToOpen");
-            if (fragmentTag != null) {
-                // Navigate to the desired fragment
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame,new ImportantAnnouncements()).commit();
+
+                if (getIntent().getStringExtra("Register").equals("Register")) {
+                    BiodataForm = 1;
+                }
             }
-        }
-        if(getIntent().getExtras()!=null) {
 
-
-            if (getIntent().getStringExtra("Register").equals("Register")) {
-                BiodataForm = 1;
-            }
-        }
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
                 // This method will be called whenever new data is added to the database
                 String key = dataSnapshot.getKey();
                 Object value = dataSnapshot.getValue();
-
                 // You can process the added data here
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-                makeNotification(getApplicationContext(),"Class_Sync","Important Announcement ");
+                makeNotification(getApplicationContext(), "Class_Sync", "Important Announcement ");
 
             }
-
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
                 // Handle data removal
-            }
+                makeNotification(getApplicationContext(), "Class_Sync", "Important Announcement ");
 
+            }
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-                // Handle data movement
+                makeNotification(getApplicationContext(), "Class_Sync", "Important Announcement ");
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle errors
@@ -142,35 +123,34 @@ public class HomeScreen extends AppCompatActivity {
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.baseline_chat_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.baseline_hub_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.baseline_person_24));
-        bottomNavigation.show(1,true);
+        bottomNavigation.show(1, true);
 //          getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame,new HomeFragment()).commit();
-    bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
-    @Override
-    public Unit invoke(MeowBottomNavigation.Model model) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
+        bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
+            @Override
+            public Unit invoke(MeowBottomNavigation.Model model) {
 
-        switch (model.getId())
-        {
-            case 1:
-                getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new HomeFragment()).commit();
-                break;
-            case 2:
-                getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new EbookFragments()).commit();
+                switch (model.getId()) {
+                    case 1:
+                        getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new HomeFragment()).commit();
+                        break;
+                    case 2:
+                        getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new EbookFragments()).commit();
 
-                break;
-            case 3:
-                getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new OnlineCourse_Home_Fragment()).commit();
+                        break;
+                    case 3:
+                        getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new OnlineCourse_Home_Fragment()).commit();
 
-                break;
-            case 4:
-                getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame,new UserFragment()).commit();
+                        break;
+                    case 4:
+                        getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new UserFragment()).commit();
 
-                break;
-        }
-        return null;
-    }
-});
-    
+                        break;
+                }
+                return null;
+            }
+        });
+
 
 //        attendance=findViewById(R.id.TrackAttendance_CardView);
 //        groupChatting=findViewById(R.id.GroupChatting_CardView);
@@ -273,6 +253,7 @@ public class HomeScreen extends AppCompatActivity {
         Log.e(TAG, "onKeyDown: ");
         super.onBackPressed();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

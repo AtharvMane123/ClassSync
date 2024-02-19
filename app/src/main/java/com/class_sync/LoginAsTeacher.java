@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginAsTeacher extends AppCompatActivity {
 EditText PhoneNumber_EditText,Password_EditText,OTP_EditText;
-TextView SendOTP,LoginAsStudent;
+TextView SendOTP,LoginAsStudent,LoginWithoutOPT;
 CardView login;
 FirebaseAuth auth = FirebaseAuth.getInstance();
 ProgressBar progressBar;
@@ -60,6 +60,7 @@ PhoneAuthProvider.ForceResendingToken resendingToken;
         SendOTP = findViewById(R.id.sendOtp);
         login = findViewById(R.id.TeacherLogin_cardView);
         progressBar = findViewById(R.id.LoginAsTeacher_ProgressBar);
+        LoginWithoutOPT = findViewById(R.id.loginWithoutOTP);
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Teachers Data");
@@ -78,7 +79,13 @@ PhoneAuthProvider.ForceResendingToken resendingToken;
             startActivity(new Intent(getApplicationContext(), TeacherHomeScreen.class));
             finish();
         }
-
+        LoginWithoutOPT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),TeacherHomeScreen.class));
+                finish();
+            }
+        });
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

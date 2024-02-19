@@ -100,116 +100,115 @@ TextView textView;
                 String SelectedSubject = adapterView.getItemAtPosition(i).toString();
 
                 //First sem
-//                if(SelectedSubject.equals("ICT Fundamental of ICT.")) {
-//                    webView.loadUrl("https://mega.nz/filerequest/i9lUwsdh06I");
-//                }
-//                else if (SelectedSubject.equals("ENG English.")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/8jlXDCrB#U2lAo7ZUE4Bix8EJ-Dj82w");
-//
-//                } else if (SelectedSubject.equals("BSC Basic Science (Chemistry).")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/oy8jFDgZ#ae0wwFDyU3mdxQ3bRIbGoQ");
-//
-//                } else if (SelectedSubject.equals("BMS Basic Mathematics.")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/ontyXR6J#NtiCZp7ZKhHKVjIwbnsCJg");
-//
-//                }
-//
-//
-//                //second sem
-//                else if (SelectedSubject.equals( "Applied Mathematics (AMS)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/cjlRzQZI#CRWXIAVOQ7AKcK5M6LU04Q");
-//
-//                } else if (SelectedSubject.equals("Basic Electrical and Electronics Engineering (BEE)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/Bvt3BbpK#BYXHiBQb09jxNA14F7-LCQ");
-//
-//                } else if (SelectedSubject.equals("Programming in C (PIC)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/Q3lD2axQ#iZPR0cBoZju6X4xJpuveZQ");
-//
-//                } else if (SelectedSubject.equals("Web Page Designing (WPD)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/g71kVCyI#V5Rs1tBSQvmiiL5qonQo1g");
-//
-//                }
-//
-//
-//                //Third Sem
-//                else if (SelectedSubject.equals("Object Oriented Programming Using C++(OOP)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/QzVEFBQb#AGtW377uMU9GOAoA0wW3Hg");
-//
-//                } else if (SelectedSubject.equals("Data structure using C Language (DSU)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/s71GFZwJ#0baXjAKKqBzBI9QSUBOVMQ");
-//
-//                } else if (SelectedSubject.equals("Computer Graphics (CGR)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/Bj8kiQgY#mMOdsSCNTpl5ybhosRxY5g");
-//
-//                } else if (SelectedSubject.equals("Database Management System (DBMS)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/5zdS1TRK#rajXhXnZ5lnxvPFh1oMDpQ");
-//
-//                } else if (SelectedSubject.equals("Digital Techniques (DTE)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/Aml3jZQA#d9FgKKKiYibsVADnBXm9Kg");
-//
-//                }
-//
-//
-//                //Fourth Sem
-//                else if (SelectedSubject.equals("Java Programming (JPR)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/x2E0ALSI#5KZ_cNEwsEVncqIE79d5EA");
-//
-//                } else if (SelectedSubject.equals("Software Engineering (SEN)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/l70RBSCR#a-y2mRbeShRvQSjDnB47nA");
-//
-//                } else if (SelectedSubject.equals("Data Communication and Computer Network (DCC)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/JikgkahA#fe54n16z1rQSEdbEMdwGKw");
-//
-//                } else if (SelectedSubject.equals("Microprocessors (MIC)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/En8SiIoS#zfBSOzTDOmT2vEgT5SlJjg");
-//
-//                } else if (SelectedSubject.equals("Gui Application Development Using Vb.Net (GAD)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/Ji8XwTaL#fzortiRm8bqx-2KcEbOOFw");
-//
-//                }
-//
-//
-//
-//
-//                //Fifth Sem
-//                else if (SelectedSubject.equals("Advanced Java Programming (AJP)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/A21EzDrR#nsNgYyeVNMVCQ7XMW0_PhQ");
-//
-//                } else if (SelectedSubject.equals("Software Testing (STE)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/83U1HYSZ#gFXUT-FyLPtJUi-7sIjhTg");
-//
-//                } else if (SelectedSubject.equals("Advanced Computer Network (ACN)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/h3ViSTaa#qgNsALMjky5rJdh94XT9IA");
-//
-//                } else if (SelectedSubject.equals("Operating System (OSY)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/1jE1VBLJ#xrOVviff0VDLz12tO6Tq1g");
-//
-//                } else if (SelectedSubject.equals("Environmental Studies (EST)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/QusQHKiD#N_xmzK5HTjynoV9H-qmNNw");
-//
-//                }
-//
-//
-////                        //Sixth Sem
-                if(SelectedSubject.equals( "Mobile Application Development (MAD)")) {
-                    startWebView("https://mega.nz/filerequest/a59mzxfxg5I");
+                if(SelectedSubject.equals("ICT Fundamental of ICT.")) {
+                    startWebView("https://mega.nz/filerequest/53uWhtzSk78");
                 }
-//                else if (SelectedSubject.equals( "Emerging Trends in Computer Engineering (ETI)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/NqFDjQCa#nH7qyc-JPQkaLMGbaCrUbg");
-//
-//                }
-//                else if (SelectedSubject.equals("Programming with Python (PWP)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/o79FnAKD#1aZL9b-mPHporUxLgOtPQA");
-//
-//                }
-//                else if (SelectedSubject.equals( "Management (MGT)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/t7FSgJIL#k8KKZ_UdUUx_tOQCXKhPlw");
-//
-//                }
-//                else if (SelectedSubject.equals("Network Information Security (NIS)")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/YyNA0AJZ#cqytlavZOWrol98gq5CWcg");
-//
-//                }
+                else if (SelectedSubject.equals("ENG English.")) {
+                    startWebView("https://mega.nz/filerequest/RbX8cv5Qsi0");
+
+                } else if (SelectedSubject.equals("BSC Basic Science (Chemistry).")) {
+//                    OpenMegaCloudStorage("https://mega.nz/folder/oy8jFDgZ#ae0wwFDyU3mdxQ3bRIbGoQ");
+                    Toast.makeText(UploadWorkbooks.this, "This Category is not added yet...", Toast.LENGTH_SHORT).show();
+                } else if (SelectedSubject.equals("BMS Basic Mathematics.")) {
+                    startWebView("https://mega.nz/filerequest/ZJxlYBmF4b0");
+
+                }
+
+
+                //second sem
+                else if (SelectedSubject.equals( "Applied Mathematics (AMS)")) {
+                    startWebView("https://mega.nz/filerequest/xdNWbuuVuSk");
+
+                } else if (SelectedSubject.equals("Basic Electrical and Electronics Engineering (BEE)")) {
+                    startWebView("https://mega.nz/filerequest/flnTxBPTNKc");
+
+                } else if (SelectedSubject.equals("Programming in C (PIC)")) {
+                    startWebView("https://mega.nz/filerequest/64Zu0tB8WPw");
+
+                } else if (SelectedSubject.equals("Web Page Designing (WPD)")) {
+                    startWebView("https://mega.nz/filerequest/VszB2KY3glE");
+
+                }
+
+
+                //Third Sem
+                else if (SelectedSubject.equals("Object Oriented Programming Using C++(OOP)")) {
+                    startWebView("https://mega.nz/filerequest/PggY57pmVAQ");
+
+                } else if (SelectedSubject.equals("Data structure using C Language (DSU)")) {
+                    startWebView("https://mega.nz/filerequest/mwTq-7puXxg");
+
+                } else if (SelectedSubject.equals("Computer Graphics (CGR)")) {
+                    startWebView("https://mega.nz/filerequest/J020E7VV3pk");
+
+                } else if (SelectedSubject.equals("Database Management System (DBMS)")) {
+                    startWebView("https://mega.nz/filerequest/KKojuJNyiB8");
+
+                } else if (SelectedSubject.equals("Digital Techniques (DTE)")) {
+                    startWebView("https://mega.nz/filerequest/e0LRNatf1Uk");
+
+                }
+
+
+                //Fourth Sem
+                else if (SelectedSubject.equals("Java Programming (JPR)")) {
+                    startWebView("https://mega.nz/filerequest/vuB13sKOa10");
+
+                } else if (SelectedSubject.equals("Software Engineering (SEN)")) {
+                    startWebView("https://mega.nz/filerequest/XbL51X8WXoo");
+
+                } else if (SelectedSubject.equals("Data Communication and Computer Network (DCC)")) {
+                    startWebView("https://mega.nz/filerequest/Di4p0b_iNug");
+
+                } else if (SelectedSubject.equals("Microprocessors (MIC)")) {
+                    startWebView("https://mega.nz/filerequest/8jqyLEBF0qY");
+
+                } else if (SelectedSubject.equals("Gui Application Development Using Vb.Net (GAD)")) {
+                    startWebView("https://mega.nz/filerequest/mwdyxyGcUGw");
+
+                }
+
+
+
+
+                //Fifth Sem
+                else if (SelectedSubject.equals("Advanced Java Programming (AJP)")) {
+                    startWebView("https://mega.nz/filerequest/_QIxCMtDDRA");
+
+                } else if (SelectedSubject.equals("Software Testing (STE)")) {
+                    startWebView("https://mega.nz/filerequest/7DzUbwuXdH0");
+
+                } else if (SelectedSubject.equals("Advanced Computer Network (ACN)")) {
+                    startWebView("https://mega.nz/filerequest/FgGw4gQE1XI");
+
+                } else if (SelectedSubject.equals("Operating System (OSY)")) {
+                    startWebView("https://mega.nz/filerequest/1bht7sJo8pU");
+
+                } else if (SelectedSubject.equals("Environmental Studies (EST)")) {
+                    startWebView("https://mega.nz/filerequest/7vWW5dCyEzc");
+
+                }
+
+////                        //Sixth Sem
+               else if(SelectedSubject.equals( "Mobile Application Development (MAD)")) {
+                    startWebView("https://mega.nz/filerequest/ZwEidv2Do0E");
+                }
+                else if (SelectedSubject.equals( "Emerging Trends in Computer Engineering (ETI)")) {
+                    startWebView("https://mega.nz/filerequest/A16ZjvTZSCU");
+
+                }
+                else if (SelectedSubject.equals("Programming with Python (PWP)")) {
+                    startWebView("https://mega.nz/filerequest/G4WUkdBSAE4");
+
+                }
+                else if (SelectedSubject.equals( "Management (MGT)")) {
+                    startWebView("https://mega.nz/filerequest/9HZfb_Suc_8");
+
+                }
+                else if (SelectedSubject.equals("Network Information Security (NIS)")) {
+                    startWebView("https://mega.nz/filerequest/MnBcObESTIc");
+
+                }
 
             }
 
@@ -242,9 +241,17 @@ TextView textView;
 
 
     public void startWebView(String URL)
-    {
-        webView.setWebViewClient(new WebViewClient() {
+    {progressBar.setVisibility(View.VISIBLE);
 
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+progressBar.setVisibility(View.GONE);
+                // Website has finished loading, perform your actions here
+                // For example, show a toast or update UI elements
+//                Toast.makeText(getApplicationContext(), "Website loaded successfully", Toast.LENGTH_SHORT).show();
+            }
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);

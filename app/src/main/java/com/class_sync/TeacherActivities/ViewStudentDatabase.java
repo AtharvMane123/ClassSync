@@ -80,7 +80,7 @@ public class ViewStudentDatabase extends AppCompatActivity {
                     DisplayRecyclerView("TYCO1");
                     ClassName = "TYCO1";
                 } else if (Objects.equals(adapterView.getItemAtPosition(i).toString(), "TYCO2")) {
-                    DisplayRecyclerView("TYCO2   ");
+                    DisplayRecyclerView("TYCO2");
                     ClassName = "TYCO2";
                 } else if (Objects.equals(adapterView.getItemAtPosition(i).toString(), "TYCO3")) {
                     DisplayRecyclerView("TYCO3");

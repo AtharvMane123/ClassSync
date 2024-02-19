@@ -49,9 +49,9 @@ public class RegisterActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.Class_Spinner_array,
-                android.R.layout.simple_spinner_item
+                android.R.layout.simple_spinner_dropdown_item
         );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
 
         // Apply the adapter to the spinner
         Spinner_Class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

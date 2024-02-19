@@ -247,9 +247,16 @@ public class Assignmnent_Fragment extends Fragment {
     }
 
     public void startWebView(String URL)
-    {
-        webView.setWebViewClient(new WebViewClient() {
+    {progressBar.setVisibility(View.VISIBLE);
 
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                progressBar.setVisibility(View.GONE);
+                // Website has finished loading, perform your actions here
+                // For example, show a toast or update UI elements
+            }
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
@@ -262,6 +269,7 @@ public class Assignmnent_Fragment extends Fragment {
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setAllowFileAccess(true);
         webView.loadUrl(URL);
+
 
         webView.setWebChromeClient(new WebChromeClient() {
             // For 3.0+ Devices (Start)

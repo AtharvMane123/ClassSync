@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="wrap_content"
     tools:context=".HomeFragment">
 
@@ -202,6 +203,7 @@
                     android:layout_width="match_parent"
                     android:layout_marginHorizontal="20dp"
                     android:layout_height="50dp"
+                    android:layout_marginBottom="50dp"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="20dp"
                     android:layout_marginTop="20dp"
@@ -220,76 +222,76 @@
                         />
                 </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Popular Courses"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:textSize="15dp"
-                    android:textColor="@color/black"
-                    />
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none"
-                    >
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:orientation="horizontal"
-                        >
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="230dp"
-                            android:layout_height="150dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginBottom="10dp"
-                            app:cardCornerRadius="20dp"
-                            >
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/popular_ai_machine_learning"
-                                android:scaleType="fitXY"
-                                />
-                        </androidx.cardview.widget.CardView>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Popular Courses"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:textSize="15dp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    />-->
+<!--                <HorizontalScrollView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:scrollbars="none"-->
+<!--                    >-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        >-->
+<!--                        <androidx.cardview.widget.CardView-->
+<!--                            android:layout_width="230dp"-->
+<!--                            android:layout_height="150dp"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:layout_marginBottom="10dp"-->
+<!--                            app:cardCornerRadius="20dp"-->
+<!--                            >-->
+<!--                            <ImageView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:src="@drawable/popular_ai_machine_learning"-->
+<!--                                android:scaleType="fitXY"-->
+<!--                                />-->
+<!--                        </androidx.cardview.widget.CardView>-->
 
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="230dp"
-                            android:layout_height="150dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginBottom="10dp"
-                            app:cardCornerRadius="20dp"
+<!--                        <androidx.cardview.widget.CardView-->
+<!--                            android:layout_width="230dp"-->
+<!--                            android:layout_height="150dp"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:layout_marginBottom="10dp"-->
+<!--                            app:cardCornerRadius="20dp"-->
 
-                            >
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/popular_coding_course"
-                                android:scaleType="fitXY"
-                                />
-                        </androidx.cardview.widget.CardView>
+<!--                            >-->
+<!--                            <ImageView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:src="@drawable/popular_coding_course"-->
+<!--                                android:scaleType="fitXY"-->
+<!--                                />-->
+<!--                        </androidx.cardview.widget.CardView>-->
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="230dp"
-                            android:layout_height="150dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginBottom="10dp"
-                            app:cardCornerRadius="20dp"
-                            >
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/popular_ai_machine_learning"
-                                android:scaleType="fitXY"
-                                />
-                        </androidx.cardview.widget.CardView>
+<!--                        <androidx.cardview.widget.CardView-->
+<!--                            android:layout_width="230dp"-->
+<!--                            android:layout_height="150dp"-->
+<!--                            android:layout_marginLeft="20dp"-->
+<!--                            android:layout_marginBottom="10dp"-->
+<!--                            app:cardCornerRadius="20dp"-->
+<!--                            >-->
+<!--                            <ImageView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:src="@drawable/popular_ai_machine_learning"-->
+<!--                                android:scaleType="fitXY"-->
+<!--                                />-->
+<!--                        </androidx.cardview.widget.CardView>-->
 
-                    </LinearLayout>
-                </HorizontalScrollView>
+<!--                    </LinearLayout>-->
+<!--                </HorizontalScrollView>-->
 
                 <Button
                     android:id="@+id/ScanNFc"
