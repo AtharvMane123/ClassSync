@@ -1,14 +1,11 @@
 package com.class_sync.TeacherActivities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.class_sync.R;
+import com.class_sync.RecyclerViews.TeacherClass_Adapter;
 import com.class_sync.RecyclerViews.ViewStudentDatabase_RecyclerAdapter;
 import com.class_sync.RecyclerViews.ViewStudentDatabase_RecyclerViewModelClass;
 import com.google.firebase.database.DataSnapshot;
@@ -25,90 +23,85 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ViewStudentDatabase extends AppCompatActivity {
     RecyclerView recyclerView;
     ViewStudentDatabase_RecyclerAdapter myAdapter;
+    TeacherClass_Adapter ClassAdapter;
     LottieAnimationView progressBar;
-    Spinner Spinner_Class;
-    String Student_Class;
-   public String ClassName;
+    ImageView backButton;
+
+    public String ClassName;
     public static DatabaseReference reference;
     ArrayList<ViewStudentDatabase_RecyclerViewModelClass> arrayList;
+    ArrayList<String> arrayListClass = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_student_database);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         arrayList = new ArrayList<ViewStudentDatabase_RecyclerViewModelClass>();
         progressBar = findViewById(R.id.ViewStudentDatabase_progress);
         recyclerView = findViewById(R.id.ViewStudent_recycler);
-        Spinner_Class = findViewById(R.id.ViewStudentDatabase_Spinner_Class);
+        backButton = findViewById(R.id.backButton);
 
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.Class_Spinner_array,
-                android.R.layout.simple_spinner_item
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner_Class.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        ClassAdapter = new TeacherClass_Adapter(arrayListClass, new TeacherClass_Adapter.RecyclerViewItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Student_Class = adapterView.getItemAtPosition(i).toString();
-                if (Objects.equals(adapterView.getItemAtPosition(i).toString(), "FYCO1")) {
-                    DisplayRecyclerView("FYCO1");
-                    ClassName = "FYCO1";
-                } else if (Objects.equals(adapterView.getItemAtPosition(i).toString(), "FYCO2")) {
-                    DisplayRecyclerView("FYCO2");
-                    ClassName = "FYCO2";
-                } else if (Objects.equals(adapterView.getItemAtPosition(i).toString(), "FYCO3")) {
-                    DisplayRecyclerView("FYCO3");
-                    ClassName = "FYCO3";
-                } else if (Objects.equals(adapterView.getItemAtPosition(i).toString(), "SYCO1")) {
-                    DisplayRecyclerView("SYCO1");
-                    ClassName = "SYCO1";
-                } else if (Objects.equals(adapterView.getItemAtPosition(i).toString(), "SYCO2")) {
-                    DisplayRecyclerView("SYCO2");
-                    ClassName = "SYCO2";
-                } else if (Objects.equals(adapterView.getItemAtPosition(i).toString(), "SYCO3")) {
-                    DisplayRecyclerView("SYCO3");
-                    ClassName = "SYCO3";
-                } else if (Objects.equals(adapterView.getItemAtPosition(i).toString(), "TYCO1")) {
-                    DisplayRecyclerView("TYCO1");
-                    ClassName = "TYCO1";
-                } else if (Objects.equals(adapterView.getItemAtPosition(i).toString(), "TYCO2")) {
-                    DisplayRecyclerView("TYCO2");
-                    ClassName = "TYCO2";
-                } else if (Objects.equals(adapterView.getItemAtPosition(i).toString(), "TYCO3")) {
-                    DisplayRecyclerView("TYCO3");
-                    ClassName = "TYCO3";
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(getApplicationContext(), "Please Select the category ", Toast.LENGTH_LONG).show();
+            public void ItemClick(String s, int position) {
+                ClassName = s;
+                recyclerView.setAdapter(myAdapter);
+                DisplayRecyclerView(s);
             }
         });
-        Spinner_Class.setAdapter(adapter);
+
+        progressBar.setVisibility(View.VISIBLE);
+        reference = FirebaseDatabase.getInstance().getReference("Teachers Data").child("Atharv Mane").child("class");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                arrayListClass.clear();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+
+                    Log.e("HELLO", "key: " + snapshot1.getKey());
+
+                    arrayListClass.add(snapshot1.getKey());
+                    progressBar.setVisibility(View.GONE);
+//                    reference.child("working").child("1");
+
+                }
+                ClassAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+        recyclerView.setAdapter(ClassAdapter);
+
 
         arrayList.clear();
-
         myAdapter = new ViewStudentDatabase_RecyclerAdapter(arrayList, new ViewStudentDatabase_RecyclerAdapter.RecyclerViewItemClickListener1() {
             @Override
             public void ItemClick(String Name, String Class, int position) {
                 Intent intent = new Intent(getApplicationContext(), StudentPreview_Activity.class);
                 intent.putExtra("name", Name);
-                intent.putExtra("class",ClassName);
+                intent.putExtra("class", ClassName);
                 intent.putExtra("gender", arrayList.get(position).getGender());
-                 startActivity(intent);
+                startActivity(intent);
 
             }
         });
-        recyclerView.setAdapter(myAdapter);
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              back();
+            }
+        });
 
     }
 
@@ -137,5 +130,14 @@ public class ViewStudentDatabase extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+    }
+public void back()
+{
+    super.onBackPressed();
+}
+    @Override
+    public void onBackPressed() {
+        recyclerView.setAdapter(ClassAdapter);
+        progressBar.setVisibility(View.GONE);
     }
 }
