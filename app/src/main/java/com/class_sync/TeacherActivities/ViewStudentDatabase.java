@@ -63,16 +63,13 @@ public class ViewStudentDatabase extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 arrayListClass.clear();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-
                     Log.e("HELLO", "key: " + snapshot1.getKey());
 
                     arrayListClass.add(snapshot1.getKey());
                     progressBar.setVisibility(View.GONE);
 //                    reference.child("working").child("1");
-
                 }
                 ClassAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -80,8 +77,6 @@ public class ViewStudentDatabase extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(ClassAdapter);
-
-
         arrayList.clear();
         myAdapter = new ViewStudentDatabase_RecyclerAdapter(arrayList, new ViewStudentDatabase_RecyclerAdapter.RecyclerViewItemClickListener1() {
             @Override
