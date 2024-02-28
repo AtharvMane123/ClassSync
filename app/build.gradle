@@ -53,5 +53,6 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'//for viewing pdf
     implementation(platform("com.google.firebase:firebase-bom:32.7.2"))//OTP verification
     implementation "com.google.firebase:firebase-auth"//Authentication
+    implementation "com.github.PhilJay:MPAndroidChart:v3.1.0"
 
 }
