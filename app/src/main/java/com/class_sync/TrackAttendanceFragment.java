@@ -193,8 +193,9 @@ public class TrackAttendanceFragment extends Fragment {
         List<Entry> entries = new ArrayList<>();
 
         entries.add(new Entry(0,0f));
-        entries.add(new Entry(1,Attendance1));
-        entries.add(new Entry(2,Attendance2));
+        entries.add(new Entry(1,5f));
+        entries.add(new Entry(2,15f));
+        entries.add(new Entry(3,Attendance2));
 //        entries.add(new Entry(3,25f));
 
         List<Entry> entries2 = new ArrayList<>();

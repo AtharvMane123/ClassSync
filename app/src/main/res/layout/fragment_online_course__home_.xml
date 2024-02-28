@@ -294,7 +294,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="sans-serif-black"
-                    android:text="Suggested Courses"
+                    android:text="Suggested Programming Courses"
                     android:textColor="@color/black"
                     android:textSize="16dp"
                     android:textStyle="bold" />
@@ -327,18 +327,16 @@
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="#E0F7FA"
                             app:cardCornerRadius="20dp">
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                >
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/black"
-                                    android:text=""
-                                    />
-                            </RelativeLayout>
+
+                              <ImageView
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
+                                  android:scaleType="centerCrop"
+                                  android:src="@drawable/android_course_img"
+                                  />
+
+
                         </androidx.cardview.widget.CardView>
 
 
@@ -351,7 +349,18 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="#FFEBEE"
-                            app:cardCornerRadius="20dp"/>
+                            app:cardCornerRadius="20dp">
+
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/python_course_img"
+                                    />
+
+
+                        </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
 
                             android:layout_width="120dp"
@@ -360,7 +369,16 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="#C5CAE9"
-                            app:cardCornerRadius="20dp"/>
+                            app:cardCornerRadius="20dp"
+                            >
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/java_course_img"
+                                />
+
+                        </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
 
                             android:layout_width="120dp"
@@ -369,7 +387,15 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="#FFCDD2"
-                            app:cardCornerRadius="20dp"/>
+                            app:cardCornerRadius="20dp"
+                            >
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/c_course_img"
+                                android:scaleType="centerCrop"
+                                />
+                        </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
 
                             android:layout_width="120dp"
@@ -378,7 +404,14 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="#B3E5FC"
-                            app:cardCornerRadius="20dp"/>
+                            app:cardCornerRadius="20dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/html_course_img"
+                                android:scaleType="centerCrop"
+                                />
+                        </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
 
                             android:layout_width="120dp"
@@ -387,7 +420,15 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="#E0F7FA"
-                            app:cardCornerRadius="20dp"/>
+                            app:cardCornerRadius="20dp"
+                            >
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/flutter_course_img"
+                                android:scaleType="centerCrop"
+                                />
+                        </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
 
                             android:layout_width="120dp"
@@ -396,16 +437,16 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="#E0F7FA"
-                            app:cardCornerRadius="20dp"/>
-                        <androidx.cardview.widget.CardView
+                            app:cardCornerRadius="20dp"
+                            >
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/arduino_course_img"
+                                android:scaleType="centerCrop"
+                                />
+                        </androidx.cardview.widget.CardView>
 
-                            android:layout_width="120dp"
-                            android:layout_height="150dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:backgroundTint="#E0F7FA"
-                            app:cardCornerRadius="20dp"/>
 
                         <!--                        <androidx.cardview.widget.CardView-->
                         <!--                            android:layout_width="120dp"-->
