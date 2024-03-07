@@ -4,8 +4,10 @@ import static android.content.ContentValues.TAG;
 import static com.class_sync.NotificationHelper.makeNotification;
 
 import android.Manifest;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +22,7 @@ import androidx.core.content.ContextCompat;
 import com.class_sync.Home_Fragments.EbookFragments;
 import com.class_sync.Home_Fragments.ImportantAnnouncements;
 import com.class_sync.Online_Courses.OnlineCourse_Home_Fragment;
+import com.class_sync.Utility.NetworkChangedListener;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.gms.location.LocationRequest;
 import com.google.firebase.database.ChildEventListener;
@@ -34,6 +37,8 @@ import kotlin.jvm.functions.Function1;
 public class HomeScreen extends AppCompatActivity {
     public static MeowBottomNavigation bottomNavigation;
     public static String Name;
+    NetworkChangedListener networkChangedListener = new NetworkChangedListener();
+
     public static String User_Email;
     public static String User_Name;
     DatabaseReference databaseReference;
@@ -152,101 +157,11 @@ public class HomeScreen extends AppCompatActivity {
         });
 
 
-//        attendance=findViewById(R.id.TrackAttendance_CardView);
-//        groupChatting=findViewById(R.id.GroupChatting_CardView);
-//        assignments=findViewById(R.id.Assignments_CardView);
-//        askChatGpt=findViewById(R.id.AskChatGpt_CardView);
-//
-//        attendance.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(HomeScreen.this, "Track Attendance", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        groupChatting.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(HomeScreen.this, "Group Chatting", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        assignments.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(HomeScreen.this, "Assignments", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        askChatGpt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(HomeScreen.this, "Ask ChatGpt", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//
-
-//        locationRequest = com.google.android.gms.location.LocationRequest.create();
-//        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-//        locationRequest.setInterval(5000);
-//        locationRequest.setFastestInterval(2000);
-//
-//
-//        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-//                .addLocationRequest(locationRequest);
-//        builder.setAlwaysShow(true);
-//
-//        Task<LocationSettingsResponse> result = LocationServices.getSettingsClient(getApplicationContext())
-//                .checkLocationSettings(builder.build());
-//
-//
-//        result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
-//            @Override
-//            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
-//                try {
-//                    LocationSettingsResponse response = task.getResult(ApiException.class);
-//
-//                } catch (ApiException e) {
-//                    switch (e.getStatusCode()){
-//                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-//
-//                            try {
-//                                ResolvableApiException resolvableApiException = (ResolvableApiException) e;
-//                                resolvableApiException.startResolutionForResult(HomeScreen.this,LOCATION_CHECK_SETTINGS);
-//                            } catch (IntentSender.SendIntentException ex) {
-//
-//                            }
-//                            break;
-//                        case  LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-//                            break;
-//                    }
-//
-//                }
-//            }
-//        });
-//
-//
-//
-//
 
 
     }
 
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if(resultCode == LOCATION_CHECK_SETTINGS){
-//            switch (resultCode){
-//                case  Activity.RESULT_OK:
-//                    break;
-//                case  Activity.RESULT_CANCELED:
-//                    Toast.makeText(this, "Please Turn on your Location", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-
-//    }
 
     @Override
     public void onBackPressed() {
@@ -261,5 +176,17 @@ public class HomeScreen extends AppCompatActivity {
         if (databaseReference != null && childEventListener != null) {
             databaseReference.removeEventListener(childEventListener);
         }
+    }
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangedListener, filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangedListener);
+        super.onStop();
     }
 }

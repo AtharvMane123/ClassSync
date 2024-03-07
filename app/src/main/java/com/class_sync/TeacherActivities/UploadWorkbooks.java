@@ -100,71 +100,70 @@ TextView textView;
                 String SelectedSubject = adapterView.getItemAtPosition(i).toString();
 
                 //First sem
-                if(SelectedSubject.equals("ICT Fundamental of ICT.")) {
-                    startWebView("https://mega.nz/filerequest/53uWhtzSk78");
+                if(SelectedSubject.equals("Engineering graphics")) {
+                    startWebView("https://u.pcloud.com/#page=puplink&code=kmvkZC6PkJuiycHVQSWa1AQETMJ0JKhR7");
                 }
                 else if (SelectedSubject.equals("ENG English.")) {
-                    startWebView("https://mega.nz/filerequest/RbX8cv5Qsi0");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=0mvkZMjhW89MhYO7BUVODmYm037pd9Ru7");
 
-                } else if (SelectedSubject.equals("BSC Basic Science (Chemistry).")) {
-//                    OpenMegaCloudStorage("https://mega.nz/folder/oy8jFDgZ#ae0wwFDyU3mdxQ3bRIbGoQ");
-                    Toast.makeText(UploadWorkbooks.this, "This Category is not added yet...", Toast.LENGTH_SHORT).show();
+                } else if (SelectedSubject.equals("BSC Basic Science (Physics) and (Chemistry).")) {
+                    startWebView("https://u.pcloud.com/#page=puplink&code=7mvkZvkcHDtOohOyJfgKHcNgAUuYyPwMX");
                 } else if (SelectedSubject.equals("BMS Basic Mathematics.")) {
-                    startWebView("https://mega.nz/filerequest/ZJxlYBmF4b0");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=oYvkZyDoyEJI7jf0mxeDDfsoMM8YBWguk");
 
                 }
 
 
                 //second sem
                 else if (SelectedSubject.equals( "Applied Mathematics (AMS)")) {
-                    startWebView("https://mega.nz/filerequest/xdNWbuuVuSk");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=FmvkZgNk82YEauObmtA80BYuXnQcSNSO7");
 
                 } else if (SelectedSubject.equals("Basic Electrical and Electronics Engineering (BEE)")) {
-                    startWebView("https://mega.nz/filerequest/flnTxBPTNKc");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=pmvkZNiysCQDjk2VPFagv8qRiqH8MJWOV");
 
                 } else if (SelectedSubject.equals("Programming in C (PIC)")) {
-                    startWebView("https://mega.nz/filerequest/64Zu0tB8WPw");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=LmvkZsSj7LcDEvwHAglWXeRxtzfnjR9xk");
 
                 } else if (SelectedSubject.equals("Web Page Designing (WPD)")) {
-                    startWebView("https://mega.nz/filerequest/VszB2KY3glE");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=4mvkZMtgoH8bA1KX99LwoA8Qjfy0JSAtV");
 
                 }
 
 
                 //Third Sem
                 else if (SelectedSubject.equals("Object Oriented Programming Using C++(OOP)")) {
-                    startWebView("https://mega.nz/filerequest/PggY57pmVAQ");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=bmvkZUqF9BrT2TUzzfPhPwB3S2mlK8ae7");
 
                 } else if (SelectedSubject.equals("Data structure using C Language (DSU)")) {
-                    startWebView("https://mega.nz/filerequest/mwTq-7puXxg");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=QmvkZDHFQgsae6vQh2SUEbnHbdSbn7txV");
 
                 } else if (SelectedSubject.equals("Computer Graphics (CGR)")) {
-                    startWebView("https://mega.nz/filerequest/J020E7VV3pk");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=8mvkZqyeuX6SJJbQTpFX4HCD3kpPeLz8X");
 
                 } else if (SelectedSubject.equals("Database Management System (DBMS)")) {
-                    startWebView("https://mega.nz/filerequest/KKojuJNyiB8");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=YmvkZXVJuRCnWkE0sOq9wzrUDnpyyAYW7");
 
                 } else if (SelectedSubject.equals("Digital Techniques (DTE)")) {
-                    startWebView("https://mega.nz/filerequest/e0LRNatf1Uk");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=mmvkZ1cvGKXJpEe46JVsU9YoUHhH9cbUV");
 
                 }
 
 
                 //Fourth Sem
                 else if (SelectedSubject.equals("Java Programming (JPR)")) {
-                    startWebView("https://mega.nz/filerequest/vuB13sKOa10");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=umvkZJnq83KOxqBHDRed8tAbWxjY11JuX");
 
                 } else if (SelectedSubject.equals("Software Engineering (SEN)")) {
-                    startWebView("https://mega.nz/filerequest/XbL51X8WXoo");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=BmvkZSn8W2XBouyXAhPwFWeJPfFiIO1TX");
 
                 } else if (SelectedSubject.equals("Data Communication and Computer Network (DCC)")) {
-                    startWebView("https://mega.nz/filerequest/Di4p0b_iNug");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=hmvkZ6UFUiySz9fklTbmJwYCvi0GzzT8k");
 
                 } else if (SelectedSubject.equals("Microprocessors (MIC)")) {
-                    startWebView("https://mega.nz/filerequest/8jqyLEBF0qY");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=fmvkZH0oixAdAu4XrLAMQfWbiQhDQOpKy");
 
                 } else if (SelectedSubject.equals("Gui Application Development Using Vb.Net (GAD)")) {
-                    startWebView("https://mega.nz/filerequest/mwdyxyGcUGw");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=jmvkZsT1bPmfLEOVAGVPgLoRjpHNBaGCV");
 
                 }
 
@@ -173,40 +172,41 @@ TextView textView;
 
                 //Fifth Sem
                 else if (SelectedSubject.equals("Advanced Java Programming (AJP)")) {
-                    startWebView("https://mega.nz/filerequest/_QIxCMtDDRA");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=WmvkZ7k3P1hgtuG7MfTEggA0UbQyq9Iik");
 
                 } else if (SelectedSubject.equals("Software Testing (STE)")) {
-                    startWebView("https://mega.nz/filerequest/7DzUbwuXdH0");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=1mvkZrw5SFgey3afcwitEcXQbD5b0XFcX");
 
                 } else if (SelectedSubject.equals("Advanced Computer Network (ACN)")) {
-                    startWebView("https://mega.nz/filerequest/FgGw4gQE1XI");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=2mvkZa43dRV8P3BLTATLIVFSLky2b8uuy");
 
                 } else if (SelectedSubject.equals("Operating System (OSY)")) {
-                    startWebView("https://mega.nz/filerequest/1bht7sJo8pU");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=DmvkZMl2k1ODgLj87PDKHamIRVkEXRhAy");
 
                 } else if (SelectedSubject.equals("Environmental Studies (EST)")) {
-                    startWebView("https://mega.nz/filerequest/7vWW5dCyEzc");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=smvkZoDncW6usGKmo4p64Gac5mQ7jKM8y");
 
                 }
+
 
 ////                        //Sixth Sem
                else if(SelectedSubject.equals( "Mobile Application Development (MAD)")) {
-                    startWebView("https://mega.nz/filerequest/ZwEidv2Do0E");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=MmvkZhm9hCYMUou42R20jSR5WIjLJAu0y");
                 }
                 else if (SelectedSubject.equals( "Emerging Trends in Computer Engineering (ETI)")) {
-                    startWebView("https://mega.nz/filerequest/A16ZjvTZSCU");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=emvkZOWbR7YnTIOk9vYz7h29E5Xlqrnmy");
 
                 }
                 else if (SelectedSubject.equals("Programming with Python (PWP)")) {
-                    startWebView("https://mega.nz/filerequest/G4WUkdBSAE4");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=nmvkZEEMMOkEpDbQRl4BsUqEuCJLsKk4y");
 
                 }
                 else if (SelectedSubject.equals( "Management (MGT)")) {
-                    startWebView("https://mega.nz/filerequest/9HZfb_Suc_8");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=TmvkZDk7PBMe3z8X7oFR6WBdBd0RAwDvk");
 
                 }
                 else if (SelectedSubject.equals("Network Information Security (NIS)")) {
-                    startWebView("https://mega.nz/filerequest/MnBcObESTIc");
+                    startWebView("https://u.pcloud.com/#page=puplink&code=9mvkZTDN10bknuNjzm2IXM3mn2YF1W7mX");
 
                 }
 

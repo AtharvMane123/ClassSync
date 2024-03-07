@@ -63,14 +63,6 @@ public class TrackAttendanceFragment extends Fragment {
 
 
 
-
-
-
-
-
-
-
-
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(HomeScreen.User_Name).child("Total Attendance").child(getCurrentMonth_with_Year());
 
         // Retrieve current value for the specific day

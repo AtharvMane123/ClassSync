@@ -4,11 +4,13 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -37,11 +39,13 @@ import com.class_sync.Home_Fragments.MsbteResources_Fragement;
 import com.class_sync.Online_Courses.OnlineCourse_Home_Fragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
@@ -64,16 +68,19 @@ public class HomeFragment extends Fragment {
     Button NFC;
     Context context;
 
+    DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("users").child(HomeScreen.User_Name).child("Total Attendance").child(getCurrentMonth_with_Year());
+
+
     TextView AddEbook, user_Name;
     EditText FatherName, FathersOccupation, FatherMobileNumber, MotherName, MotherMobileNumber, Address;
-    CardView MarkAttendance;
+    CardView MarkAttendance, Android_course, Java_course, Python_course, C_course, Html_course, Flutter_course, Arduino_course;
     int i = 0;
     ViewGroup root;
     View decorView;
     String Subject_name, Time_period;
     ImageView TrackAttendance, MsbteResources, ebooks, online_course, Assignments, ImportantNotification, HomeFrgament_notification;
     FusedLocationProviderClient fusedLocationProviderClient;
-    String gender="";
+    String gender = "";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -82,6 +89,7 @@ public class HomeFragment extends Fragment {
         root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         customDialogView = inflater.inflate(R.layout.add_attendance_dialogbox_layout, null);
         BiodataForm = inflater.inflate(R.layout.student_biodata_form_layout, null);
+
 
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.POST_NOTIFICATIONS) !=
@@ -98,24 +106,24 @@ public class HomeFragment extends Fragment {
         }
 
 
-
         if (customDialogView.getParent() != null) {
             ((ViewGroup) customDialogView.getParent()).removeView(customDialogView);
         }
 
         findId();
+        ClickedOnProgrammingCourses();
         user_Name.setText(HomeScreen.User_Name);
-        ArrayList<String> list=new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         list.add("Select Gender");
         list.add("Male");
         list.add("Female");
 
-        ArrayAdapter<String > arrayAdapter=new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,list);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         Gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                gender=adapterView.getItemAtPosition(i).toString();
+                gender = adapterView.getItemAtPosition(i).toString();
             }
 
             @Override
@@ -127,13 +135,9 @@ public class HomeFragment extends Fragment {
 
 
 //        Open Student BioData form
-        if(HomeScreen.BiodataForm == 1)
-        {
+        if (HomeScreen.BiodataForm == 1) {
             OpenStudentBiodataForm();
         }
-
-
-
 
 
         //Runtime permission
@@ -240,6 +244,7 @@ public class HomeFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new ImportantAnnouncements()).commit();
             }
         });
+
         online_course.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -255,8 +260,8 @@ public class HomeFragment extends Fragment {
         MarkAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                getLastLocation();
-                showCustomDialog();
+          getLastLocation();
+//                showCustomDialog();
 
             }
         });
@@ -297,6 +302,14 @@ public class HomeFragment extends Fragment {
         MotherMobileNumber = BiodataForm.findViewById(R.id.MotherMobileNumber);
         Address = BiodataForm.findViewById(R.id.Address);
 
+        Android_course = root.findViewById(R.id.HomeFragment_Android_course);
+        Java_course = root.findViewById(R.id.HomeFragment_Java_course);
+        Python_course = root.findViewById(R.id.HomeFragment_Python_course);
+        C_course = root.findViewById(R.id.HomeFragment_C_course);
+        Html_course = root.findViewById(R.id.HomeFragment_Html_course);
+        Flutter_course = root.findViewById(R.id.HomeFragment_Flutter_course);
+        Arduino_course = root.findViewById(R.id.HomeFragment_Arduino_course);
+
     }
 
 
@@ -312,7 +325,6 @@ public class HomeFragment extends Fragment {
                             if (location != null) {
                                 Geocoder geo = new Geocoder(getContext(), Locale.getDefault());
                                 List<Address> addresses = null;
-
                                 try {
                                     addresses = geo.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
 //                                    address.setText("Pune: "+addresses.get(0).getAddressLine(0));
@@ -323,8 +335,6 @@ public class HomeFragment extends Fragment {
                                     } else {
                                         Toast.makeText(getActivity(), "You are not in the College, so your attendance will not be marked", Toast.LENGTH_SHORT).show();
                                     }
-
-
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -427,78 +437,51 @@ public class HomeFragment extends Fragment {
     private void showCustomDialog() {
 
 
+
         // Build the AlertDialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(customDialogView);
         builder.setTitle("Add Attendance");
         builder.setCancelable(true);
 
-                builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                incrementAttendanceValue();
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = firebaseDatabase.getReference();
+                DatabaseReference databaseReference1 = firebaseDatabase.getReference();
+
+
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                        DatabaseReference databaseReference = firebaseDatabase.getReference();
-                        DatabaseReference databaseReference1 = firebaseDatabase.getReference();
-
-//                        databaseReference1.child("users").child(HomeScreen.User_Name).child("Month").child(getCurrentMonth());
-//                        databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                // Increment the retrieved value
-////                                Integer value = dataSnapshot.getValue(Integer.class);
-//                                Integer value = dataSnapshot.child("TotalAttendance").getValue(Integer.class);
-//                                if (value == null) {
-//                                    value = 0;
-//                                }
-//                                value++;
-//
-//                                // Update the value back to Firebase Realtime Database
-//                                databaseReference.setValue(value);
-//                            }
-
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                                // Handle error
-//                            }
-//                        });
-
-                        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                String Class = snapshot.child("users").child(HomeScreen.User_Name).child("class").getValue(String.class);
-                                String Student_roll = snapshot.child("users").child(HomeScreen.User_Name).child("rollNo").getValue(String.class);
-                                String TotalAttendance = snapshot.child("users").child("Month").child(getCurrentMonth()).child("TotalAttendance").getValue(String.class);
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String Class = snapshot.child("users").child(HomeScreen.User_Name).child("class").getValue(String.class);
+                        String Student_roll = snapshot.child("users").child(HomeScreen.User_Name).child("rollNo").getValue(String.class);
+                        String TotalAttendance = snapshot.child("users").child("Month").child(getCurrentMonth()).child("TotalAttendance").getValue(String.class);
 
 
-//                                if(TextUtils.isEmpty(TotalAttendance))
-//                                {
-//                                    TotalAttendance  = "0";
-//                                    databaseReference.child("users").child(HomeScreen.User_Name).child("Month").child(getCurrentMonth()).child("TotalAttendance").setValue(Integer.parseInt(TotalAttendance)+1);
-//                                }
-//
+                        databaseReference.child("Attendance").child(getCurrentDate()).child(Class).child(Time_period).child(Subject_name).child(HomeScreen.User_Name)
+                                .child("name").setValue(HomeScreen.User_Name);
+                        databaseReference.child("Attendance").child(getCurrentDate()).child(Class).child(Time_period).child(Subject_name).child(HomeScreen.User_Name)
+                                .child("rollNo").setValue(Student_roll).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(context, "Attendance has been Marked ", Toast.LENGTH_SHORT).show();
+                                        builder.create().dismiss();
+                                    }
+                                });
+                    }
 
-
-                                databaseReference.child("Attendance").child(getCurrentDate()).child(Class).child(Time_period).child(Subject_name).child(HomeScreen.User_Name)
-                                        .child("name").setValue(HomeScreen.User_Name);
-                                databaseReference.child("Attendance").child(getCurrentDate()).child(Class).child(Time_period).child(Subject_name).child(HomeScreen.User_Name)
-                                        .child("rollNo").setValue(Student_roll).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                Toast.makeText(context, "Attendance has been Marked ", Toast.LENGTH_SHORT).show();
-                                                builder.create().dismiss();
-                                            }
-                                        });
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });
+
+
+            }
+        });
 
         builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
@@ -508,18 +491,18 @@ public class HomeFragment extends Fragment {
 
             }
         });
-                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Handle Cancel button click
-                        builder.create().dismiss();
-                        builder.create().cancel();
-                        Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Handle Cancel button click
+                builder.create().dismiss();
+                builder.create().cancel();
+                Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Show the AlertDialog
-        AlertDialog  customDialog = builder.create();
+        AlertDialog customDialog = builder.create();
         // Check if contentView already has a parent
 
 
@@ -541,28 +524,22 @@ public class HomeFragment extends Fragment {
         builder.setCancelable(false);
         builder.setTitle("BioData Form");
 
-            builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if(CheckEmptyFields())
-                    {
-                        addBiodata();
-                    }
-                    else {
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame,new HomeFragment()).commit();
-                        Toast.makeText(context, "PLease enter all the details", Toast.LENGTH_SHORT).show();
-                    }
+        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (CheckEmptyFields()) {
+                    addBiodata();
+                } else {
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
+                    Toast.makeText(context, "PLease enter all the details", Toast.LENGTH_SHORT).show();
                 }
-            });
-        
+            }
+        });
+
         AlertDialog biodata = builder.create();
         biodata.show();
 
     }
-
-
-
-
 
 
     public Boolean CheckEmptyFields() {
@@ -571,9 +548,10 @@ public class HomeFragment extends Fragment {
             FatherName.setError("Please fill all the fields");
             return false;
         } else {
-            if(gender.equals("Select Gender")){
-                Toast.makeText(context, "please select  the gender", Toast.LENGTH_SHORT).show();return false;}
-            else {
+            if (gender.equals("Select Gender")) {
+                Toast.makeText(context, "please select  the gender", Toast.LENGTH_SHORT).show();
+                return false;
+            } else {
 
                 return true;
             }
@@ -611,7 +589,6 @@ public class HomeFragment extends Fragment {
                 databaseReference1.child(HomeScreen.User_Name).child("gender").setValue(gender);
 
 
-
             }
 
             @Override
@@ -619,6 +596,48 @@ public class HomeFragment extends Fragment {
 
             }
         });
+    }
+
+    private void ClickedOnProgrammingCourses() {
+        Android_course.setOnClickListener(view -> OpenMegaCloudStorage("https://mega.nz/folder/MylDyCSJ#XRYOKhlI87lIEBgTRG5aLg"));
+        Python_course.setOnClickListener(view -> OpenMegaCloudStorage("https://mega.nz/folder/drVRQZII#IDpdcIpcMB10MvM4SofgCA"));
+        Java_course.setOnClickListener(view -> OpenMegaCloudStorage("https://mega.nz/folder/Vv0TQI6K#H6CY8yZliHzo8xn7efFDvA"));
+        C_course.setOnClickListener(view -> OpenMegaCloudStorage("https://mega.nz/folder/grtRBLwS#VxWVzd7VHGUsrmu5Khyb2w"));
+        Html_course.setOnClickListener(view -> Toast.makeText(context, "This Course is Not Available for now", Toast.LENGTH_SHORT).show());
+        Flutter_course.setOnClickListener(view -> OpenMegaCloudStorage("https://mega.nz/folder/xnF2UL4T#fWAh_Hku3y1ZQt44g5G7Cw"));
+        Arduino_course.setOnClickListener(view -> Toast.makeText(context, "This Course is Not Available for now", Toast.LENGTH_SHORT).show());
+    }
+
+    public void OpenMegaCloudStorage(String url) {
+        Uri uri = Uri.parse(url);
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
+
+    }
+    private String getCurrentMonth_with_Year() {
+        Date currentDate = new Date();
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+
+        String currentMonth = monthFormat.format(currentDate);
+        String currentYear = yearFormat.format(currentDate);
+        return currentMonth + "-" + currentYear;
+    }
+    private void incrementAttendanceValue() {
+        databaseReference.child("Total Attendance") // Specify the key of the value you want to increment
+                .setValue(ServerValue.increment(1)) // Increment the value by 1
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Value incremented successfully
+                        Toast.makeText(getActivity(), "Value incremented successfully", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle failure
+                        Toast.makeText(getActivity(), "Failed to increment value: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 }

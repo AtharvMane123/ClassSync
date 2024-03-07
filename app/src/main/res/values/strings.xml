@@ -55,10 +55,9 @@
 
     <string-array name="Sem_1">
         <item>Choose Subject</item>
-        <item>ICT Fundamental of ICT.</item>
+        <item>Engineering graphics</item>
         <item>ENG English.</item>
-        <item>BSC Basic Science (Physics).</item>
-        <item>BSC Basic Science (Chemistry).</item>
+        <item>BSC Basic Science (Physics) and (Chemistry).</item>
         <item>BMS Basic Mathematics.</item>
         <!-- Add more choices as needed -->
     </string-array>
@@ -69,7 +68,7 @@
         <item>Basic Electrical and Electronics Engineering (BEE)</item>
         <item>WPM/WPT Workshop Practice.</item>
         <item>Programming in C (PIC)</item>
-        <item>Linux Basics (BLP)</item>
+        <item>Linux Basics</item>
         <item>Web Page Designing (WPD)</item>
         <!-- Add more choices as needed -->
     </string-array>
