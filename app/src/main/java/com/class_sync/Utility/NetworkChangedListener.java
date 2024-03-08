@@ -24,7 +24,7 @@ public class NetworkChangedListener extends BroadcastReceiver {
 
             AppCompatButton btnRetry = layout_dialog.findViewById(R.id.btnRetry);
 
-            //show dialog
+
             AlertDialog dialog = builder.create();
             dialog.show();
             dialog.setCancelable(false);

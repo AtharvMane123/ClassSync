@@ -1,67 +1,66 @@
-package com.class_sync.TeacherActivities;
+package com.class_sync.Home_Fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static android.app.Activity.RESULT_OK;
+import static android.content.Context.DOWNLOAD_SERVICE;
 
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.os.Environment;
-import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.CookieManager;
+import android.view.ViewGroup;
 import android.webkit.DownloadListener;
-import android.webkit.JavascriptInterface;
 import android.webkit.URLUtil;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.class_sync.R;
 
+import java.net.URLConnection;
 import java.util.Objects;
 
-public class UploadWorkbooks extends AppCompatActivity {
-TextView textView;
-    Spinner sem,sub;
-    private WebView webView;
 
+public class Workbooks_Fragment extends Fragment {
+
+    Spinner sem,sub;
+    WebView webView;
+    ProgressBar progressBar;
     private ValueCallback<Uri> mUploadMessage;
     public ValueCallback<Uri[]> uploadMessage;
     public static final int REQUEST_SELECT_FILE = 100;
-    ProgressBar progressBar;
     private final static int FILECHOOSER_RESULTCODE = 1;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_assignments);
-        textView = findViewById(R.id.text);
-        textView.setText("Upload WorkBooks");
-        sem = findViewById(R.id.UploadAssignments_Spinner_Class);
-        sub = findViewById(R.id.UploadAssignmnets_Spinner_subject);
-        webView = findViewById(R.id.webView);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_workbooks_, container, false);
+        sem = root.findViewById(R.id.ViewWorkbooks_Spinner_Class);
+        sub = root.findViewById(R.id.ViewWorkbooks_Spinner_subject);
+        webView = root.findViewById(R.id.ViewWorkbooks_webView);
+        progressBar = root.findViewById(R.id.ViewWorkbooks_progressBar);
+
+
         sem.setAdapter(setCustomAdapter(R.array.Select_Sem));
-        progressBar = findViewById(R.id.UploadAssignMents_progressBar);
-
         webView.setBackgroundColor(Color.WHITE);
-
 
         sem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -99,111 +98,117 @@ TextView textView;
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String SelectedSubject = adapterView.getItemAtPosition(i).toString();
 
-                //First sem
+//                First sem
                 if(SelectedSubject.equals("Engineering graphics")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=kmvkZC6PkJuiycHVQSWa1AQETMJ0JKhR7");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZ4qRF0ZwcCazPDg1OYY6eainjGlPuCUCebV");
                 }
                 else if (SelectedSubject.equals("ENG English.")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=0mvkZMjhW89MhYO7BUVODmYm037pd9Ru7");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZztRF0Z1tS5jy1jbWJFBMptFEm4MQLtOryk");
 
                 } else if (SelectedSubject.equals("BSC Basic Science (Physics) and (Chemistry).")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=7mvkZvkcHDtOohOyJfgKHcNgAUuYyPwMX");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZvdRF0ZkArsSU4cfK5kAtRQv0VoMmRm11gk");
+
                 } else if (SelectedSubject.equals("BMS Basic Mathematics.")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=oYvkZyDoyEJI7jf0mxeDDfsoMM8YBWguk");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZkdRF0Z6cOMLsu3NSFU13Vk7d1kY56hqTOX");
 
                 }
 
 
                 //second sem
                 else if (SelectedSubject.equals( "Applied Mathematics (AMS)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=FmvkZgNk82YEauObmtA80BYuXnQcSNSO7");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZNtRF0ZgxEpx67ssnX5aN3t1FkM3XwtlYpX");
 
                 } else if (SelectedSubject.equals("Basic Electrical and Electronics Engineering (BEE)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=pmvkZNiysCQDjk2VPFagv8qRiqH8MJWOV");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZr6RF0ZtpyuICntyz5mK0s5oEn8Cy737cfk");
 
                 } else if (SelectedSubject.equals("Programming in C (PIC)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=LmvkZsSj7LcDEvwHAglWXeRxtzfnjR9xk");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZeERF0ZdW1TjJOU2yVFOVlA3DH62fSDgX6y");
 
                 } else if (SelectedSubject.equals("Web Page Designing (WPD)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=4mvkZMtgoH8bA1KX99LwoA8Qjfy0JSAtV");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZlERF0ZSHO8H6gt8H7RUvBPmzjT0YcJlIxX");
 
+                }
+                else if (SelectedSubject.equals("Linux Basics")) {
+                    startWebView("https://u.pcloud.link/publink/show?code=kZpERF0ZUHqAXOGWz8BVvONPqCezDJqmne27");
                 }
 
 
                 //Third Sem
                 else if (SelectedSubject.equals("Object Oriented Programming Using C++(OOP)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=bmvkZUqF9BrT2TUzzfPhPwB3S2mlK8ae7");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZqURF0ZiwQokUxVoGmi7CmGdHlI5pPU0qKV");
 
                 } else if (SelectedSubject.equals("Data structure using C Language (DSU)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=QmvkZDHFQgsae6vQh2SUEbnHbdSbn7txV");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZYURF0Zq8LAWmMy5iJeiXV4OhMXR7q6HA97");
 
                 } else if (SelectedSubject.equals("Computer Graphics (CGR)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=8mvkZqyeuX6SJJbQTpFX4HCD3kpPeLz8X");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZ4URF0Z092eq94lUDzHsBVCI4mS7zJriOg7");
 
                 } else if (SelectedSubject.equals("Database Management System (DBMS)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=YmvkZXVJuRCnWkE0sOq9wzrUDnpyyAYW7");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZ1URF0ZAUgJakKJRWH3UhtFPBckUVPs3uo7");
 
                 } else if (SelectedSubject.equals("Digital Techniques (DTE)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=mmvkZ1cvGKXJpEe46JVsU9YoUHhH9cbUV");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZwURF0ZuIxHFsAq6LhqVVrVhiYgPBPKUU9X");
 
                 }
 
 
                 //Fourth Sem
                 else if (SelectedSubject.equals("Java Programming (JPR)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=umvkZJnq83KOxqBHDRed8tAbWxjY11JuX");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZmIRF0ZVhG4IBpD87RDr4K678N8fbfHpkRX");
 
                 } else if (SelectedSubject.equals("Software Engineering (SEN)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=BmvkZSn8W2XBouyXAhPwFWeJPfFiIO1TX");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZMIRF0Z4dYuIHM2V9jECN8Ml0SrRhkjVgjV");
 
                 } else if (SelectedSubject.equals("Data Communication and Computer Network (DCC)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=hmvkZ6UFUiySz9fklTbmJwYCvi0GzzT8k");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZoURF0ZYBMmlR67W7XxmIYGM9XKHHof7D6k");
 
                 } else if (SelectedSubject.equals("Microprocessors (MIC)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=fmvkZH0oixAdAu4XrLAMQfWbiQhDQOpKy");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZWIRF0ZCaWBFGLTWS4Ht8UwJluO64rUhUSk");
 
                 } else if (SelectedSubject.equals("Gui Application Development Using Vb.Net (GAD)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=jmvkZsT1bPmfLEOVAGVPgLoRjpHNBaGCV");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZVIRF0Z1GI9NfbLw3h7tzXnoAtfHhtlTtkk");
 
                 }
+
+
+
 
                 //Fifth Sem
                 else if (SelectedSubject.equals("Advanced Java Programming (AJP)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=WmvkZ7k3P1hgtuG7MfTEggA0UbQyq9Iik");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZLARF0Z9lqBQP7fOTLlyMtSsnsRLB7bNGPy");
 
                 } else if (SelectedSubject.equals("Software Testing (STE)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=1mvkZrw5SFgey3afcwitEcXQbD5b0XFcX");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZDARF0Z0VRn57yc4uzmoMiSQOh980YeGBT7");
 
                 } else if (SelectedSubject.equals("Advanced Computer Network (ACN)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=2mvkZa43dRV8P3BLTATLIVFSLky2b8uuy");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZaIRF0ZKYDzGEj2wYJpStOIfzda6YHkRQJk");
 
                 } else if (SelectedSubject.equals("Operating System (OSY)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=DmvkZMl2k1ODgLj87PDKHamIRVkEXRhAy");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZfARF0ZElKbuayv78VACoO9HMG2gbnFdbLV");
 
                 } else if (SelectedSubject.equals("Environmental Studies (EST)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=smvkZoDncW6usGKmo4p64Gac5mQ7jKM8y");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZSARF0ZvxJf23V8gQjNlwN04afDxHrGzgT7");
 
                 }
+//                        //Sixth Sem
+                else if(SelectedSubject.equals( "Mobile Application Development (MAD)")) {
 
-
-////                        //Sixth Sem
-               else if(SelectedSubject.equals( "Mobile Application Development (MAD)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=MmvkZhm9hCYMUou42R20jSR5WIjLJAu0y");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZ7NRF0Z3lJECxn2X6XEPHRwxrvw5fQGka2y");
                 }
                 else if (SelectedSubject.equals( "Emerging Trends in Computer Engineering (ETI)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=emvkZOWbR7YnTIOk9vYz7h29E5Xlqrnmy");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZCARF0ZO9ySEfwiSNk11w3qr2Oa6FcNyGby");
 
                 }
                 else if (SelectedSubject.equals("Programming with Python (PWP)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=nmvkZEEMMOkEpDbQRl4BsUqEuCJLsKk4y");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZaARF0Z1xouohGJFopBpn8J5l9C5yBJbstV");
 
                 }
                 else if (SelectedSubject.equals( "Management (MGT)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=TmvkZDk7PBMe3z8X7oFR6WBdBd0RAwDvk");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZJNRF0ZkULT2zM7fafHlSxhgkaGJuUlYGkk");
 
                 }
                 else if (SelectedSubject.equals("Network Information Security (NIS)")) {
-                    startWebView("https://u.pcloud.com/#page=puplink&code=9mvkZTDN10bknuNjzm2IXM3mn2YF1W7mX");
+                    startWebView("https://u.pcloud.link/publink/show?code=kZvARF0ZA0VLx4vqrm7medlemkR4sp9bSQiX");
 
                 }
 
@@ -218,24 +223,20 @@ TextView textView;
 
 
 
-
-
-
-
-
-
-
+        return root;
     }
+
+
+
     ArrayAdapter<CharSequence> setCustomAdapter(int array){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                getApplicationContext(),
+                getActivity(),
                 array,
                 R.layout.simple_spinner_item
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         return adapter;
     }
-
 
     public void startWebView(String URL)
     {progressBar.setVisibility(View.VISIBLE);
@@ -244,10 +245,9 @@ TextView textView;
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-progressBar.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
                 // Website has finished loading, perform your actions here
                 // For example, show a toast or update UI elements
-//                Toast.makeText(getApplicationContext(), "Website loaded successfully", Toast.LENGTH_SHORT).show();
             }
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -261,25 +261,11 @@ progressBar.setVisibility(View.GONE);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setAllowFileAccess(true);
         webView.loadUrl(URL);
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-                progressBar.setVisibility(View.VISIBLE);
-            }
 
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                progressBar.setVisibility(View.GONE);
-            }
-        });
 
         webView.setWebChromeClient(new WebChromeClient() {
             // For 3.0+ Devices (Start)
             // onActivityResult attached before constructor
-
-
             protected void openFileChooser(ValueCallback uploadMsg, String acceptType)
             {
                 mUploadMessage = uploadMsg;
@@ -290,7 +276,7 @@ progressBar.setVisibility(View.GONE);
             }
 
             // For Lollipop 5.0+ Devices
-            public boolean onShowFileChooser(WebView mWebView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams)
+            public boolean onShowFileChooser(WebView mWebView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams)
             {
                 if (uploadMessage != null) {
                     uploadMessage.onReceiveValue(null);
@@ -300,7 +286,7 @@ progressBar.setVisibility(View.GONE);
                 uploadMessage = filePathCallback;
 
                 Intent intent = null;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     intent = fileChooserParams.createIntent();
                 }
                 try
@@ -309,7 +295,7 @@ progressBar.setVisibility(View.GONE);
                 } catch (ActivityNotFoundException e)
                 {
                     uploadMessage = null;
-                    Toast.makeText(getApplicationContext(), "Cannot Open File Chooser", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Cannot Open File Chooser", Toast.LENGTH_LONG).show();
                     return false;
                 }
                 return true;
@@ -335,41 +321,80 @@ progressBar.setVisibility(View.GONE);
             }
         });
 
+//        webView.setDownloadListener(new DownloadListener() {
+//            @Override
+//            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimeType, long contentLength) {
+//                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+//
+//                request.setMimeType(mimeType);
+//                //------------------------COOKIE!!------------------------
+//                String cookies = CookieManager.getInstance().getCookie(url);
+//                request.addRequestHeader("cookie", cookies);
+//                //------------------------COOKIE!!------------------------
+//                request.addRequestHeader("User-Agent", userAgent);
+//                request.setDescription("Downloading file...");
+//                request.setTitle(URLUtil.guessFileName(url, contentDisposition, mimeType));
+//                request.allowScanningByMediaScanner();
+//                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+//                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(url, contentDisposition, mimeType));
+//                DownloadManager dm = (DownloadManager) getActivity().getSystemService(DOWNLOAD_SERVICE);
+//                dm.enqueue(request);
+//                Toast.makeText(getActivity(), "Downloading File", Toast.LENGTH_LONG).show();
+//            }
+//        });
+
         webView.setDownloadListener(new DownloadListener() {
             @Override
-            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimeType, long contentLength) {
-                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+                String fileNameWithExtension = getFileNameWithExtension(contentDisposition);
+                if (fileNameWithExtension != null) {
+                    int dotIndex = fileNameWithExtension.lastIndexOf(".");
+                    if (dotIndex != -1) {
+                        String extension = fileNameWithExtension.substring(dotIndex);
+                        switch (extension.toLowerCase()) {
+                            case ".pdf":
+                                mimetype = "application/pdf";
+                                break;
+                            case ".doc":
+                            case ".docx":
+                                mimetype = "application/msword";
+                                break;
+                            // Add more cases for other file types as needed
+                            default:
+                                mimetype = URLConnection.guessContentTypeFromName(fileNameWithExtension);
+                        }
+                    }
+                }
 
-                request.setMimeType(mimeType);
-                //------------------------COOKIE!!------------------------
-                String cookies = CookieManager.getInstance().getCookie(url);
-                request.addRequestHeader("cookie", cookies);
-                //------------------------COOKIE!!------------------------
-                request.addRequestHeader("User-Agent", userAgent);
+                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+                request.setTitle(fileNameWithExtension != null ? fileNameWithExtension : URLUtil.guessFileName(url, contentDisposition, mimetype));
                 request.setDescription("Downloading file...");
-                request.setTitle(URLUtil.guessFileName(url, contentDisposition, mimeType));
-                request.allowScanningByMediaScanner();
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(url, contentDisposition, mimeType));
-                DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                request.setMimeType(mimetype);
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, Environment.DIRECTORY_DOWNLOADS + "/" + fileNameWithExtension);
+                DownloadManager dm = (DownloadManager) getActivity().getSystemService(DOWNLOAD_SERVICE);
                 dm.enqueue(request);
-                Toast.makeText(getApplicationContext(), "Downloading File", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Downloading...", Toast.LENGTH_SHORT).show();
+                getActivity().registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
             }
         });
+
+
+
     }
-    private class MyBrowser extends WebViewClient {
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return true;
+    public  void openDrive(String url){
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+        startActivity(intent);
+    }
+    private String getFileNameWithExtension(String contentDisposition) {
+        if (contentDisposition != null) {
+            int index = contentDisposition.lastIndexOf("/");
+            if (index != -1) {
+                return contentDisposition.substring(index + 1);
+            }
         }
-
-        @Override
-        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-            view.loadData("Maaf Internet Anda tidak stabil", "text/html", "utf-8");
-            super.onReceivedError(view, request, error);
-        }
-
+        return null;
     }
 
     @SuppressLint("MissingSuperCall")
@@ -397,14 +422,14 @@ progressBar.setVisibility(View.GONE);
             mUploadMessage = null;
         }
         else
-            Toast.makeText(getApplicationContext(), "Failed to Upload Image", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Failed to Upload Image", Toast.LENGTH_LONG).show();
     }
-
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
-            webView.goBack();
-            return true;
+    private BroadcastReceiver onComplete = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+            Toast.makeText(getActivity(), "Download completed", Toast.LENGTH_SHORT).show();
+            getActivity().unregisterReceiver(this);
         }
-        return super.onKeyDown(keyCode, event);
-    }
+    };
 }

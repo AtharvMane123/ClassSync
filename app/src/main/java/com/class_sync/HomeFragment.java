@@ -36,6 +36,7 @@ import com.class_sync.Home_Fragments.Assignmnent_Fragment;
 import com.class_sync.Home_Fragments.EbookFragments;
 import com.class_sync.Home_Fragments.ImportantAnnouncements;
 import com.class_sync.Home_Fragments.MsbteResources_Fragement;
+import com.class_sync.Home_Fragments.Workbooks_Fragment;
 import com.class_sync.Online_Courses.OnlineCourse_Home_Fragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -78,7 +79,7 @@ public class HomeFragment extends Fragment {
     ViewGroup root;
     View decorView;
     String Subject_name, Time_period;
-    ImageView TrackAttendance, MsbteResources, ebooks, online_course, Assignments, ImportantNotification, HomeFrgament_notification;
+    ImageView TrackAttendance, MsbteResources, ebooks, online_course, Assignments,Workbooks, ImportantNotification, HomeFrgament_notification;
     FusedLocationProviderClient fusedLocationProviderClient;
     String gender = "";
 
@@ -231,13 +232,20 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-        ebooks.setOnClickListener(new View.OnClickListener() {
+        Workbooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new EbookFragments()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new Workbooks_Fragment()).commit();
 
             }
         });
+//        ebooks.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new EbookFragments()).commit();
+//
+//            }
+//        });
         ImportantNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -245,12 +253,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        online_course.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new OnlineCourse_Home_Fragment()).commit();
-            }
-        });
+//        online_course.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("").replace(R.id.frame, new OnlineCourse_Home_Fragment()).commit();
+//            }
+//        });
         HomeFrgament_notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -282,14 +290,15 @@ public class HomeFragment extends Fragment {
     void findId() {
         TrackAttendance = root.findViewById(R.id.TrackAttendance_CardView);
         AddEbook = root.findViewById(R.id.t1);
-        online_course = root.findViewById(R.id.OnlineCourses);
+//        online_course = root.findViewById(R.id.OnlineCourses);
         user_Name = root.findViewById(R.id.user_name);
         NFC = root.findViewById(R.id.ScanNFc);
         HomeFrgament_notification = root.findViewById(R.id.HomeFragment_notification_logo);
         MarkAttendance = root.findViewById(R.id.MarkAttendance);
         MsbteResources = root.findViewById(R.id.MsbtePapers);
-        ebooks = root.findViewById(R.id.Ebooks_imageView);
+//        ebooks = root.findViewById(R.id.Ebooks_imageView);
         Assignments = root.findViewById(R.id.Assignments);
+        Workbooks = root.findViewById(R.id.Workbooks);
         ImportantNotification = root.findViewById(R.id.Notification);
         subject = customDialogView.findViewById(R.id.AddAttendance_Subject);
         TimePeriod = customDialogView.findViewById(R.id.AddAttendance_TimePeriod);
@@ -605,7 +614,7 @@ public class HomeFragment extends Fragment {
         C_course.setOnClickListener(view -> OpenMegaCloudStorage("https://mega.nz/folder/grtRBLwS#VxWVzd7VHGUsrmu5Khyb2w"));
         Html_course.setOnClickListener(view -> Toast.makeText(context, "This Course is Not Available for now", Toast.LENGTH_SHORT).show());
         Flutter_course.setOnClickListener(view -> OpenMegaCloudStorage("https://mega.nz/folder/xnF2UL4T#fWAh_Hku3y1ZQt44g5G7Cw"));
-        Arduino_course.setOnClickListener(view -> Toast.makeText(context, "This Course is Not Available for now", Toast.LENGTH_SHORT).show());
+        Arduino_course.setOnClickListener(view -> OpenMegaCloudStorage("https://mega.nz/folder/UqtFWSra#Gst1n7vL6owU5p8ORIMgLA"));
     }
 
     public void OpenMegaCloudStorage(String url) {

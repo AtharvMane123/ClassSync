@@ -130,6 +130,12 @@
                             android:layout_height="150dp"
                             android:layout_alignParentLeft="true"
                             android:src="@drawable/assignments_final" />
+                        <ImageView
+                            android:id="@+id/Workbooks"
+                            android:layout_width="155dp"
+                            android:layout_height="150dp"
+                            android:layout_alignParentLeft="true"
+                            android:src="@drawable/workbooks_img" />
 
                         <ImageView
                             android:id="@+id/Notification"
@@ -138,20 +144,20 @@
                             android:layout_alignParentRight="true"
                             android:src="@drawable/announcements_final" />
 
-                        <ImageView
-                            android:id="@+id/Ebooks_imageView"
-                            android:layout_width="155dp"
-                            android:layout_height="150dp"
-                            android:layout_alignParentLeft="true"
-                            android:src="@drawable/ebooks_final" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/Ebooks_imageView"-->
+<!--                            android:layout_width="155dp"-->
+<!--                            android:layout_height="150dp"-->
+<!--                            android:layout_alignParentLeft="true"-->
+<!--                            android:src="@drawable/ebooks_final" />-->
 
-                        <ImageView
-                            android:id="@+id/OnlineCourses"
-                            android:layout_width="155dp"
-                            android:layout_height="150dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
-                            android:src="@drawable/online_courses" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/OnlineCourses"-->
+<!--                            android:layout_width="155dp"-->
+<!--                            android:layout_height="150dp"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:layout_marginRight="20dp"-->
+<!--                            android:src="@drawable/online_courses" />-->
                     </LinearLayout>
 
                 </HorizontalScrollView>
