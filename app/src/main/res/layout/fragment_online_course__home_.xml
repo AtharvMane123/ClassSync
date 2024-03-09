@@ -42,7 +42,7 @@
                         android:layout_marginTop="120dp"
                         android:fontFamily="@font/baloo"
                         android:text="Stop"
-                        android:textColor="@color/black"
+                        android:textColor="#3A3939"
                         android:textSize="35dp"
                         android:textStyle="bold" />
 
@@ -52,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/baloo"
                         android:text="Thinking,"
-                        android:textColor="@color/black"
+                        android:textColor="#3A3939"
                         android:textSize="35dp"
                         android:textStyle="bold" />
 
@@ -61,6 +61,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Start Learning."
+                        android:textColor="@color/black"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
@@ -102,14 +103,14 @@
                     android:backgroundTint="@color/black"
                     app:cardCornerRadius="50dp">
 
-                    <SearchView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/t2"
-                        android:layout_margin="1dp"
-                        android:background="@drawable/search_view"
-                        android:iconifiedByDefault="false"
-                        android:queryHint="Search" />
+<!--                    <SearchView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/t2"-->
+<!--                        android:layout_margin="1dp"-->
+<!--                        android:background="@drawable/search_view"-->
+<!--                        android:iconifiedByDefault="false"-->
+<!--                        android:queryHint="Search" />-->
 
                 </androidx.cardview.widget.CardView>
 
@@ -117,7 +118,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="0dp"
                     android:fontFamily="sans-serif-black"
                     android:text="Categories"
                     android:textColor="@color/black"
@@ -320,6 +321,7 @@
 
                         <androidx.cardview.widget.CardView
 
+                            android:id="@+id/OnlineCourse_Android_course"
                             android:layout_width="130dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="20dp"
@@ -329,20 +331,18 @@
                             app:cardCornerRadius="20dp">
 
 
-                              <ImageView
-                                  android:layout_width="match_parent"
-                                  android:layout_height="match_parent"
-                                  android:scaleType="centerCrop"
-                                  android:src="@drawable/android_course_img"
-                                  />
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/android_course_img" />
 
 
                         </androidx.cardview.widget.CardView>
 
 
-
                         <androidx.cardview.widget.CardView
-
+                            android:id="@+id/OnlineCourse_Python_course"
                             android:layout_width="120dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="10dp"
@@ -352,52 +352,52 @@
                             app:cardCornerRadius="20dp">
 
 
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/python_course_img"
-                                    />
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/python_course_img" />
 
 
                         </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
 
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/OnlineCourse_Java_course"
                             android:layout_width="120dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="#C5CAE9"
-                            app:cardCornerRadius="20dp"
-                            >
+                            app:cardCornerRadius="20dp">
+
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/java_course_img"
-                                />
+                                android:src="@drawable/java_course_img" />
 
                         </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
 
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/OnlineCourse_C_course"
                             android:layout_width="120dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="#FFCDD2"
-                            app:cardCornerRadius="20dp"
-                            >
+                            app:cardCornerRadius="20dp">
+
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/c_course_img"
                                 android:scaleType="centerCrop"
-                                />
+                                android:src="@drawable/c_course_img" />
                         </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
 
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/OnlineCourse_Html_course"
                             android:layout_width="120dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="10dp"
@@ -405,46 +405,46 @@
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="#B3E5FC"
                             app:cardCornerRadius="20dp">
+
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/html_course_img"
                                 android:scaleType="centerCrop"
-                                />
+                                android:src="@drawable/html_course_img" />
                         </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
 
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/OnlineCourse_Flutter_course"
                             android:layout_width="120dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="#E0F7FA"
-                            app:cardCornerRadius="20dp"
-                            >
+                            app:cardCornerRadius="20dp">
+
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/flutter_course_img"
                                 android:scaleType="centerCrop"
-                                />
+                                android:src="@drawable/flutter_course_img" />
                         </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
 
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/OnlineCourse_Arduino_course"
                             android:layout_width="120dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:backgroundTint="#E0F7FA"
-                            app:cardCornerRadius="20dp"
-                            >
+                            app:cardCornerRadius="20dp">
+
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/arduino_course_img"
                                 android:scaleType="centerCrop"
-                                />
+                                android:src="@drawable/arduino_course_img" />
                         </androidx.cardview.widget.CardView>
 
 

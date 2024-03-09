@@ -16,7 +16,7 @@ public class EbookFragments extends Fragment {
 
     View decorView;
     ViewGroup root;
-    CardView Business,Sci_fi,Programming,History,Science,Fantasy;
+    CardView Business,Sci_fi,Programming,History,Science,Fantasy,Technology;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,7 +32,15 @@ public class EbookFragments extends Fragment {
         History = root.findViewById(R.id.HistoryBooks);
         Science = root.findViewById(R.id.ScienceBooks);
         Fantasy = root.findViewById(R.id.FantasyBooks);
-        Business.setOnClickListener(new View.OnClickListener() {
+        Technology = root.findViewById(R.id.TechnologyBooks);
+
+        Technology.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame,new FinanceEbooks_fragment()).commit();
+        FinanceEbooks_fragment.category = "Education";
+    }
+});        Business.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame,new FinanceEbooks_fragment()).commit();
