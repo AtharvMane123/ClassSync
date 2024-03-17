@@ -7,12 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.class_sync.UserFragments.HelpDeskFragment;
+
 
 public class UserFragment extends Fragment {
-    CardView logout;
+    CardView logout,requestOnlineCourse;
     TextView t1;
 
     @Override
@@ -21,9 +24,17 @@ public class UserFragment extends Fragment {
         // Inflate the layout for this fragment
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_user, container, false);
         logout = root.findViewById(R.id.logout_btn);
+        requestOnlineCourse = root.findViewById(R.id.userProfile_RequestOnlineCourse);
         t1 = root.findViewById(R.id.userProfileName);
 
         t1.setText(HomeScreen.User_Name);
+        requestOnlineCourse.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view){
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame,new HelpDeskFragment()).commit();
+            }
+        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

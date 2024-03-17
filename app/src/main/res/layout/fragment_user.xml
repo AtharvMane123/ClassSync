@@ -70,7 +70,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/userProfileC2"
+            android:id="@+id/userProfile_RequestOnlineCourse"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@id/userProfile_EditProfile"
@@ -82,19 +82,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#DFCCFB"
-
                 android:paddingHorizontal="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="@color/black"
                     android:layout_centerInParent="true"
                     android:drawableStart="@drawable/edit_userfragment"
                     android:drawableEnd="@drawable/select_userfragment"
                     android:gravity="center"
-                    android:text="Upcoming"
+                    android:text="Request for Online Course"
                     android:textAlignment="center"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -103,7 +102,7 @@
             android:id="@+id/userProfile_help"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/userProfileC2"
+            android:layout_below="@id/userProfile_RequestOnlineCourse"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="20dp">
@@ -116,13 +115,13 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:textColor="@color/black"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
                     android:drawableEnd="@drawable/select_userfragment"
                     android:gravity="center"
                     android:text="Help"
                     android:textAlignment="center"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     app:drawableStartCompat="@drawable/edit_userfragment" />
             </RelativeLayout>

@@ -1,13 +1,12 @@
 package com.class_sync.Home_Fragments;
 
 import android.os.Bundle;
-
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 
 import com.class_sync.R;
 
@@ -16,7 +15,7 @@ public class EbookFragments extends Fragment {
 
     View decorView;
     ViewGroup root;
-    CardView Business,Sci_fi,Programming,History,Science,Fantasy,Technology;
+    CardView Business, Sci_fi, Programming, History, Science, Fantasy, Technology;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,7 +23,7 @@ public class EbookFragments extends Fragment {
 
 
         // Inflate the layout for this fragment
-        root= (ViewGroup) inflater.inflate(R.layout.fragment_ebook_fragments, container, false);
+        root = (ViewGroup) inflater.inflate(R.layout.fragment_ebook_fragments, container, false);
 //        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Business = root.findViewById(R.id.FinanceBooks);
         Sci_fi = root.findViewById(R.id.Sc_FiBooks);
@@ -35,54 +34,54 @@ public class EbookFragments extends Fragment {
         Technology = root.findViewById(R.id.TechnologyBooks);
 
         Technology.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame,new FinanceEbooks_fragment()).commit();
-        FinanceEbooks_fragment.category = "Education";
-    }
-});        Business.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame,new FinanceEbooks_fragment()).commit();
-        FinanceEbooks_fragment.category = "Business";
-    }
-});
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame, new FinanceEbooks_fragment()).commit();
+                FinanceEbooks_fragment.category = "Education";
+            }
+        });
+        Business.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame, new FinanceEbooks_fragment()).commit();
+                FinanceEbooks_fragment.category = "Business";
+            }
+        });
         Sci_fi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame,new FinanceEbooks_fragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame, new FinanceEbooks_fragment()).commit();
                 FinanceEbooks_fragment.category = "Sci-Fi";
             }
         });
         Programming.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame,new FinanceEbooks_fragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame, new FinanceEbooks_fragment()).commit();
                 FinanceEbooks_fragment.category = "Programming";
             }
         });
         History.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame,new FinanceEbooks_fragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame, new FinanceEbooks_fragment()).commit();
                 FinanceEbooks_fragment.category = "History";
             }
         });
         Science.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame,new FinanceEbooks_fragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame, new FinanceEbooks_fragment()).commit();
                 FinanceEbooks_fragment.category = "Science";
             }
         });
         Fantasy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame,new FinanceEbooks_fragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("null").replace(R.id.frame, new FinanceEbooks_fragment()).commit();
                 FinanceEbooks_fragment.category = "Fantasy";
             }
         });
-
 
         //--------------------------Code to hide Navigation buttons and notification bar-----------------------------------------------------------------------
         decorView = getActivity().getWindow().getDecorView();
