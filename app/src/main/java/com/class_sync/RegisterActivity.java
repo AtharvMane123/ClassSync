@@ -113,6 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                 databaseReference.child("users").child(Name.getText().toString()).child("name").setValue(Name.getText().toString());
+                databaseReference.child("users").child(Name.getText().toString()).child("LoginAttempt").setValue(1);
                 databaseReference.child("users").child(Name.getText().toString()).child("email").setValue(Email.getText().toString());
                 databaseReference.child("users").child(Name.getText().toString()).child("password").setValue(Password.getText().toString());
                 databaseReference.child("users").child(Name.getText().toString()).child("rollNo").setValue(StudentRollNo.getText().toString());

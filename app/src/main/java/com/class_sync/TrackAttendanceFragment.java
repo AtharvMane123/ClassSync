@@ -110,7 +110,8 @@ public class TrackAttendanceFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
+                Toast.makeText(getActivity(), "An Error Occurred Please add a new Attendance", Toast.LENGTH_SHORT).show();
             }
         });
         track.setOnClickListener(new View.OnClickListener() {
@@ -161,18 +162,23 @@ public class TrackAttendanceFragment extends Fragment {
                 });
     }
     public void lineChart(float Attendance1,float Attendance2){
+
         lineChart.setVisibility(View.VISIBLE);
         Description description = new Description();
         description.setText("Students Record");
         description.setPosition(150f,15f);
         lineChart.setDescription(description);
         lineChart.getAxisRight().setDrawLabels(false);
-        xvalues = Arrays.asList("Atharv","omkar","manish","yash","prithviraj");
+//        xvalues = Arrays.asList("Atharv","omkar","manish","yash","prithviraj");
 
         XAxis xaxis=lineChart.getXAxis();
         xaxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xaxis.setValueFormatter(new IndexAxisValueFormatter(xvalues));
         xaxis.setLabelCount(4);
+        xaxis.setAxisMaximum(10f);
+        xaxis.setAxisMinimum(0f);
+        xaxis.setAxisLineWidth(2f);
+        xaxis.setAxisLineColor(Color.BLACK);
         xaxis.setGranularity(1f);
 
         YAxis yAxis = lineChart.getAxisLeft();
@@ -185,9 +191,9 @@ public class TrackAttendanceFragment extends Fragment {
         List<Entry> entries = new ArrayList<>();
 
         entries.add(new Entry(0,0f));
-        entries.add(new Entry(1,5f));
-        entries.add(new Entry(2,15f));
-        entries.add(new Entry(3,Attendance2));
+        entries.add(new Entry(2,3f));
+        entries.add(new Entry(4,10f));
+        entries.add(new Entry(6,Attendance2));
 //        entries.add(new Entry(3,25f));
 
         List<Entry> entries2 = new ArrayList<>();

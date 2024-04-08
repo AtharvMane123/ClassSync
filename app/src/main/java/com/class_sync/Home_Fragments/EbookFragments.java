@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.class_sync.HomeScreen;
 import com.class_sync.R;
 
 
@@ -32,6 +33,7 @@ public class EbookFragments extends Fragment {
         Science = root.findViewById(R.id.ScienceBooks);
         Fantasy = root.findViewById(R.id.FantasyBooks);
         Technology = root.findViewById(R.id.TechnologyBooks);
+        HomeScreen.bottomNavigation.show(2, true);
 
         Technology.setOnClickListener(new View.OnClickListener() {
             @Override

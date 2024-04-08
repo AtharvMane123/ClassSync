@@ -33,11 +33,9 @@ import androidx.fragment.app.Fragment;
 
 import com.class_sync.Home_Fragments.AddEbook;
 import com.class_sync.Home_Fragments.Assignmnent_Fragment;
-import com.class_sync.Home_Fragments.EbookFragments;
 import com.class_sync.Home_Fragments.ImportantAnnouncements;
 import com.class_sync.Home_Fragments.MsbteResources_Fragement;
 import com.class_sync.Home_Fragments.Workbooks_Fragment;
-import com.class_sync.Online_Courses.OnlineCourse_Home_Fragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -64,22 +62,22 @@ public class HomeFragment extends Fragment {
 
 
     Spinner subject, TimePeriod, Gender;
-
+    AlertDialog.Builder builder1;
     View customDialogView, BiodataForm;
     Button NFC;
     Context context;
 
-    DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference("users").child(HomeScreen.User_Name).child("Total Attendance").child(getCurrentMonth_with_Year());
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(HomeScreen.User_Name).child("Total Attendance").child(getCurrentMonth_with_Year());
 
 
-    TextView AddEbook, user_Name;
+    TextView AddEbook, user_Name, greeting;
     EditText FatherName, FathersOccupation, FatherMobileNumber, MotherName, MotherMobileNumber, Address;
     CardView MarkAttendance, Android_course, Java_course, Python_course, C_course, Html_course, Flutter_course, Arduino_course;
     int i = 0;
     ViewGroup root;
     View decorView;
     String Subject_name, Time_period;
-    ImageView TrackAttendance, MsbteResources, ebooks, online_course, Assignments,Workbooks, ImportantNotification, HomeFrgament_notification;
+    ImageView TrackAttendance, MsbteResources, ebooks, online_course, Assignments, Workbooks, ImportantNotification, HomeFrgament_notification;
     FusedLocationProviderClient fusedLocationProviderClient;
     String gender = "";
 
@@ -140,6 +138,20 @@ public class HomeFragment extends Fragment {
             OpenStudentBiodataForm();
         }
 
+        Calendar calendar = Calendar.getInstance();
+        int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
+
+        // Find the TextView
+
+
+        // Set the greeting message based on the current time
+        if (hourOfDay >= 0 && hourOfDay < 12) {
+            greeting.setText("Good Morning!");
+        } else if (hourOfDay >= 12 && hourOfDay < 18) {
+            greeting.setText("Good Afternoon!");
+        } else {
+            greeting.setText("Good Evening!");
+        }
 
         //Runtime permission
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
@@ -198,7 +210,10 @@ public class HomeFragment extends Fragment {
         TrackAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame, new TrackAttendanceFragment()).commit();
+
+
+                    getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame, new TrackAttendanceFragment()).commit();
+
 
             }
         });
@@ -268,8 +283,18 @@ public class HomeFragment extends Fragment {
         MarkAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-          getLastLocation();
+                try {
+                    if (customDialogView.getParent() != null) {
+                        // If it has a parent, remove it from its current parent
+                        ((ViewGroup) customDialogView.getParent()).removeView(customDialogView);
+                    }
+                    getLastLocation();
+                    builder1.setView(customDialogView);
 //                showCustomDialog();
+                } catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
 
             }
         });
@@ -290,6 +315,7 @@ public class HomeFragment extends Fragment {
     void findId() {
         TrackAttendance = root.findViewById(R.id.TrackAttendance_CardView);
         AddEbook = root.findViewById(R.id.t1);
+        greeting = root.findViewById(R.id.t2);
 //        online_course = root.findViewById(R.id.OnlineCourses);
         user_Name = root.findViewById(R.id.user_name);
         NFC = root.findViewById(R.id.ScanNFc);
@@ -386,12 +412,6 @@ public class HomeFragment extends Fragment {
 
 
     //    ----------------------------------------Code to hide navigation buttons-------------------------------------------
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.getActivity().onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            decorView.setSystemUiVisibility(hideSystemBars());
-        }
-    }
 
     private int hideSystemBars() {
         return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -446,14 +466,14 @@ public class HomeFragment extends Fragment {
     private void showCustomDialog() {
 
 
-
         // Build the AlertDialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(customDialogView);
-        builder.setTitle("Add Attendance");
-        builder.setCancelable(true);
+        builder1 = new AlertDialog.Builder(getContext());
+        builder1.setView(customDialogView);
 
-        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+        builder1.setTitle("Add Attendance");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 incrementAttendanceValue();
@@ -477,7 +497,7 @@ public class HomeFragment extends Fragment {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         Toast.makeText(context, "Attendance has been Marked ", Toast.LENGTH_SHORT).show();
-                                        builder.create().dismiss();
+                                        builder1.create().dismiss();
                                     }
                                 });
                     }
@@ -492,26 +512,26 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+        builder1.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialogInterface) {
-                builder.create().cancel();
-                builder.create().dismiss();
+                builder1.create().cancel();
+                builder1.create().dismiss();
 
             }
         });
-        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+        builder1.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Handle Cancel button click
-                builder.create().dismiss();
-                builder.create().cancel();
+                builder1.create().dismiss();
+                builder1.create().cancel();
                 Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
             }
         });
 
         // Show the AlertDialog
-        AlertDialog customDialog = builder.create();
+        AlertDialog customDialog = builder1.create();
         // Check if contentView already has a parent
 
 
@@ -622,6 +642,7 @@ public class HomeFragment extends Fragment {
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
 
     }
+
     private String getCurrentMonth_with_Year() {
         Date currentDate = new Date();
         SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
@@ -631,6 +652,7 @@ public class HomeFragment extends Fragment {
         String currentYear = yearFormat.format(currentDate);
         return currentMonth + "-" + currentYear;
     }
+
     private void incrementAttendanceValue() {
         databaseReference.child("Total Attendance") // Specify the key of the value you want to increment
                 .setValue(ServerValue.increment(1)) // Increment the value by 1

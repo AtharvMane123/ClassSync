@@ -59,6 +59,8 @@ dependencies {
     implementation "com.google.firebase:firebase-auth"//Authentication
     implementation "com.github.PhilJay:MPAndroidChart:v3.1.0"//Line Chart
     implementation 'com.sun.mail:android-mail:1.6.7'//for Sending email
+    implementation 'com.shreyaspatil:EasyUpiPayment:2.1'
+
 
 
 

@@ -60,15 +60,9 @@ public class HomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         RootRelativeLayout = findViewById(R.id.RootRelativeLayout);
-
         bottomNavigation = findViewById(R.id.bottomNavigation);
         databaseReference = FirebaseDatabase.getInstance().getReference("ImportantNotice");
-
         BiodataForm = 0;
-
-
-
-
 
         if (getIntent().getStringExtra("OpenImportantNotice")!=null) {
             if (getIntent().getStringExtra("OpenImportantNotice").equals("OpenImportantNotice")) {
@@ -76,8 +70,6 @@ public class HomeScreen extends AppCompatActivity {
             }
         }
         if (getIntent().getStringExtra("Register")!=null) {
-
-
 
                 if (getIntent().getStringExtra("Register").equals("Register")) {
                     BiodataForm = 1;
@@ -116,11 +108,8 @@ public class HomeScreen extends AppCompatActivity {
 
         // Add ChildEventListener to listen for changes in the database
         databaseReference.addChildEventListener(childEventListener);
-
-
         sharedPreferences = getSharedPreferences("userLoggedIn", MODE_PRIVATE);
         sharedPreferencesEditor = sharedPreferences.edit();
-
         User_Email = sharedPreferences.getString("Email", "");
         User_Name = sharedPreferences.getString("Name", "");
 
@@ -156,19 +145,13 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
-
-
-
     }
-
-
 
     @Override
     public void onBackPressed() {
         Log.e(TAG, "onKeyDown: ");
         super.onBackPressed();
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -183,7 +166,6 @@ public class HomeScreen extends AppCompatActivity {
         registerReceiver(networkChangedListener, filter);
         super.onStart();
     }
-
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangedListener);

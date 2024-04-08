@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.class_sync.HomeScreen;
 import com.class_sync.Home_Fragments.OnlineCourse_category;
 import com.class_sync.R;
 
@@ -40,6 +41,7 @@ public class OnlineCourse_Home_Fragment extends Fragment {
         Marketing_Category = root.findViewById(R.id.Marketing_Category);
         Business_Category = root.findViewById(R.id.Business_Category);
 
+        HomeScreen.bottomNavigation.show(3, true);
 
         Android_course = root.findViewById(R.id.OnlineCourse_Android_course);
         Java_course = root.findViewById(R.id.OnlineCourse_Java_course);

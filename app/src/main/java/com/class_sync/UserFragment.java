@@ -26,7 +26,7 @@ public class UserFragment extends Fragment {
         logout = root.findViewById(R.id.logout_btn);
         requestOnlineCourse = root.findViewById(R.id.userProfile_RequestOnlineCourse);
         t1 = root.findViewById(R.id.userProfileName);
-
+        HomeScreen.bottomNavigation.show(4, true);
         t1.setText(HomeScreen.User_Name);
         requestOnlineCourse.setOnClickListener(new View.OnClickListener(){
 

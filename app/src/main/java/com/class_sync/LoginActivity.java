@@ -12,12 +12,16 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialog;
 import androidx.cardview.widget.CardView;
 
 import com.class_sync.Utility.NetworkChangedListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -95,8 +99,8 @@ public class LoginActivity extends AppCompatActivity {
         String email1 = email_editText.getText().toString();
         String password = password_editText.getText().toString();
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -108,29 +112,49 @@ public class LoginActivity extends AppCompatActivity {
                     if (email1.equals(Email)) {
                         email_editText.setError(null);
                         if (password.equals(Pass)) {
+                            email_editText.setError(null);
+                            DatabaseReference  databaseReference1 = FirebaseDatabase.getInstance().getReference("users").child(Name);
+                            databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    int loginAttempt = snapshot.child("LoginAttempt").getValue(Integer.class);
+                                    if(loginAttempt == 1)
+                                    {
+
+                                        Toast.makeText(LoginActivity.this, "You have extended your login limits......\nPlease Contact your Class Teacher.....", Toast.LENGTH_LONG).show();
+
+                                    }else {
+                                        sharedPreferencesEditor.putBoolean("login", true);
+                                        sharedPreferencesEditor.putBoolean("login", true);
+                                        sharedPreferencesEditor.putString("Email", Email);
+                                        sharedPreferencesEditor.putString("Name", Name);
+                                        sharedPreferencesEditor.commit();
+
+                                        checkSharedPreferences("Login");
+                                        databaseReference1.child("LoginAttempt").setValue(1);
+                                        USERNAME = Name;
+                                        Intent intent = new Intent(LoginActivity.this, HomeScreen.class);
+                                        email_editText.setError("");
+                                        startActivity(intent);
 
 
-                            sharedPreferencesEditor.putBoolean("login", true);
-                            sharedPreferencesEditor.putBoolean("login", true);
-                            sharedPreferencesEditor.putString("Email", Email);
-                            sharedPreferencesEditor.putString("Name", Name);
-                            sharedPreferencesEditor.commit();
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
 
-                            checkSharedPreferences("Login");
-                            USERNAME = Name;
-                            Intent intent = new Intent(LoginActivity.this, HomeScreen.class);
-                            startActivity(intent);
-
-
+                                }
+                            });
                             break;
-                        } else {
+                        }
+                        else {
                             email_editText.setError(null);
                             password_editText.setError("INCORRECT PASSWORD");
                             break;
                         }
-                    } else {
+                    }
+                else {
                         email_editText.setError("User Not Found");
-                        continue;
                     }
                 }
             }
