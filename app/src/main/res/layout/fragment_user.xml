@@ -39,7 +39,7 @@
 
         <androidx.cardview.widget.CardView
 
-            android:id="@+id/userProfile_EditProfile"
+            android:id="@+id/userProfile_RequestEbook"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@id/userProfileName"
@@ -58,10 +58,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
-                    android:textColor="@color/black"
                     android:gravity="center"
-                    android:text="Edit Profile"
+                    android:text="Request for an Ebook"
                     android:textAlignment="center"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     app:drawableEndCompat="@drawable/select_userfragment"
                     app:drawableStartCompat="@drawable/edit_userfragment" />
@@ -73,7 +73,7 @@
             android:id="@+id/userProfile_RequestOnlineCourse"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/userProfile_EditProfile"
+            android:layout_below="@id/userProfile_RequestEbook"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="20dp">
@@ -91,7 +91,7 @@
                     android:drawableStart="@drawable/edit_userfragment"
                     android:drawableEnd="@drawable/select_userfragment"
                     android:gravity="center"
-                    android:text="Request for Online Course"
+                    android:text="Request for an Online Course"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textStyle="bold" />

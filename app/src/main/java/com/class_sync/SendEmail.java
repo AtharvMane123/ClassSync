@@ -33,10 +33,16 @@ public class SendEmail {
             if(i==1)
             {
                 mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("maneatharv36@gmail.com"));
+                mimeMessage.setSubject("New Ebook Requested By: "+userName);
+                mimeMessage.setText("Welcome Admin, \n\n"+userName+" has requested a \nnew EBook for: "+message+"\nthrough email: "+stringSenderEmail+"\n\nSo we hope that the Ebook will be available soon to the users\n\nRegards Class-Sync..");
+
+            } else if (i == 2) {
+                mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("maneatharv36@gmail.com"));
                 mimeMessage.setSubject("New Course Requested By: "+userName);
                 mimeMessage.setText("Welcome Admin, \n\n"+userName+" has requested a \nnew Course for: "+message+"\nthrough email: "+stringSenderEmail+"\n\nSo we hope that the Course will be available soon to the users\n\nRegards Class-Sync..");
-            }
-            else {
+
+            } else if (i == 3) {
+
                 mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("maneatharv36@gmail.com"));
                 mimeMessage.setSubject("Help Requested by : "+userName+"("+stringSenderEmail+")");
                 mimeMessage.setText(message);

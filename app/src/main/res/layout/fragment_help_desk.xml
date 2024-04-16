@@ -29,6 +29,7 @@
         android:fontFamily="sans-serif-black"
         android:gravity="top"
         android:padding="20dp"
+        android:textColorHint="#6A6767"
         android:hint="Enter the name of course"
         android:textColor="@color/black"
         android:layout_marginHorizontal="10dp"

@@ -15,7 +15,7 @@ import com.class_sync.UserFragments.HelpDeskFragment;
 
 
 public class UserFragment extends Fragment {
-    CardView logout,requestOnlineCourse;
+    CardView logout,requestOnlineCourse,RequestEbook,Help;
     TextView t1;
 
     @Override
@@ -24,6 +24,8 @@ public class UserFragment extends Fragment {
         // Inflate the layout for this fragment
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_user, container, false);
         logout = root.findViewById(R.id.logout_btn);
+        RequestEbook = root.findViewById(R.id.userProfile_RequestEbook);
+        Help = root.findViewById(R.id.userProfile_help);
         requestOnlineCourse = root.findViewById(R.id.userProfile_RequestOnlineCourse);
         t1 = root.findViewById(R.id.userProfileName);
         HomeScreen.bottomNavigation.show(4, true);
@@ -33,8 +35,27 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view){
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame,new HelpDeskFragment()).commit();
+                HelpDeskFragment.mode = 2;
             }
         });
+
+        RequestEbook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame,new HelpDeskFragment()).commit();
+                HelpDeskFragment.mode = 1;
+            }
+        });
+        Help.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view)
+            {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.frame,new HelpDeskFragment()).commit();
+                HelpDeskFragment.mode = 3;
+            }
+        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
